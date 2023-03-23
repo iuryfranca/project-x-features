@@ -30,12 +30,11 @@ import * as React from "react"
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
-import "@/styles/globals.css"
+import { buttonVariants } from "@/src/components/ui/button"
+import "@/src/styles/globals.css"
+import { cn } from "@/src/lib/utils"
+import { NavItem } from "@/src/types/nav"
 import { twMerge } from "tailwind-merge"
-
-import { NavItem } from "@/types/nav"
-import { cn } from "@/lib/utils"
 ```
 
 ### Output
@@ -49,15 +48,16 @@ import { twMerge } from "tailwind-merge"
 
 // Followed by third-party modules
 // Space
-import "@/styles/globals.css"
+import "@/src/styles/globals.css"
+// config
+import { cn } from "@/src/lib/utils"
 // styles
-import { NavItem } from "@/types/nav"
+import { NavItem } from "@/src/types/nav"
+
 // types
 import { siteConfig } from "@/config/site"
-// config
-import { cn } from "@/lib/utils"
 // lib
-import { buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/src/components/ui/button"
 
 // components
 ```
