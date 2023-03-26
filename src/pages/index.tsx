@@ -19,7 +19,7 @@ export default function IndexPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
+      <section className="container items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex flex-col items-center justify-center gap-2 text-center">
           <h1 className="mt-20 text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-7xl">
             Seja bem vindo

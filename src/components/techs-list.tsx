@@ -7,12 +7,12 @@ import { Button } from './ui/button'
 export const TechsList = () => {
   return (
     <>
-      <div className="mt-16 flex w-full flex-col justify-center gap-5">
+      <div className="mt-16 flex w-full flex-col gap-5 text-center">
         <h1 className="text-3xl font-semibold leading-tight tracking-tighter sm:text-3xl">
           Tecnologias utilizadas para a criação do site
         </h1>
-        <div className="flex w-full flex-row justify-center gap-5">
-          <CardAnnouncementWebsite className="flex h-full max-w-sm gap-5">
+        <div className="flex w-full flex-col justify-center gap-5 sm:flex-row">
+          <CardAnnouncementWebsite className="flex h-full gap-5 sm:max-w-sm">
             <div className="flex w-full flex-row items-center justify-between gap-2">
               <div className="flex flex-row gap-2">
                 <Icons.logo height={25} />
@@ -31,7 +31,7 @@ export const TechsList = () => {
               JavaScript baseadas em Rust para compilações mais rápidas.
             </span>
           </CardAnnouncementWebsite>
-          <CardAnnouncementWebsite className="flex h-full max-w-sm gap-5">
+          <CardAnnouncementWebsite className="flex h-full gap-5 sm:max-w-sm">
             <div className="flex w-full flex-row items-center justify-between gap-2">
               <div className="flex flex-row gap-2">
                 <Image
@@ -55,7 +55,7 @@ export const TechsList = () => {
               empresas no mundo todo.
             </span>
           </CardAnnouncementWebsite>
-          <CardAnnouncementWebsite className="flex h-full max-w-sm gap-5">
+          <CardAnnouncementWebsite className="flex h-full gap-5 sm:max-w-sm">
             <div className="flex w-full flex-row items-center justify-between gap-2">
               <div className="flex flex-row gap-2">
                 <Icons.lucideIcons />

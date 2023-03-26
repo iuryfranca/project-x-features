@@ -6,6 +6,8 @@ module.exports = {
   content: ['src/pages/**/*.{ts,tsx}', 'src/components/**/*.{ts,tsx}'],
   theme: {
     container: {
+      display: 'flex',
+      flexDirection: 'column',
       center: true,
       padding: '24px',
       margin: 'auto',

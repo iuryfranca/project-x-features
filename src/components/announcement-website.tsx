@@ -6,8 +6,8 @@ import { Button } from './ui/button'
 
 export const AnnouncementWebsite = () => {
   return (
-    <div className="mt-16 flex h-[700px] w-full flex-row gap-5">
-      <CardAnnouncementWebsite className="flex w-full flex-col justify-between p-14 py-28">
+    <div className="mt-16 flex w-full flex-col gap-5 sm:h-[700px] sm:flex-row">
+      <CardAnnouncementWebsite className="flex w-full flex-col justify-between gap-10 py-10 sm:gap-0 sm:p-14 sm:py-28">
         <ShoppingCart size={80} />
 
         <div>
@@ -23,7 +23,7 @@ export const AnnouncementWebsite = () => {
           <Icons.blankLink />
         </Button>
       </CardAnnouncementWebsite>
-      <div className="flex w-full max-w-[340px] flex-col gap-5">
+      <div className="flex w-full flex-col gap-5 sm:max-w-[340px]">
         <CardAnnouncementWebsite className="group flex h-full justify-center gap-10">
           <div className=" flex flex-col items-center justify-center gap-2 group-hover:text-emerald-400">
             <LogIn size={40} />
@@ -35,26 +35,26 @@ export const AnnouncementWebsite = () => {
           </span>
         </CardAnnouncementWebsite>
         <CardAnnouncementWebsite className="group flex h-4/5 justify-center gap-10">
-          <div className="flex flex-col items-center justify-center gap-2 group-hover:text-green-700">
+          <div className="flex flex-col items-center justify-center gap-2 group-hover:text-green-500">
             <ListChecks size={40} />
             <h1 className="text-xl font-semibold">Lista de Pedidos</h1>
           </div>
           <span className="text-slate-600 dark:text-slate-400">
             Tenha acesso a um{' '}
-            <span className="font-semibold text-green-700">histórico</span> de
+            <span className="font-semibold text-green-500">histórico</span> de
             pedidos
           </span>
         </CardAnnouncementWebsite>
       </div>
-      <div className="flex w-full max-w-[340px] flex-col gap-5">
+      <div className="flex w-full flex-col gap-5 sm:max-w-[340px]">
         <CardAnnouncementWebsite className="group flex h-4/5 justify-center gap-10">
-          <div className="flex flex-col items-center justify-center gap-2 group-hover:text-red-600">
+          <div className="flex flex-col items-center justify-center gap-2 group-hover:text-red-500">
             <Heart size={40} />
             <h1 className="text-xl font-semibold">Favorite produtos</h1>
           </div>
           <span className="text-slate-600 dark:text-slate-400">
             Gostou de algum produto?{' '}
-            <span className="font-semibold text-red-600">Favorite</span> ele
+            <span className="font-semibold text-red-500">Favorite</span> ele
             para visita-lo novamente mis tarde
           </span>
         </CardAnnouncementWebsite>
