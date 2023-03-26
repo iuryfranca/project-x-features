@@ -35,13 +35,13 @@ export const AnnouncementWebsite = () => {
           </span>
         </CardAnnouncementWebsite>
         <CardAnnouncementWebsite className="group flex h-4/5 justify-center gap-10">
-          <div className="flex flex-col items-center justify-center gap-2 group-hover:text-green-500">
+          <div className="flex flex-col items-center justify-center gap-2 group-hover:text-yellow-300">
             <ListChecks size={40} />
             <h1 className="text-xl font-semibold">Lista de Pedidos</h1>
           </div>
           <span className="text-slate-600 dark:text-slate-400">
             Tenha acesso a um{' '}
-            <span className="font-semibold text-green-500">histórico</span> de
+            <span className="font-semibold text-yellow-300">histórico</span> de
             pedidos
           </span>
         </CardAnnouncementWebsite>
