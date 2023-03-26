@@ -5,6 +5,7 @@ import { siteConfig } from '@/src/config/site'
 import { AnnouncementWebsite } from '@/src/components/announcement-website'
 import { Layout } from '@/src/components/layout'
 import { buttonVariants } from '@/src/components/ui/button'
+import { TechsList } from '../components/techs-list'
 
 export default function IndexPage() {
   return (
@@ -49,6 +50,7 @@ export default function IndexPage() {
           </Link>
         </div>
         <AnnouncementWebsite />
+        <TechsList />
       </section>
     </Layout>
   )
