@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { CardAnnouncementWebsite } from './card-announcement'
 import { Icons } from './icons'
@@ -18,11 +19,11 @@ export const TechsList = () => {
                 <Icons.logo height={25} />
                 <h1 className="text-xl font-semibold">NextJs</h1>
               </div>
-              <a href="https://nextjs.org/" target="_blank">
+              <Link href="https://nextjs.org/" target="_blank">
                 <Button variant="ghost" className="px-2">
                   <Icons.blankLink />
                 </Button>
-              </a>
+              </Link>
             </div>
             <span className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
               Usado por algumas das maiores empresas do mundo, o Next.js permite
@@ -42,11 +43,11 @@ export const TechsList = () => {
                 />
                 <h1 className="text-xl font-semibold">Firebase</h1>
               </div>
-              <a href="https://firebase.google.com/" target="_blank">
+              <Link href="https://firebase.google.com/" target="_blank">
                 <Button variant="ghost" className="px-2">
                   <Icons.blankLink />
                 </Button>
-              </a>
+              </Link>
             </div>
             <span className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
               O Firebase é uma plataforma de desenvolvimento de aplicativos que
@@ -61,11 +62,11 @@ export const TechsList = () => {
                 <Icons.lucideIcons />
                 <h1 className="text-xl font-semibold">Lucide Icons</h1>
               </div>
-              <a href="https://lucide.dev/" target="_blank">
+              <Link href="https://lucide.dev/" target="_blank">
                 <Button variant="ghost" className="px-2">
                   <Icons.blankLink />
                 </Button>
-              </a>
+              </Link>
             </div>
             <div className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
               Kit de ferramentas de ícones bonito e consistente feito pela

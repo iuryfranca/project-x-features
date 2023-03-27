@@ -11,13 +11,7 @@ export default function IndexPage() {
   return (
     <Layout>
       <Head>
-        <title>Project X</title>
-        <meta
-          name="description"
-          content="Project X template for building apps with Radix UI and Tailwind CSS"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Project X | Home</title>
       </Head>
       <section className="container items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex flex-col items-center justify-center gap-2 text-center">
