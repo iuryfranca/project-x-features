@@ -1,6 +1,6 @@
 import { FC, ReactNode, createContext, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { appFirebaseConfig } from '@/firebase/config'
-import { AuthSignUpProps } from '@/types/auth'
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -9,8 +9,11 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut as signOutFire,
   updateProfile,
 } from 'firebase/auth'
+
+import { AuthSignUpProps } from '@/types/auth'
 
 interface PropsReactNode {
   children: ReactNode
@@ -22,6 +25,7 @@ type AuthContextData = {
   isPending: boolean
   signIn: ({ email, password }: AuthLoginProps) => void
   signUp: ({ email, password, displayName }: AuthSignUpProps) => void
+  signOut: () => void
   googleSignIn: () => void
   githubSignIn: () => void
 }
@@ -39,12 +43,15 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(true)
 
+  const router = useRouter()
+
   const signIn = async ({ email, password }: AuthLoginProps) => {
     setIsPending(true)
     await signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         setError(null)
         setUser(res.user)
+        router.push('/')
       })
       .catch((err) => {
         setError(err.message)
@@ -67,9 +74,24 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           }).then(() => setUser(res.user))
         }
         setError(null)
+        router.push('/login')
       })
       .catch((err) => {
         setError(err.message)
+      })
+      .finally(() => {
+        setIsPending(false)
+        setTimeout(() => {
+          setError(null)
+        }, 3000)
+      })
+  }
+
+  const signOut = async () => {
+    setIsPending(true)
+    await signOutFire(auth)
+      .then(() => {
+        setUser(null)
       })
       .finally(() => {
         setIsPending(false)
@@ -86,6 +108,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         const credential = GoogleAuthProvider.credentialFromResult(result)
         // const token = credential.accessToken
         setUser(result.user)
+        router.push('/')
       })
       .catch((error) => {
         // const errorCode = error.code
@@ -106,9 +129,9 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     await signInWithPopup(auth, githubProvider)
       .then((result) => {
         const credential = GithubAuthProvider.credentialFromResult(result)
-        console.log('credential Github:', credential)
         // const token = credential.accessToken
         setUser(result.user)
+        router.push('/')
       })
       .catch((error) => {
         // const errorCode = error.code
@@ -132,6 +155,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         isPending,
         signIn,
         signUp,
+        signOut,
         googleSignIn,
         githubSignIn,
       }}
