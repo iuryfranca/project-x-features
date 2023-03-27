@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { useAuthContext } from '@/src/core/context/auth-context'
+import { Icons } from '@/components/icons'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { useAuthContext } from '@/core/context/auth-context'
 import { LogIn } from 'lucide-react'
-
-import { Icons } from '@/src/components/icons'
-import { Button } from '@/src/components/ui/button'
-import { Input } from '@/src/components/ui/input'
-import { Label } from '@/src/components/ui/label'
 
 interface PageLoginProps {
   pageType: 'login' | 'register'

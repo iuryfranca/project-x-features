@@ -1,4 +1,4 @@
-import { NavItem } from '@/src/types/nav'
+import { NavItem } from '@/types/nav'
 
 interface SiteConfig {
   name: string

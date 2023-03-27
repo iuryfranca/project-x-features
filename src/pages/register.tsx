@@ -1,6 +1,6 @@
 import Head from 'next/head'
+import { Layout } from '@/components/layout'
 
-import { Layout } from '@/src/components/layout'
 import LoginRegisterView from '../views/login-register-view'
 
 const Login = () => {

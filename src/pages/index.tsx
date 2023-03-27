@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { siteConfig } from '@/src/config/site'
+import { AnnouncementWebsite } from '@/components/announcement-website'
+import { Layout } from '@/components/layout'
+import { buttonVariants } from '@/components/ui/button'
 
-import { AnnouncementWebsite } from '@/src/components/announcement-website'
-import { Layout } from '@/src/components/layout'
-import { buttonVariants } from '@/src/components/ui/button'
+import { siteConfig } from '@/config/site'
 import { TechsList } from '../components/techs-list'
 
 export default function IndexPage() {

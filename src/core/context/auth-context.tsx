@@ -1,5 +1,6 @@
 import { FC, ReactNode, createContext, useContext, useState } from 'react'
-import { appFirebaseConfig } from '@/src/firebase/config'
+import { appFirebaseConfig } from '@/firebase/config'
+import { AuthSignUpProps } from '@/types/auth'
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -10,8 +11,6 @@ import {
   signInWithPopup,
   updateProfile,
 } from 'firebase/auth'
-
-import { AuthSignUpProps } from '@/src/types/auth'
 
 interface PropsReactNode {
   children: ReactNode

@@ -28,14 +28,13 @@ The starter comes with `@ianvs/prettier-plugin-sort-imports` for automatically s
 ```tsx
 import * as React from 'react'
 import Link from 'next/link'
+import { buttonVariants } from '@/components/ui/button'
 
 import { siteConfig } from '@/config/site'
-import { buttonVariants } from '@/src/components/ui/button'
-import '@/src/styles/globals.css'
+import '@/styles/globals.css'
+import { cn } from '@/lib/utils'
+import { NavItem } from '@/types/nav'
 import { twMerge } from 'tailwind-merge'
-
-import { NavItem } from '@/src/types/nav'
-import { cn } from '@/src/lib/utils'
 ```
 
 ### Output
@@ -49,15 +48,16 @@ import { twMerge } from 'tailwind-merge'
 
 // Followed by third-party modules
 // Space
-import '@/src/styles/globals.css'
+import '@/styles/globals.css'
+// lib
+import { buttonVariants } from '@/components/ui/button'
+// config
+import { cn } from '@/lib/utils'
 // styles
-import { NavItem } from '@/src/types/nav'
+import { NavItem } from '@/types/nav'
+
 // types
 import { siteConfig } from '@/config/site'
-// config
-import { cn } from '@/src/lib/utils'
-// lib
-import { buttonVariants } from '@/src/components/ui/button'
 
 // components
 ```
