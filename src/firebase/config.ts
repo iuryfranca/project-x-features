@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { Timestamp, getFirestore } from 'firebase/firestore'
+import { Timestamp, addDoc, collection, getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 // import 'firebase/compat/auth'
@@ -19,4 +19,18 @@ const projectFirestore = getFirestore(appFirebaseConfig)
 const projectStorage = getStorage(appFirebaseConfig)
 const timestampNow = Timestamp.now().toDate()
 
-export { appFirebaseConfig, projectFirestore, projectStorage, timestampNow }
+// const useCollection = async (collectionPath: string, data: any) => {
+//   const collectionRef = collection(projectFirestore, collectionPath)
+
+//   return await addDoc(collectionRef, data).catch((err) => {
+//     console.log(err.message)
+//   })
+// }
+
+export {
+  appFirebaseConfig,
+  projectFirestore,
+  projectStorage,
+  timestampNow,
+  // useCollection,
+}
