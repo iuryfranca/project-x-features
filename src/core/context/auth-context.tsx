@@ -1,6 +1,6 @@
 import { FC, ReactNode, createContext, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { appFirebaseConfig } from '@/firebase/config'
+import { appFirebaseConfig, projectStorage } from '@/firebase/config'
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -12,6 +12,7 @@ import {
   signOut as signOutFire,
   updateProfile,
 } from 'firebase/auth'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 import { AuthSignUpProps } from '@/types/auth'
 
@@ -30,7 +31,7 @@ type AuthContextData = {
   githubSignIn: () => void
 }
 
-type AuthLoginProps = Omit<AuthSignUpProps, 'displayName'>
+type AuthLoginProps = Omit<AuthSignUpProps, 'displayName' | 'photoURL'>
 
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
@@ -41,9 +42,10 @@ export const AuthContext = createContext({} as AuthContextData)
 export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [user, setUser] = useState<UserTypes>(null)
   const [error, setError] = useState(null)
-  const [isPending, setIsPending] = useState(true)
+  const [isPending, setIsPending] = useState(false)
 
   const router = useRouter()
+  let urlProfileImage = ''
 
   const signIn = async ({ email, password }: AuthLoginProps) => {
     setIsPending(true)
@@ -64,15 +66,22 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       })
   }
 
-  const signUp = async ({ email, password, displayName }: AuthSignUpProps) => {
+  const signUp = async ({
+    email,
+    password,
+    displayName,
+    photoURL,
+  }: AuthSignUpProps) => {
     setIsPending(true)
     await createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        if (res) {
-          updateProfile(res.user, {
+      .then(async (res) => {
+        await uploadProfileImage(res?.user.uid, photoURL).then(async () => {
+          await updateProfile(res?.user, {
             displayName: displayName,
-          }).then(() => setUser(res.user))
-        }
+            photoURL: urlProfileImage,
+          })
+        })
+
         setError(null)
         router.push('/login')
       })
@@ -145,6 +154,21 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           setError(null)
         }, 3000)
       })
+  }
+
+  const uploadProfileImage = async (uid: string, file: File | null) => {
+    if (!file) return
+    urlProfileImage = ''
+
+    const typeImage = file.type.split('image/')
+    const filePath = `profile-users/${uid}/profile-image.${typeImage[1]}`
+
+    const storageRef = ref(projectStorage, filePath)
+    await uploadBytes(storageRef, file).then(async (res) => {
+      await getDownloadURL(res.ref).then((res) => {
+        urlProfileImage = res
+      })
+    })
   }
 
   return (

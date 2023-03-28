@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Avatar, AvatarImage } from './ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export function AuthToggle() {
   const { user, signOut } = useAuthContext()
@@ -28,8 +28,11 @@ export function AuthToggle() {
           ) : (
             <Button variant="subtle" size="sm" className="flex gap-2">
               <Label className="font-semibold">{user.displayName}</Label>
-              <Avatar className="h-8 w-8">
+              <Avatar className="h-7 w-7">
                 <AvatarImage src={user.photoURL} alt={user.displayName} />
+                <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
+                  {user.displayName.charAt(0)}
+                </AvatarFallback>
               </Avatar>
             </Button>
           )}
