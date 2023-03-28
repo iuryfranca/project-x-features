@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useAuthContext } from '@/core/context/auth-context'
+import { Icon } from '@radix-ui/react-select'
 import { FolderUp, LogIn } from 'lucide-react'
 
 import { Icons } from '@/components/icons'
@@ -17,7 +18,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   const [previewImage, setPreviewImage] = useState<string>()
   const [photoSelected, setPhotoSelected] = useState<File>()
 
-  const { error, isPending, user, signIn, signUp, githubSignIn, googleSignIn } =
+  const { error, isPending, signIn, signUp, githubSignIn, googleSignIn } =
     useAuthContext()
 
   const handlerFormLogin = (e: React.SyntheticEvent) => {
@@ -56,7 +57,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   }
 
   return (
-    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-slate-700 p-10 pb-16 dark:bg-slate-800">
+    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-slate-700 p-10 dark:bg-slate-800">
       {pageType === 'login' ? (
         <Label className="text-xl font-semibold">Acesse sua conta</Label>
       ) : (
@@ -150,12 +151,14 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
       )}
 
       {pageType === 'login' ? (
-        <Link href="/register" className="absolute bottom-1 right-2 text-xs">
+        <Link href="/register" className="flex w-full flex-row gap-1 text-sm">
           Não te conta? Crie uma agora mesmo!
+          <Icons.blankLink />
         </Link>
       ) : (
-        <Link href="/login" className="absolute bottom-1 right-2 text-xs">
-          Já tem uma conta? Entre agora mesmo!
+        <Link href="/login" className="flex w-full flex-row gap-1 text-sm">
+          Já tem conta? Entre agora mesmo!
+          <Icons.blankLink />
         </Link>
       )}
 

@@ -21,7 +21,7 @@ interface PropsReactNode {
 }
 
 type AuthContextData = {
-  user: UserTypes
+  userAuth: UserTypes
   error: string | null
   isPending: boolean
   signIn: ({ email, password }: AuthLoginProps) => void
@@ -40,7 +40,7 @@ const auth = getAuth(appFirebaseConfig)
 export const AuthContext = createContext({} as AuthContextData)
 
 export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
-  const [user, setUser] = useState<UserTypes>(null)
+  const [userAuth, setUserAuth] = useState<UserTypes>(null)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
 
@@ -52,7 +52,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         setError(null)
-        setUser(res.user)
+        setUserAuth(res.user)
         router.push('/')
       })
       .catch((err) => {
@@ -100,7 +100,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     setIsPending(true)
     await signOutFire(auth)
       .then(() => {
-        setUser(null)
+        setUserAuth(null)
       })
       .finally(() => {
         setIsPending(false)
@@ -116,7 +116,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result)
         // const token = credential.accessToken
-        setUser(result.user)
+        setUserAuth(result.user)
         router.push('/')
       })
       .catch((error) => {
@@ -139,7 +139,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       .then((result) => {
         const credential = GithubAuthProvider.credentialFromResult(result)
         // const token = credential.accessToken
-        setUser(result.user)
+        setUserAuth(result.user)
         router.push('/')
       })
       .catch((error) => {
@@ -174,7 +174,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
+        userAuth,
         error,
         isPending,
         signIn,

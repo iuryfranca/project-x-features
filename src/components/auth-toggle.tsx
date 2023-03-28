@@ -15,37 +15,40 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export function AuthToggle() {
-  const { user, signOut } = useAuthContext()
+  const { userAuth, signOut } = useAuthContext()
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          {!user ? (
+          {!userAuth ? (
             <Button variant="ghost" size="sm">
               <UserCog className="text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
               <span className="sr-only">Perfil</span>
             </Button>
           ) : (
             <Button variant="subtle" size="sm" className="flex gap-2">
-              <Label className="font-semibold">{user.displayName}</Label>
+              <Label className="font-semibold">{userAuth.displayName}</Label>
               <Avatar className="h-7 w-7">
-                <AvatarImage src={user.photoURL} alt={user.displayName} />
+                <AvatarImage
+                  src={userAuth.photoURL}
+                  alt={userAuth.displayName}
+                />
                 <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
-                  {user.displayName.charAt(0)}
+                  {userAuth.displayName.charAt(0)}
                 </AvatarFallback>
               </Avatar>
             </Button>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem disabled={!!user}>
+          <DropdownMenuItem disabled={!!userAuth}>
             <Link href="/login" className="flex w-full">
               <LogIn className="mr-2 h-4 w-4" />
               <span>Entrar</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
-            disabled={!user}
+            disabled={!userAuth}
             className="cursor-pointer"
             onClick={signOut}
           >
