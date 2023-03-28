@@ -1,4 +1,4 @@
-import { NavItem } from '@/src/types/nav'
+import { NavItem } from '@/types/nav'
 
 interface SiteConfig {
   name: string
@@ -19,10 +19,6 @@ export const siteConfig: SiteConfig = {
     {
       title: 'Home',
       href: '/',
-    },
-    {
-      title: 'Login',
-      href: '/login',
     },
   ],
   links: {

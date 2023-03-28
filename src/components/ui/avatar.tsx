@@ -3,7 +3,7 @@
 import * as React from 'react'
 import * as AvatarPrimitive from '@radix-ui/react-avatar'
 
-import { cn } from '@/src/lib/utils'
+import { cn } from '@/lib/utils'
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
@@ -26,6 +26,7 @@ const AvatarImage = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
+    // className={cn('m-auto mt-2 inline h-full w-auto scale-125', className)}
     className={cn('aspect-square h-full w-full', className)}
     {...props}
   />

@@ -1,23 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { siteConfig } from '@/src/config/site'
+import { AnnouncementWebsite } from '@/components/announcement-website'
+import { Layout } from '@/components/layout'
+import { buttonVariants } from '@/components/ui/button'
 
-import { AnnouncementWebsite } from '@/src/components/announcement-website'
-import { Layout } from '@/src/components/layout'
-import { buttonVariants } from '@/src/components/ui/button'
+import { siteConfig } from '@/config/site'
 import { TechsList } from '../components/techs-list'
 
 export default function IndexPage() {
   return (
     <Layout>
       <Head>
-        <title>Project X</title>
-        <meta
-          name="description"
-          content="Project X template for building apps with Radix UI and Tailwind CSS"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Project X | Home</title>
       </Head>
       <section className="container items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex flex-col items-center justify-center gap-2 text-center">

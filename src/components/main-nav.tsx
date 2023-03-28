@@ -1,11 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { siteConfig } from '@/src/config/site'
-
-import { NavItem } from '@/src/types/nav'
-import { cn } from '@/src/lib/utils'
-import { Icons } from '@/src/components/icons'
-import { Button } from '@/src/components/ui/button'
+import { Icons } from '@/components/icons'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +9,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
+import { cn } from '@/lib/utils'
+import { NavItem } from '@/types/nav'
+
+import { siteConfig } from '@/config/site'
 
 interface MainNavProps {
   items?: NavItem[]
