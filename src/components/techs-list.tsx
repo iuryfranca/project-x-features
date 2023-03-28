@@ -34,13 +34,14 @@ export const TechsList = () => {
           </CardAnnouncementWebsite>
           <CardAnnouncementWebsite className="flex h-full gap-5 sm:max-w-sm">
             <div className="flex w-full flex-row items-center justify-between gap-2">
-              <div className="flex flex-row gap-2">
-                <Image
-                  src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg"
-                  alt="Logo Firebase"
-                  height={25}
-                  width={20}
-                />
+              <div className="flex flex-row items-center gap-2">
+                <div className="relative h-7 w-7">
+                  <Image
+                    src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg"
+                    alt="Logo Firebase"
+                    fill
+                  />
+                </div>
                 <h1 className="text-xl font-semibold">Firebase</h1>
               </div>
               <Link href="https://firebase.google.com/" target="_blank">

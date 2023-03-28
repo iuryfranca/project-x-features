@@ -3,6 +3,8 @@ import { Inter as FontSans } from '@next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import '@/styles/globals.css'
+import { UserProvider } from '@/core/context/user-context'
+
 import { AuthProvider } from '../core/context/auth-context'
 
 const fontSans = FontSans({
@@ -20,11 +22,13 @@ export const App = ({ Component, pageProps }: AppProps) => {
 				}
 			}`}</style>
 
-      <AuthProvider>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </AuthProvider>
+      <UserProvider>
+        <AuthProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </AuthProvider>
+      </UserProvider>
     </>
   )
 }
