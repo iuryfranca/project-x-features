@@ -1,5 +1,6 @@
 import { FC, ReactNode, createContext, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useUserContext } from '@/core/context/user-context'
 import { appFirebaseConfig, projectStorage } from '@/firebase/config'
 import {
   GithubAuthProvider,
@@ -15,8 +16,6 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 import { AuthSignUpProps } from '@/types/auth'
-import { UserProps } from '@/types/user'
-import { useUserContext } from './user-context'
 
 interface PropsReactNode {
   children: ReactNode

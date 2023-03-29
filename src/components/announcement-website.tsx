@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Heart, ListChecks, LogIn, ShoppingCart, UserCog } from 'lucide-react'
 
 import { CardAnnouncementWebsite } from './card-announcement'
@@ -18,21 +19,33 @@ export const AnnouncementWebsite = () => {
           Faça compras, salve favorite seus produtos preferidos na sua própria
           conta!
         </span>
-        <Button className="flex gap-2 rounded-md">
-          Conheça agora!
-          <Icons.blankLink />
-        </Button>
+        <Link
+          href="/shopping"
+          aria-label="Acessar página de listagem de produtos"
+        >
+          <Button className="flex gap-2 rounded-md">
+            Conheça agora!
+            <Icons.blankLink />
+          </Button>
+        </Link>
       </CardAnnouncementWebsite>
       <div className="flex w-full flex-col gap-5 sm:max-w-[340px]">
-        <CardAnnouncementWebsite className="group flex h-full justify-center gap-10">
-          <div className=" flex flex-col items-center justify-center gap-2 group-hover:text-emerald-400">
-            <LogIn size={40} />
-            <h1 className="text-xl font-semibold">Faça Login</h1>
-          </div>
-          <span className="text-slate-600 dark:text-slate-400">
-            Com o <span className="font-semibold text-emerald-400">login</span>{' '}
-            você mantém seu carrinho salvo
-          </span>
+        <CardAnnouncementWebsite className="group h-full cursor-pointer p-0">
+          <Link
+            href="/login"
+            className="flex h-full flex-col justify-center gap-10 p-6"
+            aria-label="Acessar página de login"
+          >
+            <div className=" flex flex-col items-center justify-center gap-2 group-hover:text-emerald-400">
+              <LogIn size={40} />
+              <h1 className="text-xl font-semibold">Faça Login</h1>
+            </div>
+            <span className="text-slate-600 dark:text-slate-400">
+              Com o{' '}
+              <span className="font-semibold text-emerald-400">login</span> você
+              mantém seu carrinho salvo
+            </span>
+          </Link>
         </CardAnnouncementWebsite>
         <CardAnnouncementWebsite className="group flex h-4/5 justify-center gap-10">
           <div className="flex flex-col items-center justify-center gap-2 group-hover:text-yellow-300">
