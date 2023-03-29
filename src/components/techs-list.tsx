@@ -19,8 +19,16 @@ export const TechsList = () => {
                 <Icons.logo height={25} />
                 <h1 className="text-xl font-semibold">NextJs</h1>
               </div>
-              <Link href="https://nextjs.org/" target="_blank">
-                <Button variant="ghost" className="px-2">
+              <Link
+                href="https://nextjs.org/"
+                target="_blank"
+                aria-label="Link para acessar o nextjs em outra Aba do navegador"
+              >
+                <Button
+                  variant="ghost"
+                  className="px-2"
+                  aria-label="link-to-nextjs"
+                >
                   <Icons.blankLink />
                 </Button>
               </Link>
@@ -44,8 +52,16 @@ export const TechsList = () => {
                 </div>
                 <h1 className="text-xl font-semibold">Firebase</h1>
               </div>
-              <Link href="https://firebase.google.com/" target="_blank">
-                <Button variant="ghost" className="px-2">
+              <Link
+                href="https://firebase.google.com/"
+                target="_blank"
+                aria-label="Link para acessar o firebase em outra Aba do navegador"
+              >
+                <Button
+                  variant="ghost"
+                  className="px-2"
+                  aria-label="link-to-firebase"
+                >
                   <Icons.blankLink />
                 </Button>
               </Link>
@@ -63,8 +79,16 @@ export const TechsList = () => {
                 <Icons.lucideIcons />
                 <h1 className="text-xl font-semibold">Lucide Icons</h1>
               </div>
-              <Link href="https://lucide.dev/" target="_blank">
-                <Button variant="ghost" className="px-2">
+              <Link
+                href="https://lucide.dev/"
+                target="_blank"
+                aria-label="Link para acessar o lucide em outra Aba do navegador"
+              >
+                <Button
+                  variant="ghost"
+                  className="px-2"
+                  aria-label="link-to-lucide"
+                >
                   <Icons.blankLink />
                 </Button>
               </Link>
