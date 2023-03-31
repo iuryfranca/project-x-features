@@ -6,7 +6,7 @@ import { priceFormatter } from '@/lib/utils'
 import { Button } from './ui/button'
 
 const CardProduct = (product: ProductProps) => {
-  const { addItemCart, setCart } = useCartContext()
+  const { addItemCart } = useCartContext()
   return (
     <div
       key={product.id}
