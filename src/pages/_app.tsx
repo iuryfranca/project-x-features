@@ -23,15 +23,15 @@ export const App = ({ Component, pageProps }: AppProps) => {
 				}
 			}`}</style>
 
-      <CartProvider>
-        <UserProvider>
-          <AuthProvider>
+      <UserProvider>
+        <AuthProvider>
+          <CartProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <Component {...pageProps} />
             </ThemeProvider>
-          </AuthProvider>
-        </UserProvider>
-      </CartProvider>
+          </CartProvider>
+        </AuthProvider>
+      </UserProvider>
     </>
   )
 }

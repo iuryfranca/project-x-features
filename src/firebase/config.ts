@@ -19,14 +19,6 @@ const projectFirestore = getFirestore(appFirebaseConfig)
 const projectStorage = getStorage(appFirebaseConfig)
 const timestampNow = Timestamp.now().toDate()
 
-// const useCollection = async (collectionPath: string, data: any) => {
-//   const collectionRef = collection(projectFirestore, collectionPath)
-
-//   return await addDoc(collectionRef, data).catch((err) => {
-//     console.log(err.message)
-//   })
-// }
-
 export {
   appFirebaseConfig,
   projectFirestore,

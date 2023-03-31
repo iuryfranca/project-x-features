@@ -1,6 +1,7 @@
 import { User as UserFirebaseAuth } from 'firebase/auth'
 
 import { ProductProps } from '@/types/product'
+import { CartProps } from './cart'
 
 type UserPick = Pick<
   UserFirebaseAuth,
@@ -11,4 +12,5 @@ export interface UserProps extends UserPick {
   favorites: ProductProps[]
   orders: any[]
   products: ProductProps[]
+  cart: CartProps[]
 }

@@ -23,9 +23,16 @@ const CartToggle = () => {
           className={buttonVariants({
             size: 'sm',
             variant: 'ghost',
-            className: 'px-5',
+            className: 'relative mr-2 px-5',
           })}
         >
+          {cart.length > 0 && (
+            <div className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200">
+              <span className="text-xs font-semibold text-slate-200 dark:text-slate-700">
+                {cart.length}
+              </span>
+            </div>
+          )}
           <ShoppingBag className="absolute text-slate-700 transition-all hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100" />
         </div>
       </PopoverTrigger>

@@ -1,4 +1,11 @@
-import { FC, ReactNode, createContext, useContext, useState } from 'react'
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import { useRouter } from 'next/router'
 import { useUserContext } from '@/core/context/user-context'
 import { appFirebaseConfig, projectStorage } from '@/firebase/config'
@@ -6,8 +13,11 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   User as UserTypes,
+  browserSessionPersistence,
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut as signOutFire,
@@ -44,7 +54,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [userAuth, setUserAuth] = useState<UserTypes>(null)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
-  const { addUser, setUser, getUser } = useUserContext()
+  const { user, addUser, setUser, getUser } = useUserContext()
 
   const router = useRouter()
   let urlProfileImage = ''
@@ -76,29 +86,31 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     photoURL,
   }: AuthSignUpProps) => {
     setIsPending(true)
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then(async (res) => {
-        await uploadProfileImage(res?.user.uid, photoURL).then(async () => {
-          await updateProfile(res?.user, {
-            displayName: displayName,
-            photoURL: urlProfileImage,
+    setPersistence(auth, browserSessionPersistence).then(async () => {
+      return await createUserWithEmailAndPassword(auth, email, password)
+        .then(async (res) => {
+          await uploadProfileImage(res?.user.uid, photoURL).then(async () => {
+            await updateProfile(res?.user, {
+              displayName: displayName,
+              photoURL: urlProfileImage,
+            })
           })
-        })
 
-        setError(null)
-        addUser(res.user)
-
-        router.push('/login')
-      })
-      .catch((err) => {
-        setError(err.message)
-      })
-      .finally(() => {
-        setIsPending(false)
-        setTimeout(() => {
           setError(null)
-        }, 3000)
-      })
+          addUser(res.user)
+
+          router.push('/login')
+        })
+        .catch((err) => {
+          setError(err.message)
+        })
+        .finally(() => {
+          setIsPending(false)
+          setTimeout(() => {
+            setError(null)
+          }, 3000)
+        })
+    })
   }
 
   const signOut = async () => {
@@ -107,6 +119,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       .then(() => {
         setUserAuth(null)
         setUser(null)
+        router.push('/')
       })
       .finally(() => {
         setIsPending(false)
@@ -118,54 +131,59 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
 
   const googleSignIn = async () => {
     setIsPending(true)
-    await signInWithPopup(auth, googleProvider)
-      .then(async (res) => {
-        setUserAuth(res.user)
+    setPersistence(auth, browserSessionPersistence).then(async () => {
+      return await signInWithPopup(auth, googleProvider)
+        .then(async (res) => {
+          setUserAuth(res.user)
 
-        if (await getUser(res.user.uid)) {
-          setUser(await getUser(res.user.uid))
-        } else {
-          addUser(res.user)
-          setUser(await getUser(res.user.uid))
-        }
+          const getUserFirebase = await getUser(res.user.uid)
+          if (getUserFirebase) {
+            setUser(getUserFirebase)
+          } else {
+            addUser(res.user)
+            setUser(await getUser(res.user.uid))
+          }
 
-        router.push('/')
-      })
-      .catch((error) => {
-        setError(error.message)
-      })
-      .finally(() => {
-        setIsPending(false)
-        setTimeout(() => {
-          setError(null)
-        }, 3000)
-      })
+          router.push('/')
+        })
+        .catch((error) => {
+          setError(error.message)
+        })
+        .finally(() => {
+          setIsPending(false)
+          setTimeout(() => {
+            setError(null)
+          }, 3000)
+        })
+    })
   }
 
   const githubSignIn = async () => {
     setIsPending(true)
-    await signInWithPopup(auth, githubProvider)
-      .then(async (res) => {
-        setUserAuth(res.user)
+    setPersistence(auth, browserSessionPersistence).then(async () => {
+      return await signInWithPopup(auth, githubProvider)
+        .then(async (res) => {
+          setUserAuth(res.user)
 
-        if (await getUser(res.user.uid)) {
-          setUser(await getUser(res.user.uid))
-        } else {
-          addUser(res.user)
-          setUser(await getUser(res.user.uid))
-        }
+          if (await getUser(res.user.uid)) {
+            setUser(await getUser(res.user.uid))
+          } else {
+            addUser(res.user)
+            setUser(await getUser(res.user.uid))
+          }
 
-        router.push('/')
-      })
-      .catch((error) => {
-        setError(error.message)
-      })
-      .finally(() => {
-        setIsPending(false)
-        setTimeout(() => {
-          setError(null)
-        }, 3000)
-      })
+          router.push('/')
+        })
+        .catch((error) => {
+          setError(error.message)
+        })
+        .finally(() => {
+          setIsPending(false)
+          setTimeout(() => {
+            setError(null)
+          }, 3000)
+        })
+    })
   }
 
   const uploadProfileImage = async (uid: string, file: File | null) => {
@@ -182,6 +200,12 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       })
     })
   }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserAuth({ ...user })
+    })
+  }, [])
 
   return (
     <AuthContext.Provider

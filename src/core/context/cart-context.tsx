@@ -1,7 +1,17 @@
-import { FC, ReactNode, createContext, useContext, useState } from 'react'
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+import { projectFirestore } from '@/firebase/config'
+import { doc, updateDoc } from 'firebase/firestore'
 
 import { CartProps } from '@/types/cart'
 import { ProductProps } from '@/types/product'
+import { useUserContext } from './user-context'
 
 interface PropsReactNode {
   children: ReactNode
@@ -21,6 +31,8 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
   const [cart, setCart] = useState<CartProps[]>([])
   const amountPriceCart = cart.reduce((a, b) => a + b.price * b.amount, 0)
 
+  const { user, getUser } = useUserContext()
+
   const itemsCart = cart.reduce((products, product) => {
     const existingItem = products.find((item) => item.id === product.id)
 
@@ -33,8 +45,19 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
     return products
   }, [] as CartProps[])
 
-  const addItemCart = (newProduct: ProductProps): void => {
-    setCart([...cart, { ...newProduct, amount: 1 }])
+  const addItemCart = async (newProduct: ProductProps): Promise<void> => {
+    if (user) {
+      const documentRef = doc(projectFirestore, 'users', user.uid)
+      await updateDoc(documentRef, {
+        cart: [...cart, { ...newProduct, amount: 1 }],
+      }).then(async (res) => {
+        await getUser(user.uid).then((user) => {
+          setCart(user.cart)
+        })
+      })
+    } else {
+      setCart([...cart, { ...newProduct, amount: 1 }])
+    }
   }
 
   const removeItem = (id: number) => {

@@ -16,39 +16,45 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export function AuthToggle() {
   const { userAuth, signOut } = useAuthContext()
+
+  const emptyUserAuth =
+    JSON.stringify(userAuth) === '{}' ||
+    userAuth === null ||
+    userAuth === undefined
+
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          {!userAuth ? (
+          {emptyUserAuth ? (
             <Button variant="ghost" size="sm">
               <UserCog className="text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
               <span className="sr-only">Perfil</span>
             </Button>
           ) : (
             <Button variant="subtle" size="sm" className="flex gap-2">
-              <Label className="font-semibold">{userAuth.displayName}</Label>
+              <Label className="font-semibold">{userAuth?.displayName}</Label>
               <Avatar className="h-7 w-7">
                 <AvatarImage
-                  src={userAuth.photoURL}
-                  alt={userAuth.displayName}
+                  src={userAuth?.photoURL}
+                  alt={userAuth?.displayName}
                 />
                 <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
-                  {userAuth.displayName.charAt(0)}
+                  {userAuth?.displayName.charAt(0)}
                 </AvatarFallback>
               </Avatar>
             </Button>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem disabled={!!userAuth}>
+          <DropdownMenuItem disabled={!emptyUserAuth}>
             <Link href="/login" className="flex w-full">
               <LogIn className="mr-2 h-4 w-4" />
               <span>Entrar</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
-            disabled={!userAuth}
+            disabled={emptyUserAuth}
             className="cursor-pointer"
             onClick={signOut}
           >
