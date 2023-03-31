@@ -28,12 +28,12 @@ type CartContextData = {
 export const CartContext = createContext({} as CartContextData)
 
 export const CartProvider: FC<PropsReactNode> = ({ children }) => {
-  const [cart, setCart] = useState<CartProps[]>([])
-  const amountPriceCart = cart.reduce((a, b) => a + b.price * b.amount, 0)
-
   const { user, getUser } = useUserContext()
 
-  const itemsCart = cart.reduce((products, product) => {
+  const [cart, setCart] = useState<CartProps[]>([])
+  const amountPriceCart = cart?.reduce((a, b) => a + b.price * b.amount, 0)
+
+  const itemsCart = cart?.reduce((products, product) => {
     const existingItem = products.find((item) => item.id === product.id)
 
     if (!existingItem) {
@@ -61,12 +61,20 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
   }
 
   const removeItem = (id: number) => {
-    const objectToRemove: CartProps = cart.find((product) => product.id === id)
+    const objectToRemove: CartProps = cart?.find((product) => product.id === id)
     const tempCard = [...cart]
-    tempCard.splice(cart.indexOf(objectToRemove), 1)
+    tempCard.splice(cart?.indexOf(objectToRemove), 1)
 
     setCart(tempCard)
   }
+
+  useEffect(() => {
+    if (user) {
+      setCart(user?.cart)
+    } else {
+      setCart(null)
+    }
+  }, [user])
 
   return (
     <CartContext.Provider

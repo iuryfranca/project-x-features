@@ -26,6 +26,8 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 import { AuthSignUpProps } from '@/types/auth'
+import { UserProps } from '@/types/user'
+import { useCartContext } from './cart-context'
 
 interface PropsReactNode {
   children: ReactNode
@@ -55,6 +57,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
   const { user, addUser, setUser, getUser } = useUserContext()
+  // const {  } = useCartContext()
 
   const router = useRouter()
   let urlProfileImage = ''
@@ -64,7 +67,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(async (res) => {
         setUserAuth(res.user)
-        setUser(await getUser(res.user.uid))
+        setUser(await getUser(res.user?.uid))
 
         router.push('/')
       })
@@ -89,7 +92,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     setPersistence(auth, browserSessionPersistence).then(async () => {
       return await createUserWithEmailAndPassword(auth, email, password)
         .then(async (res) => {
-          await uploadProfileImage(res?.user.uid, photoURL).then(async () => {
+          await uploadProfileImage(res?.user?.uid, photoURL).then(async () => {
             await updateProfile(res?.user, {
               displayName: displayName,
               photoURL: urlProfileImage,
@@ -136,12 +139,12 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         .then(async (res) => {
           setUserAuth(res.user)
 
-          const getUserFirebase = await getUser(res.user.uid)
+          const getUserFirebase = await getUser(res.user?.uid)
           if (getUserFirebase) {
             setUser(getUserFirebase)
           } else {
             addUser(res.user)
-            setUser(await getUser(res.user.uid))
+            setUser(await getUser(res.user?.uid))
           }
 
           router.push('/')
@@ -164,12 +167,13 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       return await signInWithPopup(auth, githubProvider)
         .then(async (res) => {
           setUserAuth(res.user)
+          const getUserFirebase = await getUser(res.user?.uid)
 
-          if (await getUser(res.user.uid)) {
-            setUser(await getUser(res.user.uid))
+          if (getUserFirebase) {
+            setUser(getUserFirebase)
           } else {
             addUser(res.user)
-            setUser(await getUser(res.user.uid))
+            setUser(await getUser(res.user?.uid))
           }
 
           router.push('/')
@@ -202,8 +206,11 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUserAuth({ ...user })
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserAuth({ ...user })
+        setUser(await getUser(user?.uid))
+      }
     })
   }, [])
 

@@ -26,10 +26,10 @@ const CartToggle = () => {
             className: 'relative mr-2 px-5',
           })}
         >
-          {cart.length > 0 && (
+          {cart?.length > 0 && (
             <div className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200">
               <span className="text-xs font-semibold text-slate-200 dark:text-slate-700">
-                {cart.length}
+                {cart?.length}
               </span>
             </div>
           )}
@@ -38,13 +38,13 @@ const CartToggle = () => {
       </PopoverTrigger>
       <PopoverContent className="p-2 shadow-lg">
         <ScrollArea className="flex-co flex h-96 pr-3">
-          {cart.length === 0 && (
+          {cart?.length === 0 && (
             <div className="mt-40 flex h-full items-center px-5 text-center">
               Seu carrinho de encontra vazio. 😄
             </div>
           )}
 
-          {itemsCart.map((product) => {
+          {itemsCart?.map((product) => {
             return (
               <div
                 className="relative mt-1 mb-2 grid h-28 w-full grid-cols-[80px_1fr] items-center justify-between overflow-hidden rounded-lg border border-slate-200/80 bg-slate-200 text-center transition-all hover:cursor-default dark:border-slate-800 dark:bg-slate-700"

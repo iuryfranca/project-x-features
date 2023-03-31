@@ -3,10 +3,9 @@ import { Inter as FontSans } from '@next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import '@/styles/globals.css'
+import { AuthProvider } from '@/core/context/auth-context'
 import { CartProvider } from '@/core/context/cart-context'
 import { UserProvider } from '@/core/context/user-context'
-
-import { AuthProvider } from '../core/context/auth-context'
 
 const fontSans = FontSans({
   subsets: ['latin'],
