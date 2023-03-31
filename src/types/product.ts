@@ -3,6 +3,6 @@ export interface ProductProps {
   title: string
   description: string
   price: number
-  amount: number
+  category: string
   image: string
 }

@@ -3,6 +3,7 @@ import { Inter as FontSans } from '@next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import '@/styles/globals.css'
+import { CartProvider } from '@/core/context/cart-context'
 import { UserProvider } from '@/core/context/user-context'
 
 import { AuthProvider } from '../core/context/auth-context'
@@ -22,13 +23,15 @@ export const App = ({ Component, pageProps }: AppProps) => {
 				}
 			}`}</style>
 
-      <UserProvider>
-        <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </AuthProvider>
-      </UserProvider>
+      <CartProvider>
+        <UserProvider>
+          <AuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </AuthProvider>
+        </UserProvider>
+      </CartProvider>
     </>
   )
 }
