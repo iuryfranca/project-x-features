@@ -25,7 +25,10 @@ const CartToggle = () => {
 
   return (
     <Popover>
-      <PopoverTrigger className="flex items-center">
+      <PopoverTrigger
+        aria-label="Botão para abrir um Popover com as informações do carrinho"
+        className="flex items-center"
+      >
         <div
           className={buttonVariants({
             size: 'sm',
