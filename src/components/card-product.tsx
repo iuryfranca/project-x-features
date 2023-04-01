@@ -11,7 +11,7 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
   return (
     <div
       key={product.id}
-      className="relative flex h-[350px] w-52 flex-col items-center justify-between overflow-hidden rounded-lg border border-slate-200/80 bg-slate-200 text-center transition-all hover:scale-[1.02] hover:cursor-default dark:border-slate-800 dark:bg-slate-700"
+      className="relative flex h-[350px] w-full max-w-[160px] flex-col items-center justify-between overflow-hidden rounded-lg border border-slate-200/80 bg-slate-200 text-center transition-all hover:scale-[1.02] hover:cursor-default dark:border-slate-800 dark:bg-slate-700 md:h-[350px] md:w-52 md:max-w-none"
     >
       <div className="flex w-full justify-start p-3">
         <span className="whitespace-wrap text-ellipsis text-start text-sm font-bold line-clamp-1">

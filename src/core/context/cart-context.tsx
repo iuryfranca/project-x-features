@@ -89,7 +89,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
     if (user) {
       setCart(user?.cart)
     } else {
-      setCart(null)
+      setCart([])
     }
   }, [user])
 
