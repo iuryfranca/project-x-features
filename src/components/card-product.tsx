@@ -25,7 +25,7 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
           {product.title}
         </span>
       </div>
-      <div className="flex h-56 w-full items-center justify-center bg-white">
+      <div className="flex h-56 w-full items-center justify-center overflow-hidden bg-white">
         <img
           src={product.image}
           alt={product.title}

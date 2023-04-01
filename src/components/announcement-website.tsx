@@ -1,49 +1,57 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
-import {
-  Heart,
-  Key,
-  Lightbulb,
-  ListChecks,
-  LogIn,
-  Settings,
-  ShoppingCart,
-  UserCog,
-} from 'lucide-react'
+import { Heart, Key, Lightbulb, Settings, ShoppingCart } from 'lucide-react'
 import Tilt from 'react-parallax-tilt'
 
 import { CardAnnouncementWebsite } from './card-announcement'
 import { Icons } from './icons'
-import { Button } from './ui/button'
+import { buttonVariants } from './ui/button'
 
 export const AnnouncementWebsite = () => {
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const divElement: any = document?.querySelector('.shiny')
+      divElement?.addEventListener('mousemove', (e) => {
+        const { x, y } = divElement.getBoundingClientRect()
+        divElement.style.setProperty('--x', e.clientX - x)
+        divElement.style.setProperty('--y', e.clientY - y)
+      })
+    }
+  }, [])
+
   return (
     <div className="mt-16 flex w-full flex-col gap-5 sm:h-[700px] sm:flex-row">
-      <Tilt
-        tiltMaxAngleX={8}
-        tiltMaxAngleY={8}
-        gyroscope
-        className="relative flex w-full flex-col items-center justify-between gap-10 rounded-lg border border-slate-200/80 bg-slate-100 p-6 py-10 text-center hover:cursor-default dark:border-slate-800 dark:bg-slate-800 sm:gap-0 sm:p-14 sm:py-28"
+      <Link
+        href="/shopping"
+        aria-label="Acessar página de listagem de produtos"
+        className=""
       >
-        <ShoppingCart size={80} />
-
-        <div>
-          <h1 className="text-5xl font-black">Project X</h1>
-          <span className="text-sm">by Iury França</span>
-        </div>
-        <span>
-          Faça compras, salve favorite seus produtos preferidos na sua própria
-          conta!
-        </span>
-        <Link
-          href="/shopping"
-          aria-label="Acessar página de listagem de produtos"
+        <Tilt
+          tiltMaxAngleX={8}
+          tiltMaxAngleY={8}
+          gyroscope
+          className="shiny bg-slate-1000 relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-slate-200/80 bg-slate-100 p-6 py-16 text-center dark:border-slate-800 dark:bg-slate-800 sm:gap-0 sm:p-14 sm:py-28"
         >
-          <Button className="flex gap-2 rounded-md">
+          <ShoppingCart size={80} />
+
+          <div>
+            <h1 className="text-5xl font-black">Project X</h1>
+            <span className="text-sm">by Iury França</span>
+          </div>
+          <span>
+            Faça compras, salve favorite seus produtos preferidos na sua própria
+            conta!
+          </span>
+          <div
+            className={buttonVariants({
+              variant: 'subtle',
+              className: 'hover: flex gap-2 rounded-md',
+            })}
+          >
             Conheça agora!
-            <Icons.blankLink />
-          </Button>
-        </Link>
-      </Tilt>
+          </div>
+        </Tilt>
+      </Link>
       <div className="flex w-full flex-col gap-5 sm:max-w-[340px]">
         <CardAnnouncementWebsite className="h-full cursor-pointer p-0">
           <Link
