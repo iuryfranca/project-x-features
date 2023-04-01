@@ -113,13 +113,13 @@ const CartToggle = () => {
           })}
         </ScrollArea>
         <div className="flex h-20 flex-row items-center justify-between gap-2 py-2">
-          <div className="flex flex-col rounded-md px-3 py-2 dark:bg-slate-700">
+          <div className="flex min-w-[120px] flex-col rounded-md bg-slate-200 px-3 py-2 dark:bg-slate-700">
             <span className="text-md font-normal">Preço total</span>
             <span className="text-md font-semibold">
               {priceFormatter(amountPriceCart)}
             </span>
           </div>
-          <Button variant="default" className="h-full  font-semibold">
+          <Button variant="default" className="text-md h-full font-semibold">
             Detalhes carrinho
           </Button>
         </div>
