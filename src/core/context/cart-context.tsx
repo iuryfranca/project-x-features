@@ -51,7 +51,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
       await updateDoc(documentRef, {
         cart: [...cart, { ...newProduct, amount: 1 }],
       }).then(async (res) => {
-        await getUser(user.uid).then((user) => {
+        await getUser(user?.uid).then((user) => {
           setCart(user.cart)
         })
       })

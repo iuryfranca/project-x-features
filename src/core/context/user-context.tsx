@@ -253,6 +253,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         favorites: [],
         orders: [],
         products: [],
+        cart: [],
       }
     }
     await setDoc(doc(projectFirestore, 'users', userData.uid), userData)

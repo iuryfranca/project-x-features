@@ -64,45 +64,13 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
 
   const signIn = async ({ email, password }: AuthLoginProps) => {
     setIsPending(true)
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(async (res) => {
-        setUserAuth(res.user)
-        setUser(await getUser(res.user?.uid))
-
-        router.push('/')
-      })
-      .catch((err) => {
-        setError(err.message)
-      })
-      .finally(() => {
-        setIsPending(false)
-        setTimeout(() => {
-          setError(null)
-        }, 3000)
-      })
-  }
-
-  const signUp = async ({
-    email,
-    password,
-    displayName,
-    photoURL,
-  }: AuthSignUpProps) => {
-    setIsPending(true)
     setPersistence(auth, browserSessionPersistence).then(async () => {
-      return await createUserWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
         .then(async (res) => {
-          await uploadProfileImage(res?.user?.uid, photoURL).then(async () => {
-            await updateProfile(res?.user, {
-              displayName: displayName,
-              photoURL: urlProfileImage,
-            })
-          })
+          setUserAuth(res.user)
+          setUser(await getUser(res.user?.uid))
 
-          setError(null)
-          addUser(res.user)
-
-          router.push('/login')
+          router.push('/')
         })
         .catch((err) => {
           setError(err.message)
@@ -114,6 +82,38 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           }, 3000)
         })
     })
+  }
+
+  const signUp = async ({
+    email,
+    password,
+    displayName,
+    photoURL,
+  }: AuthSignUpProps) => {
+    setIsPending(true)
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then(async (res) => {
+        await uploadProfileImage(res?.user?.uid, photoURL).then(async () => {
+          await updateProfile(res?.user, {
+            displayName: displayName,
+            photoURL: urlProfileImage,
+          })
+        })
+
+        setError(null)
+        addUser(res.user)
+
+        router.push('/login')
+      })
+      .catch((err) => {
+        setError(err.message)
+      })
+      .finally(() => {
+        setIsPending(false)
+        setTimeout(() => {
+          setError(null)
+        }, 3000)
+      })
   }
 
   const signOut = async () => {
@@ -206,10 +206,10 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setUserAuth({ ...user })
-        setUser(await getUser(user?.uid))
+    onAuthStateChanged(auth, async (userAuthStateChanged) => {
+      if (userAuthStateChanged) {
+        setUserAuth({ ...userAuthStateChanged })
+        setUser(await getUser(userAuthStateChanged?.uid))
       }
     })
   }, [])

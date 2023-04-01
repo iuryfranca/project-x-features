@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useAuthContext } from '@/core/context/auth-context'
+import { useUserContext } from '@/core/context/user-context'
 import { Label } from '@radix-ui/react-dropdown-menu'
 import { User as UserTypes } from 'firebase/auth'
 import { LogIn, LogOut, UserCog } from 'lucide-react'
@@ -15,46 +16,39 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export function AuthToggle() {
-  const { userAuth, signOut } = useAuthContext()
-
-  const emptyUserAuth =
-    JSON.stringify(userAuth) === '{}' ||
-    userAuth === null ||
-    userAuth === undefined
+  const { signOut } = useAuthContext()
+  const { user } = useUserContext()
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          {emptyUserAuth ? (
+          {!user ? (
             <Button variant="ghost" size="sm">
               <UserCog className="text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
               <span className="sr-only">Perfil</span>
             </Button>
           ) : (
             <Button variant="subtle" size="sm" className="flex gap-2">
-              <Label className="font-semibold">{userAuth?.displayName}</Label>
+              <Label className="font-semibold">{user?.displayName}</Label>
               <Avatar className="h-7 w-7">
-                <AvatarImage
-                  src={userAuth?.photoURL}
-                  alt={userAuth?.displayName}
-                />
+                <AvatarImage src={user?.photoURL} alt={user?.displayName} />
                 <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
-                  {userAuth?.displayName.charAt(0)}
+                  {user?.displayName?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
             </Button>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem disabled={!emptyUserAuth}>
+          <DropdownMenuItem disabled={!!user}>
             <Link href="/login" className="flex w-full">
               <LogIn className="mr-2 h-4 w-4" />
               <span>Entrar</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
-            disabled={emptyUserAuth}
+            disabled={!user}
             className="cursor-pointer"
             onClick={signOut}
           >
