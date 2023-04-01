@@ -6,6 +6,7 @@ import '@/styles/globals.css'
 import { AuthProvider } from '@/core/context/auth-context'
 import { CartProvider } from '@/core/context/cart-context'
 import { UserProvider } from '@/core/context/user-context'
+import { Analytics } from '@vercel/analytics/react'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -27,6 +28,7 @@ export const App = ({ Component, pageProps }: AppProps) => {
           <CartProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <Component {...pageProps} />
+              <Analytics />
             </ThemeProvider>
           </CartProvider>
         </AuthProvider>
