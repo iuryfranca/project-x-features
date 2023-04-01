@@ -82,28 +82,28 @@ const CartToggle = () => {
                   </div>
                   <div className="flex w-full items-center justify-between">
                     <div className="flex flex-row gap-1">
-                      <button
+                      <Button
+                        variant="ghost"
                         onClick={() => addItemCart(product as ProductProps)}
-                        aria-label="Adicionar mais item do mesmo ao carrinho"
-                        className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
+                        className="inline-flex h-8 items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
                       >
                         {isPendingToCart ? (
                           <Icons.spinnerLoading />
                         ) : (
                           <Plus className="h-5 w-5 p-0" />
                         )}
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         onClick={() => removeItem(product.id)}
-                        aria-label="Remoer item do mesmo ao carrinho"
-                        className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
+                        variant="ghost"
+                        className="inline-flex h-8 items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
                       >
                         {isPendingToCart ? (
                           <Icons.spinnerLoading />
                         ) : (
                           <Minus className="h-5 w-5 p-0" />
                         )}
-                      </button>
+                      </Button>
                     </div>
                     <span className="text-sm font-semibold">
                       {priceFormatter(product.price)}
@@ -114,15 +114,15 @@ const CartToggle = () => {
             )
           })}
         </ScrollArea>
-        <div className="flex h-20 flex-row items-center justify-between gap-2 py-2">
-          <div className="flex min-w-[120px] flex-col rounded-md bg-slate-200 px-3 py-2 dark:bg-slate-700">
-            <span className="text-md font-normal">Preço total</span>
+        <div className="flex h-[70px] flex-row items-center justify-between gap-2 py-1 pt-2">
+          <div className="flex h-full w-full flex-col justify-center rounded-md bg-slate-200 py-1 pl-3 pr-1 dark:bg-slate-700">
+            <span className="text-xs font-normal">Preço total</span>
             <span className="text-md font-semibold">
               {priceFormatter(amountPriceCart)}
             </span>
           </div>
           <Button variant="default" className="text-md h-full font-semibold">
-            Detalhes carrinho
+            Detalhes
           </Button>
         </div>
       </PopoverContent>

@@ -82,7 +82,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
         })
       })
     } else {
-      setCart(tempCard)
+      setCart([...tempCard])
     }
   }
 
