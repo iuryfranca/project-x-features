@@ -84,6 +84,7 @@ const CartToggle = () => {
                     <div className="flex flex-row gap-1">
                       <button
                         onClick={() => addItemCart(product as ProductProps)}
+                        aria-label="Adicionar mais item do mesmo ao carrinho"
                         className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
                       >
                         {isPendingToCart ? (
@@ -94,6 +95,7 @@ const CartToggle = () => {
                       </button>
                       <button
                         onClick={() => removeItem(product.id)}
+                        aria-label="Remoer item do mesmo ao carrinho"
                         className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
                       >
                         {isPendingToCart ? (
