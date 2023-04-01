@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Icons } from './icons'
-import { buttonVariants } from './ui/button'
+import { Button, buttonVariants } from './ui/button'
 import { ScrollArea } from './ui/scroll-area'
 
 const CartToggle = () => {
@@ -43,8 +43,8 @@ const CartToggle = () => {
           <ShoppingBag className="absolute text-slate-700 transition-all hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100" />
         </div>
       </PopoverTrigger>
-      <PopoverContent className="p-2 shadow-lg">
-        <ScrollArea className="flex-co flex h-96 pr-3">
+      <PopoverContent className="group p-2 shadow-lg">
+        <ScrollArea className="flex-co flex h-96 pr-3 shadow-inner">
           {cart?.length === 0 && (
             <div className="mt-40 flex h-full items-center px-5 text-center">
               Seu carrinho de encontra vazio. 😄
@@ -84,7 +84,7 @@ const CartToggle = () => {
                     <div className="flex flex-row gap-1">
                       <button
                         onClick={() => addItemCart(product as ProductProps)}
-                        className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-700"
+                        className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
                       >
                         {isPendingToCart ? (
                           <Icons.spinnerLoading />
@@ -94,7 +94,7 @@ const CartToggle = () => {
                       </button>
                       <button
                         onClick={() => removeItem(product.id)}
-                        className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-700"
+                        className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
                       >
                         {isPendingToCart ? (
                           <Icons.spinnerLoading />
@@ -112,11 +112,16 @@ const CartToggle = () => {
             )
           })}
         </ScrollArea>
-        <div className="flex h-8 flex-row items-center justify-between p-2">
-          <span className="text-md font-semibold">Preço total:</span>
-          <span className="text-md font-semibold">
-            {priceFormatter(amountPriceCart)}
-          </span>
+        <div className="flex h-20 flex-row items-center justify-between gap-2 py-2">
+          <div className="flex flex-col rounded-md px-3 py-2 dark:bg-slate-700">
+            <span className="text-md font-normal">Preço total</span>
+            <span className="text-md font-semibold">
+              {priceFormatter(amountPriceCart)}
+            </span>
+          </div>
+          <Button variant="default" className="h-full  font-semibold">
+            Detalhes carrinho
+          </Button>
         </div>
       </PopoverContent>
     </Popover>

@@ -24,6 +24,7 @@ type CartContextData = {
   amountPriceCart: number
   removeItem: (id: number) => void
   addItemCart: (product: ProductProps) => void
+  getAmountItemCart: (id: number) => number
 }
 
 export const CartContext = createContext({} as CartContextData)
@@ -85,6 +86,10 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
     }
   }
 
+  const getAmountItemCart = (id: number): number => {
+    return cart.filter((item) => item.id === id).length
+  }
+
   useEffect(() => {
     if (user) {
       setCart(user?.cart)
@@ -102,6 +107,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
         amountPriceCart,
         removeItem,
         addItemCart,
+        getAmountItemCart,
       }}
     >
       {children}
