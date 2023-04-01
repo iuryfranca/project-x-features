@@ -3,10 +3,11 @@ import { Plus } from 'lucide-react'
 
 import { ProductProps } from '@/types/product'
 import { priceFormatter } from '@/lib/utils'
+import { Icons } from './icons'
 import { Button } from './ui/button'
 
-const CardProduct = (product: ProductProps) => {
-  const { addItemCart } = useCartContext()
+const CardProduct = ({ product }: { product: ProductProps }) => {
+  const { addItemCart, isPendingToCart } = useCartContext()
   return (
     <div
       key={product.id}
@@ -31,7 +32,11 @@ const CardProduct = (product: ProductProps) => {
       </div>
       <div className="flex w-full items-center justify-between p-3 pt-0">
         <Button variant="ghost" size="sm" onClick={() => addItemCart(product)}>
-          <Plus className="h-6 w-6 p-0" />
+          {isPendingToCart ? (
+            <Icons.spinnerLoading />
+          ) : (
+            <Plus className="h-6 w-6 p-0" />
+          )}
         </Button>
         <span className="text-base font-semibold">
           {priceFormatter(product.price)}

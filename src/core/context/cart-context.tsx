@@ -20,6 +20,7 @@ interface PropsReactNode {
 type CartContextData = {
   cart: CartProps[]
   itemsCart: CartProps[]
+  isPendingToCart: boolean
   amountPriceCart: number
   removeItem: (id: number) => void
   addItemCart: (product: ProductProps) => void
@@ -31,6 +32,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
   const { user, getUser } = useUserContext()
 
   const [cart, setCart] = useState<CartProps[]>([])
+  const [isPendingToCart, setPendingToCart] = useState<boolean>(false)
   const amountPriceCart = cart?.reduce((a, b) => a + b.price * b.amount, 0)
 
   const itemsCart = cart?.reduce((products, product) => {
@@ -47,12 +49,14 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
 
   const addItemCart = async (newProduct: ProductProps): Promise<void> => {
     if (user) {
+      setPendingToCart(true)
       const documentRef = doc(projectFirestore, 'users', user.uid)
       await updateDoc(documentRef, {
         cart: [...cart, { ...newProduct, amount: 1 }],
       }).then(async (res) => {
         await getUser(user?.uid).then((user) => {
           setCart(user.cart)
+          setPendingToCart(false)
         })
       })
     } else {
@@ -60,12 +64,25 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
     }
   }
 
-  const removeItem = (id: number) => {
+  const removeItem = async (id: number) => {
     const objectToRemove: CartProps = cart?.find((product) => product.id === id)
     const tempCard = [...cart]
     tempCard.splice(cart?.indexOf(objectToRemove), 1)
 
-    setCart(tempCard)
+    if (user) {
+      setPendingToCart(true)
+      const documentRef = doc(projectFirestore, 'users', user.uid)
+      await updateDoc(documentRef, {
+        cart: [...tempCard],
+      }).then(async (res) => {
+        await getUser(user?.uid).then((user) => {
+          setCart(user.cart)
+          setPendingToCart(false)
+        })
+      })
+    } else {
+      setCart(tempCard)
+    }
   }
 
   useEffect(() => {
@@ -81,6 +98,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
       value={{
         cart,
         itemsCart,
+        isPendingToCart,
         amountPriceCart,
         removeItem,
         addItemCart,

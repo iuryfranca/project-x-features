@@ -9,12 +9,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { Icons } from './icons'
 import { buttonVariants } from './ui/button'
 import { ScrollArea } from './ui/scroll-area'
 
 const CartToggle = () => {
-  const { cart, itemsCart, amountPriceCart, addItemCart, removeItem } =
-    useCartContext()
+  const {
+    cart,
+    itemsCart,
+    amountPriceCart,
+    isPendingToCart,
+    addItemCart,
+    removeItem,
+  } = useCartContext()
 
   return (
     <Popover>
@@ -79,13 +86,21 @@ const CartToggle = () => {
                         onClick={() => addItemCart(product as ProductProps)}
                         className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-700"
                       >
-                        <Plus className="h-5 w-5 p-0" />
+                        {isPendingToCart ? (
+                          <Icons.spinnerLoading />
+                        ) : (
+                          <Plus className="h-5 w-5 p-0" />
+                        )}
                       </button>
                       <button
                         onClick={() => removeItem(product.id)}
                         className="inline-flex items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-700"
                       >
-                        <Minus className="h-5 w-5 p-0" />
+                        {isPendingToCart ? (
+                          <Icons.spinnerLoading />
+                        ) : (
+                          <Minus className="h-5 w-5 p-0" />
+                        )}
                       </button>
                     </div>
                     <span className="text-sm font-semibold">

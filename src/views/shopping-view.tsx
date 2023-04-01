@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
+import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
 import { Plus } from 'lucide-react'
 
@@ -28,7 +29,7 @@ export const ShoppingView = () => {
       <div className="flex flex-row flex-wrap justify-between gap-5">
         {productsList &&
           productsList.map((product) => {
-            return <CardProduct {...product} key={product.id} />
+            return <CardProduct product={product} key={product.id} />
           })}
       </div>
     </div>
