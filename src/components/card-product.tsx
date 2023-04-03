@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react'
 
 import { ProductProps } from '@/types/product'
 import { priceFormatter } from '@/lib/utils'
+import { FavoriteHeart } from '@/components/animations/like-favorite/index.tsx'
 import { Icons } from './icons'
 import { Button } from './ui/button'
 
@@ -38,13 +39,20 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
         </span>
       </div>
       <div className="flex w-full items-center justify-between p-3 pt-0">
-        <Button variant="ghost" size="sm" onClick={() => addItemCart(product)}>
-          {isPendingToCart ? (
-            <Icons.spinnerLoading />
-          ) : (
-            <Plus className="h-6 w-6 p-0" />
-          )}
-        </Button>
+        <div className="flex flex-row items-center justify-center">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => addItemCart(product)}
+          >
+            {isPendingToCart ? (
+              <Icons.spinnerLoading />
+            ) : (
+              <Plus className="h-6 w-6 p-0" />
+            )}
+          </Button>
+          <FavoriteHeart />
+        </div>
         <span className="text-base font-semibold">
           {priceFormatter(product.price)}
         </span>
