@@ -1,5 +1,7 @@
 // @refresh reset
 
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useUserContext } from '@/core/context/user-context'
 import {
   Alignment,
@@ -7,7 +9,6 @@ import {
   Layout,
   RiveState,
   StateMachineInput,
-  UseRiveParameters,
   useRive,
   useStateMachineInput,
 } from '@rive-app/react-canvas'
@@ -15,11 +16,14 @@ import {
 import { ProductProps } from '@/types/product'
 import LikeFavorite from './like-favorite.riv'
 
-export const FavoriteHeart = (
-  riveProps: UseRiveParameters = {},
+interface LikeFavoriteProps {
   product: ProductProps
-) => {
-  const {} = useUserContext()
+  checked: boolean
+}
+
+export const FavoriteHeart = ({ checked, product }: LikeFavoriteProps) => {
+  const { user, addItemToFavorite, removeItemToFavorite } = useUserContext()
+  const router = useRouter()
 
   const STATE_MACHINE_NAME = 'stateMachine'
   const { rive, RiveComponent }: RiveState = useRive({
@@ -30,7 +34,6 @@ export const FavoriteHeart = (
       fit: Fit.Cover,
       alignment: Alignment.Center,
     }),
-    ...riveProps,
   })
 
   const onCheckInput: StateMachineInput | null = useStateMachineInput(
@@ -57,13 +60,16 @@ export const FavoriteHeart = (
     'hover_checked'
   )
 
-  function onMouseDown() {
+  function onClick() {
+    if (!user) return router.push('/login')
     if (onCheckInput.value) {
       onCheckInput.value = false
       onBackInput.value = true
+      removeItemToFavorite(product.id)
     } else {
       onBackInput.value = false
       onCheckInput.value = true
+      addItemToFavorite(product)
     }
   }
 
@@ -78,7 +84,18 @@ export const FavoriteHeart = (
     onHoverCheckedInput.value = false
   }
 
-  // useEffect(() => {}, [onCheckInput, onBackInput])
+  useEffect(() => {
+    if (onCheckInput !== null) {
+      if (!checked) {
+        onCheckInput.value = false
+        onBackInput.value = true
+      } else {
+        onCheckInput.value = true
+        onBackInput.value = false
+        onHoverNotCheckedInput.value = true
+      }
+    }
+  }, [onCheckInput, onBackInput])
 
   return (
     <>
@@ -87,7 +104,7 @@ export const FavoriteHeart = (
           className="h-8 w-8"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          onMouseDown={onMouseDown}
+          onClick={onClick}
         />
       </div>
     </>

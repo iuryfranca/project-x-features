@@ -1,14 +1,16 @@
 import { useCartContext } from '@/core/context/cart-context'
+import { useUserContext } from '@/core/context/user-context'
 import { Plus } from 'lucide-react'
 
 import { ProductProps } from '@/types/product'
 import { priceFormatter } from '@/lib/utils'
-import { FavoriteHeart } from '@/components/animations/like-favorite/index.tsx'
+import { FavoriteHeart } from '@/components/animations/like-favorite/index'
 import { Icons } from './icons'
 import { Button } from './ui/button'
 
 const CardProduct = ({ product }: { product: ProductProps }) => {
   const { addItemCart, getAmountItemCart, isPendingToCart } = useCartContext()
+  const { getItemIsFavorite } = useUserContext()
   return (
     <div
       key={product.id}
@@ -39,21 +41,26 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
         </span>
       </div>
       <div className="flex w-full items-center justify-between p-3 pt-0">
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center gap-1">
           <Button
             variant="ghost"
             size="sm"
+            className="relative h-7 w-7"
             onClick={() => addItemCart(product)}
           >
             {isPendingToCart ? (
               <Icons.spinnerLoading />
             ) : (
-              <Plus className="h-6 w-6 p-0" />
+              <Plus className="absolute h-6 w-6 p-0" />
             )}
           </Button>
-          <FavoriteHeart />
+          <FavoriteHeart
+            checked={getItemIsFavorite(product.id)}
+            product={product}
+            key={product.id}
+          />
         </div>
-        <span className="text-base font-semibold">
+        <span className="text-sm font-semibold sm:text-base">
           {priceFormatter(product.price)}
         </span>
       </div>
