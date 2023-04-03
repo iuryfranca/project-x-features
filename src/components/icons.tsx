@@ -108,7 +108,7 @@ export const Icons = {
   spinnerLoading: (props: LucideProps) => (
     <svg
       aria-hidden="true"
-      className="duration-900 h-5 w-5 animate-spin fill-slate-900 text-slate-400 dark:fill-slate-300 dark:text-slate-500"
+      className="duration-900 h-5 w-5 animate-spin fill-slate-100 text-slate-600 dark:fill-slate-300 dark:text-slate-500"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

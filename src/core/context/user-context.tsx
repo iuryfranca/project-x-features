@@ -56,7 +56,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         emailVerified: user.emailVerified,
         phoneNumber: user.phoneNumber,
         photoURL: user.photoURL,
-        favoritesList: [],
+        favorites: [],
         orders: [],
         products: [
           {
@@ -261,7 +261,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         emailVerified: user.emailVerified,
         phoneNumber: user.phoneNumber,
         photoURL: user.photoURL,
-        favoritesList: [],
+        favorites: [],
         orders: [],
         products: [],
         cart: [],
