@@ -10,7 +10,13 @@ import {
 } from 'react'
 import { projectFirestore } from '@/firebase/config'
 import { User } from 'firebase/auth'
-import { DocumentData, doc, getDoc, setDoc } from 'firebase/firestore'
+import {
+  DocumentData,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore'
 
 import { ProductProps } from '@/types/product'
 import { UserProps } from '@/types/user'
@@ -22,16 +28,21 @@ interface PropsReactNode {
 type UserContextData = {
   user: UserProps
   productsList: ProductProps[]
+  favoritesList: ProductProps[]
   addUser: (data: User) => void
   setUser: Dispatch<SetStateAction<UserProps>>
   getUser: (id: string) => Promise<UserProps>
   getProductsUsers: () => void
+  removeItemToFavorite: (id: number) => void
+  addItemToFavorite: (product: ProductProps) => void
+  getItemIsFavorite: (id: number) => boolean
 }
 
 export const UserContext = createContext({} as UserContextData)
 
 export const UserProvider: FC<PropsReactNode> = ({ children }) => {
   const [user, setUser] = useState<UserProps | null>(null)
+  const [favoritesList, setFavoritesList] = useState<ProductProps[]>([])
   const [productsList, setProductsList] = useState<ProductProps[] | null>(null)
 
   const addUser = async (user: User) => {
@@ -45,7 +56,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         emailVerified: user.emailVerified,
         phoneNumber: user.phoneNumber,
         photoURL: user.photoURL,
-        favorites: [],
+        favoritesList: [],
         orders: [],
         products: [
           {
@@ -250,7 +261,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         emailVerified: user.emailVerified,
         phoneNumber: user.phoneNumber,
         photoURL: user.photoURL,
-        favorites: [],
+        favoritesList: [],
         orders: [],
         products: [],
         cart: [],
@@ -274,15 +285,60 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
     setProductsList(products)
   }
 
+  const addItemToFavorite = async (newProduct: ProductProps): Promise<void> => {
+    if (user) {
+      const documentRef = doc(projectFirestore, 'users', user?.uid)
+      await updateDoc(documentRef, {
+        favorites: [...favoritesList, { ...newProduct }],
+      }).then(async (res) => {
+        await getUser(user?.uid).then((user) => {
+          setFavoritesList(user.favorites)
+          console.log('new Favorites antes do set', user.favorites)
+        })
+      })
+    }
+  }
+
+  const removeItemToFavorite = async (id: number) => {
+    const itemToRemove: ProductProps = favoritesList?.find(
+      (product) => product.id === id
+    )
+    const tempFav = [...favoritesList]
+    tempFav.splice(favoritesList?.indexOf(itemToRemove), 1)
+
+    if (user) {
+      const documentRef = doc(projectFirestore, 'users', user?.uid)
+      await updateDoc(documentRef, {
+        favorites: [...tempFav],
+      }).then(async (res) => {
+        await getUser(user?.uid).then((user) => {
+          setFavoritesList(user.favorites)
+        })
+      })
+    }
+  }
+
+  const getItemIsFavorite = (id: number): boolean => {
+    return favoritesList?.some((product) => product.id === id)
+  }
+
+  useEffect(() => {
+    user ? setFavoritesList(user?.favorites) : setFavoritesList([])
+  }, [user])
+
   return (
     <UserContext.Provider
       value={{
         user,
         productsList,
+        favoritesList,
         setUser,
         addUser,
         getUser,
         getProductsUsers,
+        addItemToFavorite,
+        removeItemToFavorite,
+        getItemIsFavorite,
       }}
     >
       {children}

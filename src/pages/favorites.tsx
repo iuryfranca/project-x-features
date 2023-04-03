@@ -1,19 +1,19 @@
 import Head from 'next/head'
-import ShoppingView from '@/views/shopping-view'
+import FavoritesView from '@/views/favorites-view'
 
 import { Layout } from '@/components/layout'
 
-const Shopping = () => {
+const Favorites = () => {
   return (
     <Layout>
       <Head>
-        <title>Project X | Shopping</title>
+        <title>Project X | Favoritos</title>
       </Head>
       <section className="container items-center gap-6 pt-6 pb-8 md:py-10">
-        <ShoppingView />
+        <FavoritesView />
       </section>
     </Layout>
   )
 }
 
-export default Shopping
+export default Favorites

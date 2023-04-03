@@ -1,5 +1,6 @@
-import * as React from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
+import { useUserContext } from '@/core/context/user-context'
 
 import { NavItem } from '@/types/nav'
 import { siteConfig } from '@/config/site'
@@ -20,6 +21,8 @@ interface MainNavProps {
 }
 
 export function MainNav({ items }: MainNavProps) {
+  const { favoritesList } = useUserContext()
+
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-1 md:flex">
@@ -37,11 +40,20 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    'flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm',
+                    'relative flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm',
                     item.disabled && 'cursor-not-allowed opacity-80'
                   )}
                 >
-                  {item.title}
+                  <div className="flex flex-row items-center justify-center gap-1">
+                    {item.title}
+                    {item.title === 'Favoritos' && (
+                      <div className="flex h-4 w-4 items-center justify-center rounded-sm bg-slate-700 dark:bg-slate-200">
+                        <span className="text-[10px] font-bold text-slate-200 dark:text-slate-700">
+                          {favoritesList.length}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </Link>
               )
           )}
