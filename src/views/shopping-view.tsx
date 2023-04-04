@@ -26,7 +26,7 @@ export const ShoppingView = () => {
           <Button>Listar por</Button>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap justify-center gap-9 sm:justify-start">
+      <div className="flex flex-row flex-wrap justify-center gap-5 sm:justify-start md:gap-9">
         {productsList &&
           productsList.map((product) => {
             return <CardProduct product={product} key={product.id} />

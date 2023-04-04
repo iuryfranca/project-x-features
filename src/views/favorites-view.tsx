@@ -26,7 +26,7 @@ export const FavoriteView = () => {
       </div>
       <div
         className={cn(
-          'flex flex-row flex-wrap justify-center gap-9 sm:justify-start'
+          'flex flex-row flex-wrap justify-center gap-5 sm:justify-start md:gap-9'
         )}
       >
         {favoritesList &&
