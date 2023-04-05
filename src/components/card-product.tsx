@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
 import { Plus } from 'lucide-react'
@@ -11,6 +12,11 @@ import { Button } from './ui/button'
 const CardProduct = ({ product }: { product: ProductProps }) => {
   const { addItemCart, getAmountItemCart, isPendingToCart } = useCartContext()
   const { getItemIsFavorite } = useUserContext()
+  let loading = false
+
+  useEffect(() => {
+    loading = !!isPendingToCart
+  }, [])
   return (
     <div
       key={product.id}
@@ -48,7 +54,7 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
             className="relative h-7 w-7"
             onClick={() => addItemCart(product)}
           >
-            {isPendingToCart ? (
+            {loading ? (
               <Icons.spinnerLoading />
             ) : (
               <Plus className="absolute h-6 w-6 p-0" />
