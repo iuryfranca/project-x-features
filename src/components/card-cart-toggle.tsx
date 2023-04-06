@@ -7,7 +7,7 @@ import { priceFormatter } from '@/lib/utils'
 import { Icons } from './icons'
 import { Button } from './ui/button'
 
-const CardCart = ({ product }: { product: CartProps }) => {
+const CardCartToggle = ({ product }: { product: CartProps }) => {
   const { addItemCart, removeItem, isPendingToCart } = useCartContext()
 
   return (
@@ -30,11 +30,11 @@ const CardCart = ({ product }: { product: CartProps }) => {
             {product.title}
           </span>
         </div>
-        {/* <div className="flex h-9 w-full justify-start pb-2">
+        <div className="flex h-9 w-full justify-start pb-2">
           <span className="whitespace-wrap text-ellipsis text-start text-xs line-clamp-2">
             {product.description}
           </span>
-        </div> */}
+        </div>
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-row gap-1">
             <Button
@@ -69,4 +69,4 @@ const CardCart = ({ product }: { product: CartProps }) => {
   )
 }
 
-export default CardCart
+export default CardCartToggle

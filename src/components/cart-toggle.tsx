@@ -1,29 +1,19 @@
-import { useEffect } from 'react'
 import Link from 'next/link'
 import { useCartContext } from '@/core/context/cart-context'
-import { Minus, Plus, ShoppingBag } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
 
-import { ProductProps } from '@/types/product'
 import { priceFormatter } from '@/lib/utils'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import CardCart from './card-cart'
-import { Icons } from './icons'
+import CardCartToggle from './card-cart-toggle'
 import { Button, buttonVariants } from './ui/button'
 import { ScrollArea } from './ui/scroll-area'
 
 const CartToggle = () => {
-  const {
-    cart,
-    itemsCart,
-    amountPriceCart,
-    isPendingToCart,
-    addItemCart,
-    removeItem,
-  } = useCartContext()
+  const { cart, itemsCart, amountPriceCart } = useCartContext()
 
   return (
     <Popover>
@@ -57,7 +47,7 @@ const CartToggle = () => {
           )}
 
           {itemsCart?.map((product) => {
-            return <CardCart product={product} key={product.id} />
+            return <CardCartToggle product={product} key={product.id} />
           })}
         </ScrollArea>
         <div className="flex h-[70px] flex-row items-center justify-between gap-2 py-1 pt-2">

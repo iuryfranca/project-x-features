@@ -4,7 +4,6 @@ import { Heart, Key, Lightbulb, Settings, ShoppingCart } from 'lucide-react'
 import Tilt from 'react-parallax-tilt'
 
 import { CardAnnouncementWebsite } from './card-announcement'
-import { Icons } from './icons'
 import { buttonVariants } from './ui/button'
 
 export const AnnouncementWebsite = () => {
