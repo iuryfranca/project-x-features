@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
 import { Plus } from 'lucide-react'
@@ -12,11 +13,7 @@ import { Button } from './ui/button'
 const CardProduct = ({ product }: { product: ProductProps }) => {
   const { addItemCart, getAmountItemCart, isPendingToCart } = useCartContext()
   const { getItemIsFavorite } = useUserContext()
-  let loading = false
 
-  useEffect(() => {
-    loading = !!isPendingToCart
-  }, [])
   return (
     <div
       key={product.id}
@@ -35,10 +32,11 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
         </span>
       </div>
       <div className="flex h-56 w-full items-center justify-center overflow-hidden bg-white">
-        <img
+        <Image
           src={product.image}
           alt={product.title}
-          className="max-h-24 transition-all duration-300 hover:scale-125"
+          fill
+          className="!relative !h-24 !w-full !object-contain transition-all duration-300 hover:scale-125"
         />
       </div>
       <div className="flex h-[90px] w-full justify-start p-3 pb-2">
@@ -54,7 +52,7 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
             className="relative h-7 w-7"
             onClick={() => addItemCart(product)}
           >
-            {loading ? (
+            {isPendingToCart ? (
               <Icons.spinnerLoading />
             ) : (
               <Plus className="absolute h-6 w-6 p-0" />

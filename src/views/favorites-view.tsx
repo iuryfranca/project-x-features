@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
 
 import { cn } from '@/lib/utils'
@@ -7,11 +6,7 @@ import CardProduct from '@/components/card-product'
 import { Button } from '@/components/ui/button'
 
 export const FavoriteView = () => {
-  const { getProductsUsers, favoritesList } = useUserContext()
-
-  useEffect(() => {
-    getProductsUsers()
-  }, [])
+  const { favoritesList } = useUserContext()
 
   return (
     <div>
@@ -22,6 +17,7 @@ export const FavoriteView = () => {
 
         <div>
           <Button>Listar por</Button>
+          <Button></Button>
         </div>
       </div>
       <div

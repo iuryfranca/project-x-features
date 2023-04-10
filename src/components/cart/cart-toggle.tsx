@@ -8,9 +8,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import CardCartToggle from './card-cart-toggle'
-import { Button, buttonVariants } from './ui/button'
-import { ScrollArea } from './ui/scroll-area'
+import CardCartToggle from '../card-cart-toggle'
+import { Button, buttonVariants } from '../ui/button'
+import { ScrollArea } from '../ui/scroll-area'
 
 const CartToggle = () => {
   const { cart, itemsCart, amountPriceCart } = useCartContext()
@@ -42,7 +42,7 @@ const CartToggle = () => {
         <ScrollArea className="flex-co flex h-96 pr-3 shadow-inner">
           {cart?.length === 0 && (
             <div className="mt-40 flex h-full items-center px-5 text-center">
-              Seu carrinho de encontra vazio. 😄
+              Seu carrinho se encontra vazio. 😄
             </div>
           )}
 
