@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
@@ -50,9 +50,12 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
             variant="ghost"
             size="sm"
             className="relative h-7 w-7"
-            onClick={() => addItemCart(product)}
+            onClick={() => {
+              addItemCart(product)
+            }}
           >
-            {isPendingToCart ? (
+            {isPendingToCart?.isPending &&
+            isPendingToCart?.id === product.id ? (
               <Icons.spinnerLoading />
             ) : (
               <Plus className="absolute h-6 w-6 p-0" />

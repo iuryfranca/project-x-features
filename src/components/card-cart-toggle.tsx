@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
 import { Minus, Plus } from 'lucide-react'
 
@@ -21,8 +22,13 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
           {product.amount}
         </span>
       </div>
-      <div className="flex h-full w-full items-center justify-center bg-white">
-        <img src={product.image} alt={product.title} className="max-h-16" />
+      <div className="relative flex h-full w-full items-center justify-center bg-white">
+        <Image
+          src={product.image}
+          alt={product.title}
+          fill
+          className="!object-contain p-5"
+        />
       </div>
       <div className="flex flex-col items-start p-2">
         <div>
@@ -42,7 +48,8 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
               onClick={() => addItemCart(product as ProductProps)}
               className="inline-flex h-8 items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
             >
-              {isPendingToCart ? (
+              {isPendingToCart?.isPending &&
+              isPendingToCart?.id === product.id ? (
                 <Icons.spinnerLoading />
               ) : (
                 <Plus className="h-5 w-5 p-0" />
@@ -53,7 +60,8 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
               variant="ghost"
               className="inline-flex h-8 items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
             >
-              {isPendingToCart ? (
+              {isPendingToCart?.isPending &&
+              isPendingToCart?.id === product.id ? (
                 <Icons.spinnerLoading />
               ) : (
                 <Minus className="h-5 w-5 p-0" />

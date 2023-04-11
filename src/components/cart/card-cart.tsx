@@ -49,7 +49,8 @@ const CardCart = ({ product }: { product: CartProps }) => {
                   variant="ghost"
                   size="sm"
                 >
-                  {isPendingToCart ? (
+                  {isPendingToCart?.isPending &&
+                  isPendingToCart?.id === product.id ? (
                     <Icons.spinnerLoading />
                   ) : (
                     <Minus className="h-5 w-5 p-0" />
@@ -65,7 +66,8 @@ const CardCart = ({ product }: { product: CartProps }) => {
                   onClick={() => addItemCart(product)}
                   size="sm"
                 >
-                  {isPendingToCart ? (
+                  {isPendingToCart?.isPending &&
+                  isPendingToCart?.id === product.id ? (
                     <Icons.spinnerLoading />
                   ) : (
                     <Plus className="h-5 w-5 p-0" />
