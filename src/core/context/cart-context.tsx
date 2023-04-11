@@ -17,12 +17,18 @@ interface PropsReactNode {
   children: ReactNode
 }
 
+interface LoadingButtonProps {
+  id?: number | null
+  isPending: boolean
+}
+
 type CartContextData = {
   cart: CartProps[]
   itemsCart: CartProps[]
-  isPendingToCart: boolean
+  isPendingToCart: LoadingButtonProps
   amountPriceCart: number
   removeItem: (id: number) => void
+  removeAllItemCart: (id: number) => void
   addItemCart: (product: ProductProps) => void
   getAmountItemCart: (id: number) => number
 }
@@ -33,7 +39,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
   const { user, getUser } = useUserContext()
 
   const [cart, setCart] = useState<CartProps[]>([])
-  const [isPendingToCart, setPendingToCart] = useState<boolean>(false)
+  const [isPendingToCart, setPendingToCart] = useState<LoadingButtonProps>()
   const amountPriceCart = cart?.reduce((a, b) => a + b.price * b.amount, 0)
 
   const itemsCart = cart?.reduce((products, product) => {
@@ -50,14 +56,14 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
 
   const addItemCart = async (newProduct: ProductProps): Promise<void> => {
     if (user) {
-      setPendingToCart(true)
+      setPendingToCart({ isPending: true, id: newProduct.id })
       const documentRef = doc(projectFirestore, 'users', user.uid)
       await updateDoc(documentRef, {
         cart: [...cart, { ...newProduct, amount: 1 }],
       }).then(async (res) => {
         await getUser(user?.uid).then((user) => {
           setCart(user.cart)
-          setPendingToCart(false)
+          setPendingToCart({ isPending: false, id: null })
         })
       })
     } else {
@@ -67,18 +73,37 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
 
   const removeItem = async (id: number) => {
     const objectToRemove: CartProps = cart?.find((product) => product.id === id)
-    const tempCard = [...cart]
+    let tempCard = [...cart]
     tempCard.splice(cart?.indexOf(objectToRemove), 1)
 
     if (user) {
-      setPendingToCart(true)
+      setPendingToCart({ isPending: true, id: id })
       const documentRef = doc(projectFirestore, 'users', user.uid)
       await updateDoc(documentRef, {
         cart: [...tempCard],
-      }).then(async (res) => {
+      }).then(async () => {
         await getUser(user?.uid).then((user) => {
           setCart(user.cart)
-          setPendingToCart(false)
+          setPendingToCart({ isPending: false, id: null })
+        })
+      })
+    } else {
+      setCart([...tempCard])
+    }
+  }
+
+  const removeAllItemCart = async (id: number) => {
+    const tempCard: CartProps[] = cart?.filter((obj) => obj.id !== id)
+
+    if (user) {
+      setPendingToCart({ isPending: true, id: id })
+      const documentRef = doc(projectFirestore, 'users', user.uid)
+      await updateDoc(documentRef, {
+        cart: [...tempCard],
+      }).then(async () => {
+        await getUser(user?.uid).then((user) => {
+          setCart(user.cart)
+          setPendingToCart({ isPending: false, id: null })
         })
       })
     } else {
@@ -108,6 +133,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
         removeItem,
         addItemCart,
         getAmountItemCart,
+        removeAllItemCart,
       }}
     >
       {children}

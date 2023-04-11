@@ -1,10 +1,6 @@
 import { useEffect } from 'react'
-import Image from 'next/image'
-import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
-import { Plus } from 'lucide-react'
 
-import { priceFormatter } from '@/lib/utils'
 import CardProduct from '@/components/card-product'
 import { Button } from '@/components/ui/button'
 
@@ -13,7 +9,7 @@ export const ShoppingView = () => {
 
   useEffect(() => {
     getProductsUsers()
-  }, [])
+  }, [getProductsUsers])
 
   return (
     <div>

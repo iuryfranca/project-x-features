@@ -293,7 +293,6 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
       }).then(async (res) => {
         await getUser(user?.uid).then((user) => {
           setFavoritesList(user.favorites)
-          console.log('new Favorites antes do set', user.favorites)
         })
       })
     }

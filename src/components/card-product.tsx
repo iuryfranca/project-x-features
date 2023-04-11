@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
 import { Plus } from 'lucide-react'
@@ -11,6 +13,7 @@ import { Button } from './ui/button'
 const CardProduct = ({ product }: { product: ProductProps }) => {
   const { addItemCart, getAmountItemCart, isPendingToCart } = useCartContext()
   const { getItemIsFavorite } = useUserContext()
+
   return (
     <div
       key={product.id}
@@ -28,11 +31,12 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
           {product.title}
         </span>
       </div>
-      <div className="flex h-56 w-full items-center justify-center overflow-hidden bg-white">
-        <img
+      <div className="relative flex h-56 w-full items-center justify-center overflow-hidden bg-white">
+        <Image
           src={product.image}
           alt={product.title}
-          className="max-h-24 transition-all duration-300 hover:scale-125"
+          fill
+          className="!object-contain p-8 transition-all duration-300 hover:scale-125"
         />
       </div>
       <div className="flex h-[90px] w-full justify-start p-3 pb-2">
@@ -46,9 +50,12 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
             variant="ghost"
             size="sm"
             className="relative h-7 w-7"
-            onClick={() => addItemCart(product)}
+            onClick={() => {
+              addItemCart(product)
+            }}
           >
-            {isPendingToCart ? (
+            {isPendingToCart?.isPending &&
+            isPendingToCart?.id === product.id ? (
               <Icons.spinnerLoading />
             ) : (
               <Plus className="absolute h-6 w-6 p-0" />
