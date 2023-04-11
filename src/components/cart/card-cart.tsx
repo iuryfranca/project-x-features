@@ -10,7 +10,8 @@ import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
 
 const CardCart = ({ product }: { product: CartProps }) => {
-  const { addItemCart, removeItem, isPendingToCart } = useCartContext()
+  const { addItemCart, removeItem, isPendingToCart, removeAllItemCart } =
+    useCartContext()
 
   return (
     <>
@@ -20,12 +21,15 @@ const CardCart = ({ product }: { product: CartProps }) => {
         key={product.id}
         tabIndex={1}
       >
-        <div className="flex h-full w-[112px] items-center justify-center rounded-lg border-2 border-slate-200 bg-white dark:border-slate-300">
+        <div className="relative flex h-full w-[112px] items-center justify-center rounded-lg border-2 border-slate-200 bg-white dark:border-slate-300">
           <Image
             src={product.image}
             alt={product.title}
             fill
-            className="!relative !h-16 !w-full !object-contain"
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+            className="!object-contain p-5"
           />
         </div>
         <div className="grid h-full grid-cols-8 px-2">
@@ -69,7 +73,10 @@ const CardCart = ({ product }: { product: CartProps }) => {
                 </Button>
               </div>
               <div>
-                <Button variant="ghost">
+                <Button
+                  variant="ghost"
+                  onClick={() => removeAllItemCart(product.id)}
+                >
                   <Trash2 size={18} /> <span className="ml-2">Remover</span>
                 </Button>
               </div>
