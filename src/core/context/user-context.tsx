@@ -29,6 +29,7 @@ type UserContextData = {
   user: UserProps
   productsList: ProductProps[]
   favoritesList: ProductProps[]
+  isPendingProducts: boolean
   addUser: (data: User) => void
   setUser: Dispatch<SetStateAction<UserProps>>
   getUser: (id: string) => Promise<UserProps>
@@ -42,6 +43,7 @@ export const UserContext = createContext({} as UserContextData)
 
 export const UserProvider: FC<PropsReactNode> = ({ children }) => {
   const [user, setUser] = useState<UserProps | null>(null)
+  const [isPendingProducts, setIsPendingProducts] = useState<boolean>(true)
   const [favoritesList, setFavoritesList] = useState<ProductProps[]>([])
   const [productsList, setProductsList] = useState<ProductProps[] | null>(null)
 
@@ -279,10 +281,13 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
   }
 
   const getProductsUsers = async () => {
-    const products = await getUser('qSiMGNTj5SXDgkKybWl91bTZWAi2').then(
-      (user) => user.products
-    )
-    setProductsList(products)
+    setIsPendingProducts(true)
+    setTimeout(async () => {
+      const products = await getUser('qSiMGNTj5SXDgkKybWl91bTZWAi2')
+        .then((user) => user.products)
+        .finally(() => setIsPendingProducts(false))
+      setProductsList(products)
+    }, 1500)
   }
 
   const addItemToFavorite = async (newProduct: ProductProps): Promise<void> => {
@@ -331,6 +336,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         user,
         productsList,
         favoritesList,
+        isPendingProducts,
         setUser,
         addUser,
         getUser,

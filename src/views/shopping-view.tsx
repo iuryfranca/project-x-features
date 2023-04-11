@@ -2,14 +2,16 @@ import { useEffect } from 'react'
 import { useUserContext } from '@/core/context/user-context'
 
 import CardProduct from '@/components/card-product'
+import CardProductSkeleton from '@/components/skeleton/card-product-skeleton'
 import { Button } from '@/components/ui/button'
 
 export const ShoppingView = () => {
-  const { getProductsUsers, productsList } = useUserContext()
+  const { getProductsUsers, productsList, isPendingProducts } = useUserContext()
+  const repeatSkeleton = 20
 
   useEffect(() => {
     getProductsUsers()
-  }, [getProductsUsers])
+  }, [])
 
   return (
     <div>
@@ -23,6 +25,12 @@ export const ShoppingView = () => {
         </div>
       </div>
       <div className="flex flex-row flex-wrap justify-center gap-5 sm:justify-start md:gap-9">
+        {isPendingProducts &&
+          !productsList &&
+          [...Array(repeatSkeleton)].map((e, i) => (
+            <CardProductSkeleton key={i} />
+          ))}
+
         {productsList &&
           productsList.map((product) => {
             return <CardProduct product={product} key={product.id} />

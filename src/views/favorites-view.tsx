@@ -17,7 +17,6 @@ export const FavoriteView = () => {
 
         <div>
           <Button>Listar por</Button>
-          <Button></Button>
         </div>
       </div>
       <div

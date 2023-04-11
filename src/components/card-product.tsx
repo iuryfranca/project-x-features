@@ -17,7 +17,7 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
   return (
     <div
       key={product.id}
-      className="relative flex h-[350px] w-full max-w-[160px] flex-col items-center justify-between rounded-lg border border-slate-200/80 bg-slate-200 text-center transition-all hover:scale-[1.02] hover:cursor-default dark:border-slate-800 dark:bg-slate-700 md:h-[350px] md:w-52 md:max-w-none"
+      className="relative flex h-[350px] w-full max-w-[160px] flex-col rounded-lg border border-slate-200/80 bg-slate-200 shadow-sm transition-all duration-200 hover:cursor-default hover:shadow-lg dark:border-slate-800 dark:bg-slate-700 dark:shadow-slate-800 dark:drop-shadow-lg md:h-[350px] md:w-52 md:max-w-none"
     >
       {getAmountItemCart(product.id) > 0 && (
         <div className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200">
@@ -31,11 +31,14 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
           {product.title}
         </span>
       </div>
-      <div className="relative flex h-56 w-full items-center justify-center overflow-hidden bg-white">
+      <div className="relative flex h-56 w-full overflow-hidden bg-white">
         <Image
           src={product.image}
           alt={product.title}
           fill
+          sizes="(max-width: 768px) 100vw,
+          (max-width: 1200px) 50vw,
+          33vw"
           className="!object-contain p-8 transition-all duration-300 hover:scale-125"
         />
       </div>

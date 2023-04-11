@@ -57,7 +57,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   }
 
   return (
-    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-slate-700 p-10 dark:bg-slate-800">
+    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-slate-700 p-10 shadow-2xl dark:bg-slate-800 dark:shadow-slate-800">
       {pageType === 'login' ? (
         <Label className="text-xl font-semibold">Acesse sua conta</Label>
       ) : (
