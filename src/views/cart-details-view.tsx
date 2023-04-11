@@ -8,16 +8,16 @@ export const CartDetailsView = () => {
   const { itemsCart } = useCartContext()
 
   return (
-    <div>
-      <div className="flex items-center justify-between py-5 pb-12">
-        <h1 className="text-3xl font-semibold leading-tight tracking-tighter sm:text-3xl">
+    <div className="lg:container">
+      <div className="flex items-center justify-between pb-4 lg:py-5 lg:pb-12">
+        <h1 className="text-3xl font-semibold leading-tight tracking-tighter">
           Carrinho
         </h1>
       </div>
 
-      <div className="flex flex-row gap-2">
-        <div className="flex w-full flex-row flex-wrap justify-center sm:justify-start">
-          <ScrollArea className="max-h-[700px] w-full rounded-lg pr-4">
+      <div className="flex flex-col lg:flex-row lg:gap-6">
+        <div className="flex w-full flex-row flex-wrap justify-center p-7 sm:justify-start lg:p-0">
+          <ScrollArea className="max-h-[700px] w-full rounded-lg">
             {itemsCart &&
               itemsCart.map((product) => {
                 return <CardCart product={product} key={product.id} />
