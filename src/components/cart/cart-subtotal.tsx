@@ -8,7 +8,7 @@ export default function CartSubtotal() {
   const { amountPriceCart } = useCartContext()
 
   return (
-    <div className="flex h-min w-full flex-col gap-4 rounded-t-3xl border-2 border-slate-200 bg-slate-100 p-5 shadow-[0_0_35px_15px_rgba(0,0,0,0.3)] dark:border-slate-500 dark:bg-slate-700 lg:max-w-sm lg:rounded-md lg:bg-transparent lg:shadow-none lg:dark:bg-transparent">
+    <div className="mt-2 flex h-min w-full flex-col gap-4 rounded-t-3xl border-2 border-slate-200 bg-slate-50 p-5 shadow-[0_0_45px_15px_rgba(0,0,0,0.25)] dark:border-slate-700 dark:bg-slate-800 lg:mt-0 lg:max-w-sm lg:rounded-md lg:bg-transparent lg:shadow-none lg:dark:bg-transparent">
       <div className="flex flex-row items-center justify-between">
         <span className="text-lg font-medium text-slate-400">Subtotal</span>
         <span className="text-base font-semibold leading-tight tracking-tighter sm:text-xl">

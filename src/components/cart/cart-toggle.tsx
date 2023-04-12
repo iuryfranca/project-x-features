@@ -39,7 +39,7 @@ const CartToggle = () => {
         </div>
       </PopoverTrigger>
       <PopoverContent className="group p-2 shadow-lg">
-        <ScrollArea className="flex-co flex h-96 pr-3 shadow-inner">
+        <ScrollArea className="flex-co flex h-96 pr-3 pl-4 shadow-inner">
           {cart?.length === 0 && (
             <div className="mt-40 flex h-full items-center px-5 text-center">
               Seu carrinho se encontra vazio. 😄

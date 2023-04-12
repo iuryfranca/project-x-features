@@ -17,7 +17,7 @@ const CardCart = ({ product }: { product: CartProps }) => {
     <>
       <Separator className="mt-8 mb-8 text-slate-200 first:mt-0" />
       <div
-        className="relative mt-1 mb-2 grid w-full grid-rows-[112px_1fr] items-center justify-items-center gap-4 overflow-hidden rounded-md border-2 border-slate-200 py-3 text-center transition-all hover:cursor-default dark:border-slate-500 lg:h-28 lg:grid-cols-[112px_1fr] lg:border-none lg:p-0"
+        className="relative mt-1 mb-2 grid w-full grid-rows-[112px_1fr] items-center justify-items-center gap-4 overflow-hidden rounded-md py-3 text-center transition-all hover:cursor-default lg:h-28 lg:grid-cols-[112px_1fr] lg:border-none lg:p-0"
         key={product.id}
         tabIndex={1}
       >
@@ -42,8 +42,8 @@ const CardCart = ({ product }: { product: CartProps }) => {
             </span>
           </div>
           <div className="col-span-2 flex w-full justify-between p-1 lg:justify-center">
-            <div className="flex flex-col justify-between">
-              <div className="flex h-min flex-row items-center justify-center gap-2 rounded-lg border-2 border-slate-200 p-2 dark:border-slate-500">
+            <div className="flex flex-row items-center justify-between gap-2 lg:flex-col">
+              <div className="flex h-min flex-row items-center justify-center gap-1 rounded-lg border-2 border-slate-200 p-1 dark:border-slate-500 lg:gap-2 lg:p-2">
                 <Button
                   onClick={() => removeItem(product.id)}
                   variant="ghost"
@@ -74,16 +74,16 @@ const CardCart = ({ product }: { product: CartProps }) => {
                   )}
                 </Button>
               </div>
-              <div>
-                <Button
-                  variant="ghost"
-                  onClick={() => removeAllItemCart(product.id)}
-                >
-                  <Trash2 size={18} /> <span className="ml-2">Remover</span>
-                </Button>
-              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-full w-full rounded-lg border-2 border-slate-200 p-2 dark:border-slate-500 lg:border-none lg:p-0"
+                onClick={() => removeAllItemCart(product.id)}
+              >
+                <Trash2 size={18} /> <span className="ml-1">Remover</span>
+              </Button>
             </div>
-            <div className="col-span-2 grid items-end justify-items-end pb-2 lg:hidden">
+            <div className="col-span-2 grid items-center justify-items-end lg:hidden lg:items-end">
               <span className="text-base font-semibold">
                 {priceFormatter(product.price)}
               </span>

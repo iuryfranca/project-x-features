@@ -1,6 +1,7 @@
 // @refresh reset
 
 import { useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useUserContext } from '@/core/context/user-context'
 import {
@@ -12,8 +13,20 @@ import {
   useRive,
   useStateMachineInput,
 } from '@rive-app/react-canvas'
+import { LogIn } from 'lucide-react'
 
 import { ProductProps } from '@/types/product'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 import LikeFavorite from './like-favorite.riv'
 
 interface LikeFavoriteProps {
@@ -100,12 +113,46 @@ export const FavoriteHeart = ({ checked, product }: LikeFavoriteProps) => {
   return (
     <>
       <div className="flex items-center justify-center">
-        <RiveComponent
-          className="h-8 w-8"
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          onClick={onClick}
-        />
+        {user ? (
+          <RiveComponent
+            className="h-8 w-8"
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onClick={onClick}
+          />
+        ) : (
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <RiveComponent
+                className="h-8 w-8"
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+              />
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Para favoritar é necessário fazer login 😅
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Por conta dos favoritos serem salvos no seu perfil, é
+                  necessário fazer login uma conta do google ou github. Se não
+                  tiver quaisquer conta nesses sites, basta criar uma com um
+                  email qualquer (não vai ter teste) e uma senha que você criar.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>
+                  <Link href="/login" className="flex flex-row gap-2">
+                    Login
+                    <LogIn />
+                  </Link>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
       </div>
     </>
   )
