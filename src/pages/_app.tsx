@@ -8,6 +8,8 @@ import { CartProvider } from '@/core/context/cart-context'
 import { UserProvider } from '@/core/context/user-context'
 import { Analytics } from '@vercel/analytics/react'
 
+import { Toaster } from '@/components/ui/toaster'
+
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -29,6 +31,7 @@ export const App = ({ Component, pageProps }: AppProps) => {
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <Component {...pageProps} />
               <Analytics />
+              <Toaster />
             </ThemeProvider>
           </CartProvider>
         </AuthProvider>

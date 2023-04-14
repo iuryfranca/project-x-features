@@ -9,6 +9,7 @@ import {
   useState,
 } from 'react'
 import { projectFirestore } from '@/firebase/config'
+import { useToast } from '@/hooks/use-toast'
 import { User } from 'firebase/auth'
 import {
   DocumentData,
@@ -20,6 +21,7 @@ import {
 
 import { ProductProps } from '@/types/product'
 import { UserProps } from '@/types/user'
+import { ToastAction } from '@/components/ui/toast'
 
 interface PropsReactNode {
   children: ReactNode
@@ -46,6 +48,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
   const [isPendingProducts, setIsPendingProducts] = useState<boolean>(true)
   const [favoritesList, setFavoritesList] = useState<ProductProps[]>([])
   const [productsList, setProductsList] = useState<ProductProps[] | null>(null)
+  const { toast } = useToast()
 
   const addUser = async (user: User) => {
     let userData
@@ -282,12 +285,17 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
 
   const getProductsUsers = async () => {
     setIsPendingProducts(true)
-    setTimeout(async () => {
-      const products = await getUser('qSiMGNTj5SXDgkKybWl91bTZWAi2')
-        .then((user) => user.products)
-        .finally(() => setIsPendingProducts(false))
-      setProductsList(products)
-    }, 1500)
+    await getUser('qSiMGNTj5SXDgkKybWl91bTZWAi2')
+      .then((user) => setProductsList(user.products))
+      .catch((error) => {
+        toast({
+          title: `Erro carregas os produtos`,
+          description: error.code,
+          variant: 'destructive',
+          action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+        })
+      })
+      .finally(() => setIsPendingProducts(false))
   }
 
   const addItemToFavorite = async (newProduct: ProductProps): Promise<void> => {
@@ -295,11 +303,20 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
       const documentRef = doc(projectFirestore, 'users', user?.uid)
       await updateDoc(documentRef, {
         favorites: [...favoritesList, { ...newProduct }],
-      }).then(async (res) => {
-        await getUser(user?.uid).then((user) => {
-          setFavoritesList(user.favorites)
-        })
       })
+        .then(async () => {
+          await getUser(user?.uid).then((user) => {
+            setFavoritesList(user.favorites)
+          })
+        })
+        .catch((error) => {
+          toast({
+            title: `Erro ao favoritar item`,
+            description: error.code,
+            variant: 'destructive',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
+        })
     }
   }
 
@@ -314,7 +331,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
       const documentRef = doc(projectFirestore, 'users', user?.uid)
       await updateDoc(documentRef, {
         favorites: [...tempFav],
-      }).then(async (res) => {
+      }).then(async () => {
         await getUser(user?.uid).then((user) => {
           setFavoritesList(user.favorites)
         })

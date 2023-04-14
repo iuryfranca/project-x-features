@@ -9,6 +9,7 @@ import {
 import { useRouter } from 'next/router'
 import { useUserContext } from '@/core/context/user-context'
 import { appFirebaseConfig, projectStorage } from '@/firebase/config'
+import { useToast } from '@/hooks/use-toast'
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -26,8 +27,7 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 import { AuthSignUpProps } from '@/types/auth'
-import { UserProps } from '@/types/user'
-import { useCartContext } from './cart-context'
+import { ToastAction } from '@/components/ui/toast'
 
 interface PropsReactNode {
   children: ReactNode
@@ -35,7 +35,6 @@ interface PropsReactNode {
 
 type AuthContextData = {
   userAuth: UserTypes
-  error: string | null
   isPending: boolean
   signIn: ({ email, password }: AuthLoginProps) => void
   signUp: ({ email, password, displayName }: AuthSignUpProps) => void
@@ -54,12 +53,11 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [userAuth, setUserAuth] = useState<UserTypes>(null)
-  const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
-  const { user, addUser, setUser, getUser } = useUserContext()
-  // const {  } = useCartContext()
+  const { addUser, setUser, getUser } = useUserContext()
 
   const router = useRouter()
+  const { toast } = useToast()
   let urlProfileImage = ''
 
   const signIn = async ({ email, password }: AuthLoginProps) => {
@@ -72,14 +70,16 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
 
           router.push('/')
         })
-        .catch((err) => {
-          setError(err.message)
+        .catch((error) => {
+          toast({
+            title: `${error.name} | Erro ao fazer login`,
+            description: error.code,
+            variant: 'destructive',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
         })
         .finally(() => {
           setIsPending(false)
-          setTimeout(() => {
-            setError(null)
-          }, 3000)
         })
     })
   }
@@ -100,19 +100,19 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
 
-        setError(null)
         addUser(res.user)
-
         router.push('/login')
       })
-      .catch((err) => {
-        setError(err.message)
+      .catch((error) => {
+        toast({
+          title: `${error.name} | Erro ao se cadastrar`,
+          description: error.code,
+          variant: 'destructive',
+          action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+        })
       })
       .finally(() => {
         setIsPending(false)
-        setTimeout(() => {
-          setError(null)
-        }, 3000)
       })
   }
 
@@ -126,9 +126,6 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       })
       .finally(() => {
         setIsPending(false)
-        setTimeout(() => {
-          setError(null)
-        }, 3000)
       })
   }
 
@@ -150,13 +147,15 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           router.push('/')
         })
         .catch((error) => {
-          setError(error.message)
+          toast({
+            title: `${error.name} | Erro entrar com o Google`,
+            description: error.code,
+            variant: 'destructive',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
         })
         .finally(() => {
           setIsPending(false)
-          setTimeout(() => {
-            setError(null)
-          }, 3000)
         })
     })
   }
@@ -179,13 +178,15 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           router.push('/')
         })
         .catch((error) => {
-          setError(error.message)
+          toast({
+            title: `${error.name} | Erro ao entrar com o github`,
+            description: error.code,
+            variant: 'destructive',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
         })
         .finally(() => {
           setIsPending(false)
-          setTimeout(() => {
-            setError(null)
-          }, 3000)
         })
     })
   }
@@ -212,13 +213,12 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         setUser(await getUser(userAuthStateChanged?.uid))
       }
     })
-  }, [])
+  })
 
   return (
     <AuthContext.Provider
       value={{
         userAuth,
-        error,
         isPending,
         signIn,
         signUp,

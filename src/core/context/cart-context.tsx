@@ -7,10 +7,12 @@ import {
   useState,
 } from 'react'
 import { projectFirestore } from '@/firebase/config'
+import { useToast } from '@/hooks/use-toast'
 import { doc, updateDoc } from 'firebase/firestore'
 
 import { CartProps } from '@/types/cart'
 import { ProductProps } from '@/types/product'
+import { ToastAction } from '@/components/ui/toast'
 import { useUserContext } from './user-context'
 
 interface PropsReactNode {
@@ -37,7 +39,7 @@ export const CartContext = createContext({} as CartContextData)
 
 export const CartProvider: FC<PropsReactNode> = ({ children }) => {
   const { user, getUser } = useUserContext()
-
+  const { toast } = useToast()
   const [cart, setCart] = useState<CartProps[]>([])
   const [isPendingToCart, setPendingToCart] = useState<LoadingButtonProps>()
   const amountPriceCart = cart?.reduce((a, b) => a + b.price * b.amount, 0)
@@ -60,12 +62,21 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
       const documentRef = doc(projectFirestore, 'users', user.uid)
       await updateDoc(documentRef, {
         cart: [...cart, { ...newProduct, amount: 1 }],
-      }).then(async (res) => {
-        await getUser(user?.uid).then((user) => {
-          setCart(user.cart)
-          setPendingToCart({ isPending: false, id: null })
-        })
       })
+        .then(async (res) => {
+          await getUser(user?.uid).then((user) => {
+            setCart(user.cart)
+            setPendingToCart({ isPending: false, id: null })
+          })
+        })
+        .catch((error) => {
+          toast({
+            title: `Erro ao fazer Adicionar Item no carrinho`,
+            description: error.code,
+            variant: 'destructive',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
+        })
     } else {
       setCart([...cart, { ...newProduct, amount: 1 }])
     }
@@ -82,10 +93,19 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
       await updateDoc(documentRef, {
         cart: [...tempCard],
       }).then(async () => {
-        await getUser(user?.uid).then((user) => {
-          setCart(user.cart)
-          setPendingToCart({ isPending: false, id: null })
-        })
+        await getUser(user?.uid)
+          .then((user) => {
+            setCart(user.cart)
+            setPendingToCart({ isPending: false, id: null })
+          })
+          .catch((error) => {
+            toast({
+              title: `Erro ao fazer Remover Item no carrinho`,
+              description: error.code,
+              variant: 'destructive',
+              action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+            })
+          })
       })
     } else {
       setCart([...tempCard])
@@ -101,10 +121,19 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
       await updateDoc(documentRef, {
         cart: [...tempCard],
       }).then(async () => {
-        await getUser(user?.uid).then((user) => {
-          setCart(user.cart)
-          setPendingToCart({ isPending: false, id: null })
-        })
+        await getUser(user?.uid)
+          .then((user) => {
+            setCart(user.cart)
+            setPendingToCart({ isPending: false, id: null })
+          })
+          .catch((error) => {
+            toast({
+              title: `Erro ao fazer Remover Item no carrinho`,
+              description: error.code,
+              variant: 'destructive',
+              action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+            })
+          })
       })
     } else {
       setCart([...tempCard])
