@@ -18,7 +18,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   const [previewImage, setPreviewImage] = useState<string>()
   const [photoSelected, setPhotoSelected] = useState<File>()
 
-  const { error, isPending, signIn, signUp, githubSignIn, googleSignIn } =
+  const { isPending, signIn, signUp, githubSignIn, googleSignIn } =
     useAuthContext()
 
   const handlerFormLogin = (e: React.SyntheticEvent) => {
@@ -143,12 +143,6 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
           Google
         </Button>
       </div>
-
-      {error && (
-        <Label className="absolute bottom-8 right-10 left-10 text-xs text-red-700">
-          {error}
-        </Label>
-      )}
 
       {pageType === 'login' ? (
         <Link href="/register" className="flex w-full flex-row gap-1 text-sm">
