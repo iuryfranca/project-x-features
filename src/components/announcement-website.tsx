@@ -29,7 +29,7 @@ export const AnnouncementWebsite = () => {
           tiltMaxAngleX={8}
           tiltMaxAngleY={8}
           gyroscope
-          className="shiny bg-slate-1000 relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-slate-200/80 bg-slate-100 p-6 py-16 text-center dark:border-slate-800 dark:bg-slate-800 sm:gap-0 sm:p-14 sm:py-28"
+          className="shiny relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-28"
         >
           <ShoppingCart size={80} />
 
@@ -43,7 +43,7 @@ export const AnnouncementWebsite = () => {
           </span>
           <div
             className={buttonVariants({
-              variant: 'subtle',
+              variant: 'ghost',
               className: 'hover: flex gap-2 rounded-md',
             })}
           >

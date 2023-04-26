@@ -13,7 +13,7 @@ export const CardAnnouncementWebsite = ({
     <>
       <div
         className={cn(
-          'relative flex flex-col items-center justify-center overflow-hidden rounded-lg border border-slate-200/80 bg-slate-100 p-6 text-center transition-all hover:scale-[1.03] hover:cursor-default dark:border-slate-800 dark:bg-slate-800',
+          'relative flex flex-col items-center justify-center overflow-hidden rounded-lg border border-border bg-muted p-6 text-center text-muted-foreground transition-all hover:scale-[1.03] hover:cursor-default dark:border-border dark:bg-muted dark:text-muted-foreground',
           className
         )}
       >
