@@ -12,7 +12,7 @@ export const CartDetailsView = () => {
   return (
     <div className="lg:container">
       <Tabs defaultValue="cart">
-        <TabsList className="flex flex-row justify-start gap-1 bg-white pl-7 pt-5 dark:bg-slate-900 lg:p-0">
+        <TabsList className="flex flex-row justify-start gap-1 bg-background pl-7 pt-5 dark:bg-background lg:p-0">
           <TabsTrigger
             value="cart"
             className="data-[state=active]:bg-200 w-min p-1 data-[state=active]:bg-slate-200 dark:data-[state=active]:bg-slate-800"

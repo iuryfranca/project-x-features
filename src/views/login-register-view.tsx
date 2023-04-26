@@ -131,7 +131,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
         </Button>
       </form>
       <div className="flex justify-center text-xs uppercase">
-        <span className="bg-white px-2 text-slate-600">Or continue with</span>
+        <span className="bg-background px-2 text-slate-600">Or continue with</span>
       </div>
       <div className="flex justify-between gap-2">
         <Button onClick={githubSignIn} className="w-full">
