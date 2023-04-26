@@ -8,6 +8,7 @@ import { CartProvider } from '@/core/context/cart-context'
 import { UserProvider } from '@/core/context/user-context'
 import { Analytics } from '@vercel/analytics/react'
 
+import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Toaster } from '@/components/ui/toaster'
 
 const fontSans = FontSans({
@@ -32,6 +33,7 @@ export const App = ({ Component, pageProps }: AppProps) => {
               <Component {...pageProps} />
               <Analytics />
               <Toaster />
+              <TailwindIndicator />
             </ThemeProvider>
           </CartProvider>
         </AuthProvider>

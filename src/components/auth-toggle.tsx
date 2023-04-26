@@ -3,10 +3,9 @@ import Link from 'next/link'
 import { useAuthContext } from '@/core/context/auth-context'
 import { useUserContext } from '@/core/context/user-context'
 import { Label } from '@radix-ui/react-dropdown-menu'
-import { User as UserTypes } from 'firebase/auth'
 import { LogIn, LogOut, UserCog } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,20 +23,32 @@ export function AuthToggle() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           {!user ? (
-            <Button variant="ghost" size="sm">
-              <UserCog className="text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
+            <div
+              className={buttonVariants({
+                size: 'sm',
+                variant: 'ghost',
+                className: 'relative cursor-pointer',
+              })}
+            >
+              <UserCog />
               <span className="sr-only">Perfil</span>
-            </Button>
+            </div>
           ) : (
-            <Button variant="subtle" size="sm" className="flex gap-2">
+            <div
+              className={buttonVariants({
+                size: 'sm',
+                variant: 'ghost',
+                className: 'relative flex cursor-pointer gap-2 bg-muted',
+              })}
+            >
               <Label className="font-semibold">{user?.displayName}</Label>
               <Avatar className="h-7 w-7">
                 <AvatarImage src={user?.photoURL} alt={user?.displayName} />
-                <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
+                <AvatarFallback className="bg-ring dark:bg-ring">
                   {user?.displayName?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
-            </Button>
+            </div>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">

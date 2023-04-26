@@ -25,17 +25,17 @@ const CartToggle = () => {
           className={buttonVariants({
             size: 'sm',
             variant: 'ghost',
-            className: 'relative mr-2 px-5',
+            className: 'relative',
           })}
         >
           {cart?.length > 0 && (
-            <div className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200">
-              <span className="text-xs font-semibold text-slate-200 dark:text-slate-700">
+            <div className="absolute -top-1 -right-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary dark:bg-primary">
+              <span className="text-xs font-semibold text-primary-foreground dark:text-primary-foreground">
                 {cart?.length}
               </span>
             </div>
           )}
-          <ShoppingBag className="absolute text-slate-700 transition-all hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100" />
+          <ShoppingBag className="text-foreground dark:text-foreground" />
         </div>
       </PopoverTrigger>
       <PopoverContent className="group p-2 shadow-lg">
@@ -51,7 +51,7 @@ const CartToggle = () => {
           })}
         </ScrollArea>
         <div className="flex h-[70px] flex-row items-center justify-between gap-2 py-1 pt-2">
-          <div className="flex h-full w-full flex-col justify-center rounded-md bg-slate-200 py-1 pl-3 pr-1 dark:bg-slate-700">
+          <div className="flex h-full w-full flex-col justify-center rounded-md bg-muted py-1 pl-3 pr-1 text-secondary-foreground dark:bg-muted dark:text-secondary-foreground">
             <span className="text-xs font-normal">Preço total</span>
             <span className="text-md font-semibold">
               {priceFormatter(amountPriceCart)}

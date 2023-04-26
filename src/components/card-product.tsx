@@ -17,10 +17,10 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
   return (
     <div
       key={product.id}
-      className="relative flex h-[350px] w-full max-w-[160px] flex-col rounded-lg border border-slate-200/80 bg-slate-200 duration-200 hover:cursor-default dark:border-slate-800 dark:bg-slate-700 md:h-[350px] md:w-52 md:max-w-none"
+      className="relative flex h-[350px] w-full max-w-[160px] flex-col rounded-lg border border-border bg-secondary text-secondary-foreground duration-200 hover:cursor-default dark:border-border dark:bg-secondary dark:text-secondary-foreground md:h-[350px] md:w-52 md:max-w-none"
     >
       {getAmountItemCart(product.id) > 0 && (
-        <div className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200">
+        <div className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground dark:bg-primary dark:text-primary-foreground">
           <span className="text-xs font-bold text-slate-200 dark:text-slate-700">
             {getAmountItemCart(product.id)}
           </span>

@@ -13,7 +13,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
 
   return (
     <div
-      className="relative mt-1 mb-2 grid h-28 w-full grid-cols-[80px_1fr] items-center justify-between overflow-hidden rounded-lg border border-slate-200/80 bg-slate-200 text-center transition-all hover:cursor-default dark:border-slate-800 dark:bg-slate-700"
+      className="relative mt-1 mb-2 grid h-28 w-full grid-cols-[80px_1fr] items-center justify-between overflow-hidden rounded-lg border border-border bg-muted text-center text-muted-foreground transition-all hover:cursor-default dark:border-border dark:bg-muted dark:text-muted-foreground"
       key={product.id}
       tabIndex={1}
     >

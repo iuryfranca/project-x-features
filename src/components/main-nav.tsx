@@ -1,95 +1,55 @@
-import { useEffect } from 'react'
-import Link from 'next/link'
-import { useUserContext } from '@/core/context/user-context'
+'use client'
 
-import { NavItem } from '@/types/nav'
+import * as React from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
 import { Icons } from '@/components/icons'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 
-interface MainNavProps {
-  items?: NavItem[]
-}
-
-export function MainNav({ items }: MainNavProps) {
-  const { favoritesList } = useUserContext()
+export function MainNav() {
+  const pathname = usePathname()
 
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="hidden items-center space-x-1 md:flex">
+    <div className="mr-4 hidden md:flex">
+      <Link href="/" className="mr-6 flex items-center space-x-2">
         <Icons.logo className="h-6 w-6" />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
       </Link>
-      {items?.length ? (
-        <nav className="hidden gap-6 md:flex">
-          {items?.map(
-            (item, index) =>
-              item.href && (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className={cn(
-                    'relative flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm',
-                    item.disabled && 'cursor-not-allowed opacity-80'
-                  )}
-                >
-                  <div className="flex flex-row items-center justify-center gap-1">
-                    {item.title}
-                    {item.title === 'Favoritos' && (
-                      <div className="flex h-4 w-4 items-center justify-center rounded-sm bg-slate-700 dark:bg-slate-200">
-                        <span className="text-[10px] font-bold text-slate-200 dark:text-slate-700">
-                          {favoritesList.length}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </Link>
-              )
+      <nav className="flex items-center space-x-6 text-sm font-bold">
+        <Link
+          href="/"
+          className={cn(
+            'transition-colors hover:text-foreground/80',
+            pathname === '/' ? 'text-foreground' : 'text-foreground/60'
           )}
-        </nav>
-      ) : null}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="-ml-4 text-base hover:bg-transparent focus:ring-0 md:hidden"
-          >
-            <Icons.logo className="mr-2 h-4 w-4" />{' '}
-            <span className="font-bold">Menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          sideOffset={24}
-          className="w-[300px] overflow-scroll"
         >
-          <DropdownMenuLabel>
-            <Link href="/" className="flex items-center">
-              <Icons.logo className="mr-2 h-4 w-4" /> {siteConfig.name}
-            </Link>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          {items?.map(
-            (item, index) =>
-              item.href && (
-                <DropdownMenuItem key={index} asChild>
-                  <Link href={item.href}>{item.title}</Link>
-                </DropdownMenuItem>
-              )
+          Home
+        </Link>
+        <Link
+          href="/shopping"
+          className={cn(
+            'transition-colors hover:text-foreground/80',
+            pathname === '/shopping' ? 'text-foreground' : 'text-foreground/60'
           )}
-        </DropdownMenuContent>
-      </DropdownMenu>
+        >
+          Shopping
+        </Link>
+        <Link
+          href="/favorites"
+          className={cn(
+            'transition-colors hover:text-foreground/80',
+            pathname?.startsWith('/favorites')
+              ? 'text-foreground'
+              : 'text-foreground/60'
+          )}
+        >
+          Favorites
+        </Link>
+      </nav>
     </div>
   )
 }
