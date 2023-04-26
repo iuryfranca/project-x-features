@@ -49,6 +49,17 @@ export function MainNav() {
         >
           Favoritos
         </Link>
+        <Link
+          href="/cart-details"
+          className={cn(
+            'transition-colors hover:text-foreground/80',
+            pathname?.startsWith('/cart-details')
+              ? 'text-foreground'
+              : 'text-foreground/60'
+          )}
+        >
+          Carrinho
+        </Link>
       </nav>
     </div>
   )

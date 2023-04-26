@@ -12,11 +12,11 @@ export const TechsList = () => {
         <h1 className="text-3xl font-semibold leading-tight tracking-tighter sm:text-3xl">
           Tecnologias utilizadas para a criação do site
         </h1>
-        <div className="mt-5 flex w-full flex-col justify-center gap-5 sm:flex-row">
+        <div className="mt-5 flex w-full flex-col justify-center gap-5 last:flex-wrap sm:flex-row">
           <CardAnnouncementWebsite className="flex h-full gap-5 sm:max-w-sm">
             <div className="flex w-full flex-row items-center justify-between gap-2">
               <div className="flex flex-row gap-2">
-                <Icons.logo height={25} />
+                <Icons.nextjs height={25} />
                 <h1 className="text-xl font-semibold">NextJs</h1>
               </div>
               <Link
@@ -98,6 +98,33 @@ export const TechsList = () => {
               comunidade. Projeto de código aberto e uma bifurcação do Feather
               Icons. Estamos expandindo o conjunto de ícones o máximo possível,
               mantendo-o bonito
+            </div>
+          </CardAnnouncementWebsite>
+          <CardAnnouncementWebsite className="flex h-full gap-5 sm:max-w-sm">
+            <div className="flex w-full flex-row items-center justify-between gap-2">
+              <div className="flex flex-row gap-2">
+                <Icons.tailwind height={28} className="text-blue-400" />
+                <h1 className="text-xl font-semibold">TailwindCss</h1>
+              </div>
+              <Link
+                href="https://tailwindcss.com/"
+                target="_blank"
+                aria-label="Link para acessar o tailwindcss em outra Aba do navegador"
+              >
+                <Button
+                  variant="ghost"
+                  className="px-2"
+                  aria-label="link-to-tailwind"
+                >
+                  <Icons.blankLink />
+                </Button>
+              </Link>
+            </div>
+            <div className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
+              Crie rapidamente sites modernos sem sair do HTML. Uma estrutura
+              CSS baseada em utilitários, repleta de classes que pode ser
+              composta para criar qualquer design, diretamente em sua marcação.
+              flex pt-4 text-center rotate-90
             </div>
           </CardAnnouncementWebsite>
         </div>

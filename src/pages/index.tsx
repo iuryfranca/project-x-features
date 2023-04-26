@@ -21,19 +21,31 @@ export default function IndexPage() {
             ao mais novo ecommerce para você
           </h1>
           <p className="text-md my-6 max-w-[700px] text-slate-700 dark:text-slate-400 lg:text-lg">
-            Esse é o novo site/projeto feito pelo [Link Linkedin | Iury França]
-            para poder mostrar as vocês no o que ele esteve trabalhando.
+            Esse é o novo site/projeto feito pelo{' '}
+            <Link
+              href="https://www.linkedin.com/in/iury-franca-37873318b/"
+              target="_blank"
+            >
+              <span className="font-semibold text-secondary-foreground underline">
+                Iury França
+              </span>
+            </Link>{' '}
+            para poder mostrar as vocês no o que ele esteve trabalhando. Todo o
+            design UI foi feito usando{' '}
+            <Link href="https://ui.shadcn.com/" target="_blank">
+              <span className="font-semibold text-secondary-foreground underline">
+                ui.shadcn.com
+              </span>
+            </Link>{' '}
+            como base, construído e disponibilizado pelo{' '}
+            <Link href="https://twitter.com/shadcn" target="_blank">
+              <span className="font-semibold text-secondary-foreground underline">
+                shadcn
+              </span>
+            </Link>{' '}
           </p>
         </div>
         <div className="flex justify-center gap-4">
-          <Link
-            href={siteConfig.links.docs}
-            target="_blank"
-            rel="noreferrer"
-            className={buttonVariants({ size: 'lg' })}
-          >
-            Documentation
-          </Link>
           <Link
             target="_blank"
             rel="noreferrer"

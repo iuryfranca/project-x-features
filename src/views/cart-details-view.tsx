@@ -1,5 +1,5 @@
 import { useCartContext } from '@/core/context/cart-context'
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 
 import CardCart from '@/components/cart/card-cart'
 import CartSubtotal from '@/components/cart/cart-subtotal'
@@ -40,6 +40,12 @@ export const CartDetailsView = () => {
                   itemsCart.map((product) => {
                     return <CardCart product={product} key={product.id} />
                   })}
+
+                {itemsCart.length === 0 && (
+                  <h1 className="my-10 text-center text-xl font-semibold leading-tight tracking-tighter sm:text-left">
+                    Não há produtos adicionados por aqui 😄
+                  </h1>
+                )}
               </ScrollArea>
             </div>
             <CartSubtotal />
