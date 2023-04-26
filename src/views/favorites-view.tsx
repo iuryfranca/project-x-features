@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useUserContext } from '@/core/context/user-context'
 
 import { cn } from '@/lib/utils'

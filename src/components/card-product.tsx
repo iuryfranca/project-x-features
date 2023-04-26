@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'

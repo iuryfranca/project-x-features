@@ -213,7 +213,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         setUser(await getUser(userAuthStateChanged?.uid))
       }
     })
-  })
+  }, [])
 
   return (
     <AuthContext.Provider
