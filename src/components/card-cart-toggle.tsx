@@ -13,12 +13,12 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
 
   return (
     <div
-      className="relative mt-1 mb-2 grid h-28 w-full grid-cols-[80px_1fr] items-center justify-between overflow-hidden rounded-lg border border-border bg-muted text-center text-muted-foreground transition-all hover:cursor-default dark:border-border dark:bg-muted dark:text-muted-foreground"
+      className="relative mt-1 mb-2 grid h-28 w-full grid-cols-[80px_1fr] items-center justify-between overflow-hidden rounded-lg border border-border bg-muted text-center text-muted-foreground transition-all hover:cursor-default"
       key={product.id}
       tabIndex={1}
     >
-      <div className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-slate-700 dark:bg-slate-200">
-        <span className="text-xs font-semibold text-slate-200 dark:text-slate-700">
+      <div className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary">
+        <span className="text-xs font-semibold text-primary-foreground">
           {product.amount}
         </span>
       </div>
@@ -46,7 +46,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             <Button
               variant="ghost"
               onClick={() => addItemCart(product as ProductProps)}
-              className="inline-flex h-8 items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
+              className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-muted p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
             >
               {isPendingToCart?.isPending &&
               isPendingToCart?.id === product.id ? (
@@ -58,7 +58,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             <Button
               onClick={() => removeItem(product.id)}
               variant="ghost"
-              className="inline-flex h-8 items-center justify-center rounded-md border border-slate-200 bg-transparent p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800"
+              className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-muted p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
             >
               {isPendingToCart?.isPending &&
               isPendingToCart?.id === product.id ? (

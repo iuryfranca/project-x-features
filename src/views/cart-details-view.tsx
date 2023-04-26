@@ -34,7 +34,7 @@ export const CartDetailsView = () => {
         </TabsList>
         <TabsContent value="cart" className="border-none p-0">
           <div className="flex flex-col lg:flex-row lg:gap-6">
-            <div className="flex w-full flex-row flex-wrap justify-center px-7 pt-0 sm:justify-start lg:p-0">
+            <div className="flex min-h-[600px] w-full flex-row flex-wrap justify-center px-7 pt-0 sm:justify-start lg:p-0">
               <ScrollArea className="max-h-[700px] w-full rounded-lg pr-2">
                 {itemsCart &&
                   itemsCart.map((product) => {

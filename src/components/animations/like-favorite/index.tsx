@@ -132,13 +132,17 @@ export const FavoriteHeart = ({ checked, product }: LikeFavoriteProps) => {
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>
-                  Para favoritar é necessário fazer login 😅
+                  Faça{' '}
+                  <Link href="/login">
+                    <span className="font-semibold text-emerald-400 underline">
+                      login
+                    </span>
+                  </Link>{' '}
+                  para favoritar ❤️
                 </AlertDialogTitle>
                 <AlertDialogDescription>
-                  Por conta dos favoritos serem salvos no seu perfil, é
-                  necessário fazer login uma conta do google ou github. Se não
-                  tiver quaisquer conta nesses sites, basta criar uma com um
-                  email qualquer (não vai ter teste) e uma senha que você criar.
+                  Os produtos favoritados ficam salvos na sua conta para você
+                  comprar depois.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>

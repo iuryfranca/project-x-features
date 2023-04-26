@@ -36,7 +36,7 @@ export function MainNav() {
             pathname === '/shopping' ? 'text-foreground' : 'text-foreground/60'
           )}
         >
-          Shopping
+          Compras
         </Link>
         <Link
           href="/favorites"
@@ -47,7 +47,7 @@ export function MainNav() {
               : 'text-foreground/60'
           )}
         >
-          Favorites
+          Favoritos
         </Link>
       </nav>
     </div>
