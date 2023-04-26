@@ -57,7 +57,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   }
 
   return (
-    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-slate-700 p-10 shadow-2xl dark:bg-slate-800 dark:shadow-slate-800">
+    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-border p-10 shadow-lg dark:bg-muted dark:shadow-md dark:shadow-ring">
       {pageType === 'login' ? (
         <Label className="text-xl font-semibold">Acesse sua conta</Label>
       ) : (
@@ -131,7 +131,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
         </Button>
       </form>
       <div className="flex justify-center text-xs uppercase">
-        <span className="bg-background px-2 text-slate-600">Or continue with</span>
+        <span>Ou continue com</span>
       </div>
       <div className="flex justify-between gap-2">
         <Button onClick={githubSignIn} className="w-full">
@@ -158,7 +158,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
 
       {isPending && (
         <div className="fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black/60">
-          <div className="fixed flex h-52 w-52 flex-col items-center justify-center gap-5 rounded-md bg-slate-800 shadow-xl dark:bg-slate-200">
+          <div className="fixed flex h-52 w-52 flex-col items-center justify-center gap-5 rounded-md bg-slate-800 dark:bg-slate-200">
             <Icons.spinnerLoading />
             <h2 className="text-center text-xl font-semibold text-slate-50 dark:text-slate-800">
               {pageType === 'login' ? 'Fazendo Login...' : 'Registrando...'}
