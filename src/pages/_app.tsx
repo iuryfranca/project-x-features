@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes'
 import '@/styles/globals.css'
 import { AuthProvider } from '@/core/context/auth-context'
 import { CartProvider } from '@/core/context/cart-context'
+import { ColorsProvider } from '@/core/context/colors-context'
 import { UserProvider } from '@/core/context/user-context'
 import { Analytics } from '@vercel/analytics/react'
 
@@ -30,10 +31,12 @@ export const App = ({ Component, pageProps }: AppProps) => {
         <AuthProvider>
           <CartProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <Component {...pageProps} />
-              <Analytics />
-              <Toaster />
-              <TailwindIndicator />
+              <ColorsProvider>
+                <Component {...pageProps} />
+                <Analytics />
+                <Toaster />
+                <TailwindIndicator />
+              </ColorsProvider>
             </ThemeProvider>
           </CartProvider>
         </AuthProvider>

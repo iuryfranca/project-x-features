@@ -1,9 +1,14 @@
 import { useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, Key, Lightbulb, Settings, ShoppingCart } from 'lucide-react'
 import Tilt from 'react-parallax-tilt'
 
 import { CardAnnouncementWebsite } from './card-announcement'
+import { OnlineShoppingSvg } from './images/online-shopping'
+import { SaleSvg } from './images/sales'
+import { WebDesignSvg } from './images/web-design'
+import { WomanHoldingHeartSvg } from './images/woman-holding-a-heart'
+import { WorkPartySvg } from './images/work-party'
 import { buttonVariants } from './ui/button'
 
 export const AnnouncementWebsite = () => {
@@ -29,10 +34,13 @@ export const AnnouncementWebsite = () => {
           tiltMaxAngleX={8}
           tiltMaxAngleY={8}
           gyroscope
-          className="shiny relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-28"
+          className="shiny relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-24 sm:pt-20"
         >
-          <ShoppingCart size={80} />
-
+          <SaleSvg
+            height={300}
+            width={300}
+            className="text-secondary-foreground"
+          />
           <div>
             <h1 className="text-5xl font-black">Project X</h1>
             <span className="text-sm">by Iury França</span>
@@ -55,11 +63,15 @@ export const AnnouncementWebsite = () => {
         <CardAnnouncementWebsite className="h-full cursor-pointer p-0">
           <Link
             href="/login"
-            className="flex h-full flex-col justify-center gap-10 p-6"
+            className="flex h-full flex-col justify-center gap-5 p-6"
             aria-label="Acessar página de login"
           >
             <div className=" flex flex-col items-center justify-center gap-2">
-              <Key size={40} className="animate-wiggle text-emerald-400" />
+              <WorkPartySvg
+                height={180}
+                width={180}
+                className="text-secondary-foreground"
+              />
               <h1 className="text-xl font-semibold text-emerald-400">
                 Faça Login
               </h1>
@@ -71,9 +83,13 @@ export const AnnouncementWebsite = () => {
             </span>
           </Link>
         </CardAnnouncementWebsite>
-        <CardAnnouncementWebsite className="h-4/5 gap-10">
-          <div className="flex flex-col items-center justify-center gap-2">
-            <Lightbulb className="animate-pulse text-amber-400" size={40} />
+        <CardAnnouncementWebsite className="h-4/5 gap-5">
+          <div className="flex flex-col items-center justify-center">
+            <OnlineShoppingSvg
+              height={180}
+              width={180}
+              className="text-secondary-foreground"
+            />
             <h1 className="text-xl font-semibold text-amber-400">
               Lista de Pedidos
             </h1>
@@ -86,12 +102,12 @@ export const AnnouncementWebsite = () => {
         </CardAnnouncementWebsite>
       </div>
       <div className="flex w-full flex-col gap-5 sm:max-w-[340px]">
-        <CardAnnouncementWebsite className="h-4/5 gap-10">
+        <CardAnnouncementWebsite className="h-4/5 gap-5">
           <div className="flex flex-col items-center justify-center gap-2">
-            <Heart
-              size={40}
-              strokeWidth={2}
-              className="bg-text-red-500 animate-beat text-red-500"
+            <WomanHoldingHeartSvg
+              height={150}
+              width={150}
+              className="text-secondary-foreground"
             />
             <h1 className="text-xl font-semibold text-red-500">
               Favorite produtos
@@ -99,13 +115,17 @@ export const AnnouncementWebsite = () => {
           </div>
           <span className="text-slate-600 dark:text-slate-400">
             Gostou de algum produto?{' '}
-            <span className="font-semibold text-red-500">Favorite</span> ele
-            para visita-lo novamente mis tarde
+            <span className="font-semibold text-red-500">Favorite</span> para
+            visita-lo novamente mais tarde
           </span>
         </CardAnnouncementWebsite>
-        <CardAnnouncementWebsite className="h-full gap-10">
+        <CardAnnouncementWebsite className="h-full gap-5">
           <div className="flex flex-col items-center justify-center gap-2">
-            <Settings size={40} className="animate-spin-slow text-violet-500" />
+            <WebDesignSvg
+              height={180}
+              width={180}
+              className="text-secondary-foreground"
+            />
             <h1 className="text-xl font-semibold text-violet-500">
               Permissões de ADM
             </h1>

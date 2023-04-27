@@ -21,7 +21,7 @@ export function SiteFooter() {
               com 💚.
             </p>
           </div>
-          <div>
+          <div className="flex flex-row gap-2">
             <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
               Hospedado na{' '}
               <a
@@ -31,6 +31,18 @@ export function SiteFooter() {
                 className="font-medium underline underline-offset-4"
               >
                 Vercel
+              </a>
+              .
+            </p>
+            <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+              Ilustrações por{' '}
+              <a
+                href="https://popsy.co/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium underline underline-offset-4"
+              >
+                popsy.co
               </a>
               .
             </p>
