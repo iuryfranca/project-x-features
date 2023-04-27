@@ -33,7 +33,6 @@ export const AnnouncementWebsite = () => {
         <Tilt
           tiltMaxAngleX={8}
           tiltMaxAngleY={8}
-          gyroscope
           className="shiny relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-24 sm:pt-20"
         >
           <SaleSvg
