@@ -29,6 +29,7 @@ export function AuthToggle() {
                 variant: 'ghost',
                 className: 'relative cursor-pointer',
               })}
+              aria-label="Button User"
             >
               <UserCog />
               <span className="sr-only">Perfil</span>
@@ -40,6 +41,7 @@ export function AuthToggle() {
                 variant: 'ghost',
                 className: 'relative flex cursor-pointer gap-2 bg-muted',
               })}
+              aria-label="Button User"
             >
               <Label className="font-semibold">{user?.displayName}</Label>
               <Avatar className="h-7 w-7">
