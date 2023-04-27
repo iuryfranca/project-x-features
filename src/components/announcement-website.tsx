@@ -12,17 +12,6 @@ import { WorkPartySvg } from './images/work-party'
 import { buttonVariants } from './ui/button'
 
 export const AnnouncementWebsite = () => {
-  useEffect(() => {
-    if (typeof document !== 'undefined') {
-      const divElement: any = document?.querySelector('.shiny')
-      divElement?.addEventListener('mousemove', (e) => {
-        const { x, y } = divElement.getBoundingClientRect()
-        divElement.style.setProperty('--x', e.clientX - x)
-        divElement.style.setProperty('--y', e.clientY - y)
-      })
-    }
-  }, [])
-
   return (
     <div className="mt-16 flex w-full flex-col gap-5 sm:h-[700px] sm:flex-row">
       <Link
@@ -31,9 +20,9 @@ export const AnnouncementWebsite = () => {
         className=""
       >
         <Tilt
-          tiltMaxAngleX={8}
-          tiltMaxAngleY={8}
-          className="shiny relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-24 sm:pt-20"
+          tiltMaxAngleX={6}
+          tiltMaxAngleY={6}
+          className="relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-24 sm:pt-20"
         >
           <SaleSvg
             height={300}

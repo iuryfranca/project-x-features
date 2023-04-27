@@ -33,7 +33,7 @@ export const TechsList = () => {
                 </Button>
               </Link>
             </div>
-            <span className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
+            <span className="h-28 overflow-y-scroll text-start">
               Usado por algumas das maiores empresas do mundo, o Next.js permite
               que você crie aplicativos web de pilha completa, estendendo os
               recursos mais recentes do React e integrando poderosas ferramentas
@@ -66,7 +66,7 @@ export const TechsList = () => {
                 </Button>
               </Link>
             </div>
-            <span className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
+            <span className="h-28 overflow-y-scroll text-start">
               O Firebase é uma plataforma de desenvolvimento de aplicativos que
               ajuda você a criar e desenvolver aplicativos e jogos que os
               usuários amam. Com o apoio do Google e a confiança de milhões de
@@ -93,7 +93,7 @@ export const TechsList = () => {
                 </Button>
               </Link>
             </div>
-            <div className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
+            <div className="h-28 overflow-y-scroll text-start">
               Kit de ferramentas de ícones bonito e consistente feito pela
               comunidade. Projeto de código aberto e uma bifurcação do Feather
               Icons. Estamos expandindo o conjunto de ícones o máximo possível,
@@ -120,7 +120,7 @@ export const TechsList = () => {
                 </Button>
               </Link>
             </div>
-            <div className="h-28 overflow-y-scroll text-start text-slate-600 dark:text-slate-400">
+            <div className="h-28 overflow-y-scroll text-start">
               Crie rapidamente sites modernos sem sair do HTML. Uma estrutura
               CSS baseada em utilitários, repleta de classes que pode ser
               composta para criar qualquer design, diretamente em sua marcação.
