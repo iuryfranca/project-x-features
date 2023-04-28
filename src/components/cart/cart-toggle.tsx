@@ -13,7 +13,7 @@ import { Button, buttonVariants } from '../ui/button'
 import { ScrollArea } from '../ui/scroll-area'
 
 const CartToggle = () => {
-  const { cart, itemsCart, amountPriceCart } = useCartContext()
+  const { cart, amountPriceCart, getAmountAllItemsCart } = useCartContext()
 
   return (
     <Popover>
@@ -31,7 +31,7 @@ const CartToggle = () => {
           {cart?.length > 0 && (
             <div className="absolute -top-1 -right-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary dark:bg-primary">
               <span className="text-xs font-semibold text-primary-foreground dark:text-primary-foreground">
-                {cart?.length}
+                {getAmountAllItemsCart()}
               </span>
             </div>
           )}
@@ -46,7 +46,7 @@ const CartToggle = () => {
             </div>
           )}
 
-          {itemsCart?.map((product) => {
+          {cart?.map((product) => {
             return <CardCartToggle product={product} key={product.id} />
           })}
         </ScrollArea>

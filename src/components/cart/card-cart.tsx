@@ -26,6 +26,7 @@ const CardCart = ({ product }: { product: CartProps }) => {
             src={product.image}
             alt={product.title}
             fill
+            priority
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
@@ -59,7 +60,7 @@ const CardCart = ({ product }: { product: CartProps }) => {
                 </Button>
                 <div className="flex h-4 w-4 items-center justify-center">
                   <span className="text-xs font-semibold">
-                    {product.amount}
+                    {product.amount_in_cart}
                   </span>
                 </div>
                 <Button

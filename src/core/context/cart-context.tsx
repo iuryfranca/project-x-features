@@ -26,13 +26,13 @@ interface LoadingButtonProps {
 
 type CartContextData = {
   cart: CartProps[]
-  itemsCart: CartProps[]
   isPendingToCart: LoadingButtonProps
   amountPriceCart: number
   removeItem: (id: number) => void
   removeAllItemCart: (id: number) => void
   addItemCart: (product: ProductProps) => void
   getAmountItemCart: (id: number) => number
+  getAmountAllItemsCart: () => number
 }
 
 export const CartContext = createContext({} as CartContextData)
@@ -42,113 +42,99 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
   const { toast } = useToast()
   const [cart, setCart] = useState<CartProps[]>([])
   const [isPendingToCart, setPendingToCart] = useState<LoadingButtonProps>()
-  const amountPriceCart = cart?.reduce((a, b) => a + b.price * b.amount, 0)
 
-  const itemsCart = cart?.reduce((products, product) => {
-    const existingItem = products.find((item) => item.id === product.id)
+  let temporaryCart: CartProps[] = []
 
-    if (!existingItem) {
-      products.push({ ...product })
-    } else {
-      existingItem.amount++
-    }
-
-    return products
-  }, [] as CartProps[])
+  const amountPriceCart = cart?.reduce(
+    (a, b) => a + b.price * b.amount_in_cart,
+    0
+  )
 
   const addItemCart = async (newProduct: ProductProps): Promise<void> => {
+    const existingItem: CartProps = cart?.find(
+      (product) => product.id === newProduct.id
+    )
+    temporaryCart = [...cart]
+
+    if (existingItem) {
+      temporaryCart.splice(temporaryCart.indexOf(existingItem), 1, {
+        ...existingItem,
+        amount_in_cart: existingItem.amount_in_cart + 1,
+      })
+    } else {
+      temporaryCart = [...temporaryCart, { ...newProduct, amount_in_cart: 1 }]
+    }
+
+    await changeItemsInFirebase('add', newProduct.id)
+  }
+
+  const removeItem = async (id: number) => {
+    const existingItem: CartProps = cart?.find((product) => product.id === id)
+    temporaryCart = [...cart]
+
+    if (existingItem && existingItem.amount_in_cart > 1) {
+      temporaryCart.splice(temporaryCart.indexOf(existingItem), 1, {
+        ...existingItem,
+        amount_in_cart: existingItem.amount_in_cart - 1,
+      })
+    } else {
+      temporaryCart.splice(cart?.indexOf(existingItem), 1)
+    }
+
+    await changeItemsInFirebase('remove', id)
+  }
+
+  const removeAllItemCart = async (id: number) => {
+    temporaryCart = cart?.filter((obj) => obj.id !== id)
+    await changeItemsInFirebase('remove', id)
+  }
+
+  const changeItemsInFirebase = async (
+    action: 'add' | 'remove',
+    id?: number
+  ) => {
     if (user) {
-      setPendingToCart({ isPending: true, id: newProduct.id })
+      setPendingToCart({ isPending: true, id: id })
       const documentRef = doc(projectFirestore, 'users', user.uid)
       await updateDoc(documentRef, {
-        cart: [...cart, { ...newProduct, amount: 1 }],
+        cart: [...temporaryCart],
       })
-        .then(async (res) => {
+        .then(async () => {
           await getUser(user?.uid).then((user) => {
             setCart(user.cart)
-            setPendingToCart({ isPending: false, id: null })
           })
         })
         .catch((error) => {
           toast({
-            title: `Erro ao fazer Adicionar Item no carrinho`,
+            title: `Erro ao ${
+              action === 'add' ? 'adicionar' : 'remover'
+            } produto no carrinho`,
             description: error.code,
             variant: 'destructive',
             action: <ToastAction altText="Notificação">Certo!</ToastAction>,
           })
         })
+        .finally(() => setPendingToCart({ isPending: false, id: null }))
     } else {
-      setCart([...cart, { ...newProduct, amount: 1 }])
-    }
-  }
-
-  const removeItem = async (id: number) => {
-    const objectToRemove: CartProps = cart?.find((product) => product.id === id)
-    let tempCard = [...cart]
-    tempCard.splice(cart?.indexOf(objectToRemove), 1)
-
-    if (user) {
-      setPendingToCart({ isPending: true, id: id })
-      const documentRef = doc(projectFirestore, 'users', user.uid)
-      await updateDoc(documentRef, {
-        cart: [...tempCard],
-      }).then(async () => {
-        await getUser(user?.uid)
-          .then((user) => {
-            setCart(user.cart)
-            setPendingToCart({ isPending: false, id: null })
-          })
-          .catch((error) => {
-            toast({
-              title: `Erro ao fazer Remover Item no carrinho`,
-              description: error.code,
-              variant: 'destructive',
-              action: <ToastAction altText="Notificação">Certo!</ToastAction>,
-            })
-          })
-      })
-    } else {
-      setCart([...tempCard])
-    }
-  }
-
-  const removeAllItemCart = async (id: number) => {
-    const tempCard: CartProps[] = cart?.filter((obj) => obj.id !== id)
-
-    if (user) {
-      setPendingToCart({ isPending: true, id: id })
-      const documentRef = doc(projectFirestore, 'users', user.uid)
-      await updateDoc(documentRef, {
-        cart: [...tempCard],
-      }).then(async () => {
-        await getUser(user?.uid)
-          .then((user) => {
-            setCart(user.cart)
-            setPendingToCart({ isPending: false, id: null })
-          })
-          .catch((error) => {
-            toast({
-              title: `Erro ao fazer Remover Item no carrinho`,
-              description: error.code,
-              variant: 'destructive',
-              action: <ToastAction altText="Notificação">Certo!</ToastAction>,
-            })
-          })
-      })
-    } else {
-      setCart([...tempCard])
+      setCart([...temporaryCart])
     }
   }
 
   const getAmountItemCart = (id: number): number => {
-    return cart.filter((item) => item.id === id).length
+    return cart?.find((item) => item.id === id)?.amount_in_cart
+  }
+
+  const getAmountAllItemsCart = (): number => {
+    return cart?.reduce((a, b) => a + b.amount_in_cart, 0)
   }
 
   useEffect(() => {
     if (user) {
       setCart(user?.cart)
+      // setTempCart(user?.cart)
     } else {
       setCart([])
+      // setTempCart([])
     }
   }, [user])
 
@@ -156,13 +142,13 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        itemsCart,
         isPendingToCart,
         amountPriceCart,
         removeItem,
         addItemCart,
         getAmountItemCart,
         removeAllItemCart,
+        getAmountAllItemsCart,
       }}
     >
       {children}

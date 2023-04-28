@@ -5,7 +5,7 @@ import { Loader2, Plus } from 'lucide-react'
 
 import { ProductProps } from '@/types/product'
 import { priceFormatter } from '@/lib/utils'
-import { FavoriteHeart } from '@/components/animations/like-favorite/index'
+import { FavoriteHeart } from '@/components/animations/like-favorite'
 import { Icons } from './icons'
 import { Button } from './ui/button'
 
@@ -35,6 +35,7 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
           src={product.image}
           alt={product.title}
           fill
+          priority
           sizes="(max-width: 768px) 100vw,
           (max-width: 1200px) 50vw,
           33vw"

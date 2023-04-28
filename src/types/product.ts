@@ -5,4 +5,6 @@ export interface ProductProps {
   price: number
   category: string
   image: string
+  amount_in_stock?: number
+  amount_in_cart?: number
 }

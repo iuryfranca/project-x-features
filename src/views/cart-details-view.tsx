@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export const CartDetailsView = () => {
-  const { itemsCart } = useCartContext()
+  const { cart } = useCartContext()
 
   return (
     <div className="lg:container">
@@ -36,24 +36,24 @@ export const CartDetailsView = () => {
           <div className="flex flex-col lg:flex-row lg:gap-6">
             <div className="flex min-h-[600px] w-full flex-row flex-wrap justify-center px-7 pt-0 sm:justify-start lg:p-0">
               <ScrollArea className="hidden max-h-[700px] w-full rounded-lg pr-2 lg:block">
-                {itemsCart &&
-                  itemsCart.map((product) => {
+                {cart &&
+                  cart.map((product) => {
                     return <CardCart product={product} key={product.id} />
                   })}
 
-                {itemsCart.length === 0 && (
+                {cart.length === 0 && (
                   <h1 className="my-10 text-center text-xl font-semibold leading-tight tracking-tighter sm:text-left">
                     Não há produtos adicionados por aqui 😄
                   </h1>
                 )}
               </ScrollArea>
               <div className="block w-full lg:hidden">
-                {itemsCart &&
-                  itemsCart.map((product) => {
+                {cart &&
+                  cart.map((product) => {
                     return <CardCart product={product} key={product.id} />
                   })}
 
-                {itemsCart.length === 0 && (
+                {cart.length === 0 && (
                   <h1 className="my-10 text-center text-xl font-semibold leading-tight tracking-tighter sm:text-left">
                     Não há produtos adicionados por aqui 😄
                   </h1>

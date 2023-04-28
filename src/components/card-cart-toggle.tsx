@@ -19,7 +19,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
     >
       <div className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary">
         <span className="text-xs font-semibold text-primary-foreground">
-          {product.amount}
+          {product.amount_in_cart}
         </span>
       </div>
       <div className="relative flex h-full w-full items-center justify-center bg-white">
@@ -27,6 +27,10 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
           src={product.image}
           alt={product.title}
           fill
+          priority
+          sizes="(max-width: 768px) 100vw,
+          (max-width: 1200px) 50vw,
+          33vw"
           className="!object-contain p-5"
         />
       </div>
@@ -46,11 +50,11 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             <Button
               variant="ghost"
               onClick={() => addItemCart(product as ProductProps)}
-              className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-muted p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
+              className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-muted p-1 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
             >
               {isPendingToCart?.isPending &&
               isPendingToCart?.id === product.id ? (
-                <Loader2 className="h-4 w-4 animate-spin text-foreground" />
+                <Loader2 className="h-5 w-5 animate-spin text-foreground" />
               ) : (
                 <Plus className="h-5 w-5 p-0" />
               )}
@@ -58,11 +62,11 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             <Button
               onClick={() => removeItem(product.id)}
               variant="ghost"
-              className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-muted p-1 text-sm font-medium transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
+              className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-muted p-1 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
             >
               {isPendingToCart?.isPending &&
               isPendingToCart?.id === product.id ? (
-                <Loader2 className="h-4 w-4 animate-spin text-foreground" />
+                <Loader2 className="h-5 w-5 animate-spin text-foreground" />
               ) : (
                 <Minus className="h-5 w-5 p-0" />
               )}

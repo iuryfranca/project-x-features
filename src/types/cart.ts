@@ -1,5 +1,3 @@
 import { ProductProps } from './product'
 
-export interface CartProps extends ProductProps {
-  amount: number
-}
+export interface CartProps extends ProductProps {}
