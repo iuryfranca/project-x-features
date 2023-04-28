@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
-import { Minus, Plus, Trash2 } from 'lucide-react'
+import { Loader2, Minus, Plus, Trash2 } from 'lucide-react'
 
 import { CartProps } from '@/types/cart'
 import { ProductProps } from '@/types/product'
@@ -48,12 +48,13 @@ const CardCart = ({ product }: { product: CartProps }) => {
                   onClick={() => removeItem(product.id)}
                   variant="ghost"
                   size="sm"
+                  className="p-2"
                 >
                   {isPendingToCart?.isPending &&
                   isPendingToCart?.id === product.id ? (
-                    <Icons.spinnerLoading />
+                    <Loader2 className="h-4 w-4 animate-spin text-foreground" />
                   ) : (
-                    <Minus className="h-5 w-5 p-0" />
+                    <Minus className="h-4 w-4 p-0" />
                   )}
                 </Button>
                 <div className="flex h-4 w-4 items-center justify-center">
@@ -65,12 +66,13 @@ const CardCart = ({ product }: { product: CartProps }) => {
                   variant="ghost"
                   onClick={() => addItemCart(product)}
                   size="sm"
+                  className="p-2"
                 >
                   {isPendingToCart?.isPending &&
                   isPendingToCart?.id === product.id ? (
-                    <Icons.spinnerLoading />
+                    <Loader2 className="h-4 w-4 animate-spin text-foreground" />
                   ) : (
-                    <Plus className="h-5 w-5 p-0" />
+                    <Plus className="h-4 w-4 p-0" />
                   )}
                 </Button>
               </div>

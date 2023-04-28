@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useAuthContext } from '@/core/context/auth-context'
-import { Icon } from '@radix-ui/react-select'
 import { FolderUp, LogIn } from 'lucide-react'
 
 import { ButtonLoading } from '@/components/button-loading'

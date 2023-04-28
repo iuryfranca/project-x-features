@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 import { Button, ButtonProps, buttonVariants } from '@/components/ui/button'
 
 interface ButtonLoadingProps extends ButtonProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export function ButtonLoading({
@@ -19,7 +19,7 @@ export function ButtonLoading({
       className={cn(buttonVariants({ variant, size, className }))}
     >
       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-      {children || 'Carregando...'}
+      {children}
     </Button>
   )
 }

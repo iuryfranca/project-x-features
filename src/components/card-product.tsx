@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
 import { useUserContext } from '@/core/context/user-context'
-import { Plus } from 'lucide-react'
+import { Loader2, Plus } from 'lucide-react'
 
 import { ProductProps } from '@/types/product'
 import { priceFormatter } from '@/lib/utils'
@@ -16,10 +16,10 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
   return (
     <div
       key={product.id}
-      className="relative flex h-[350px] w-full max-w-[160px] flex-col rounded-lg border border-border bg-secondary text-secondary-foreground duration-200 hover:cursor-default dark:border-border dark:bg-secondary dark:text-secondary-foreground md:h-[350px] md:w-52 md:max-w-none"
+      className="relative flex h-[350px] w-full max-w-[160px] flex-col rounded-lg border border-border bg-secondary text-secondary-foreground duration-200 hover:cursor-default md:h-[350px] md:w-52 md:max-w-none"
     >
       {getAmountItemCart(product.id) > 0 && (
-        <div className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground dark:bg-primary dark:text-primary-foreground">
+        <div className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
           <span className="text-xs font-bold text-slate-200 dark:text-slate-700">
             {getAmountItemCart(product.id)}
           </span>
@@ -51,16 +51,16 @@ const CardProduct = ({ product }: { product: ProductProps }) => {
           <Button
             variant="ghost"
             size="sm"
-            className="relative h-7 w-7"
+            className="relative h-7 w-7 p-0"
             onClick={() => {
               addItemCart(product)
             }}
           >
             {isPendingToCart?.isPending &&
             isPendingToCart?.id === product.id ? (
-              <Icons.spinnerLoading />
+              <Loader2 className="h-5 w-5 animate-spin text-foreground" />
             ) : (
-              <Plus className="absolute h-6 w-6 p-0" />
+              <Plus className="h-6 w-6 p-0 text-foreground" />
             )}
           </Button>
           <FavoriteHeart

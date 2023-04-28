@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useCartContext } from '@/core/context/cart-context'
-import { Minus, Plus } from 'lucide-react'
+import { Loader2, Minus, Plus } from 'lucide-react'
 
 import { CartProps } from '@/types/cart'
 import { ProductProps } from '@/types/product'
@@ -32,7 +32,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
       </div>
       <div className="flex flex-col items-start p-2">
         <div>
-          <span className="whitespace-wrap text-ellipsis text-start text-sm font-semibold line-clamp-1">
+          <span className="whitespace-wrap text-ellipsis text-start text-sm font-semibold text-secondary-foreground line-clamp-1">
             {product.title}
           </span>
         </div>
@@ -41,7 +41,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             {product.description}
           </span>
         </div>
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-between text-secondary-foreground">
           <div className="flex flex-row gap-1">
             <Button
               variant="ghost"
@@ -50,7 +50,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             >
               {isPendingToCart?.isPending &&
               isPendingToCart?.id === product.id ? (
-                <Icons.spinnerLoading />
+                <Loader2 className="h-4 w-4 animate-spin text-foreground" />
               ) : (
                 <Plus className="h-5 w-5 p-0" />
               )}
@@ -62,7 +62,7 @@ const CardCartToggle = ({ product }: { product: CartProps }) => {
             >
               {isPendingToCart?.isPending &&
               isPendingToCart?.id === product.id ? (
-                <Icons.spinnerLoading />
+                <Loader2 className="h-4 w-4 animate-spin text-foreground" />
               ) : (
                 <Minus className="h-5 w-5 p-0" />
               )}
