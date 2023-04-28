@@ -4,6 +4,7 @@ import { useAuthContext } from '@/core/context/auth-context'
 import { Icon } from '@radix-ui/react-select'
 import { FolderUp, LogIn } from 'lucide-react'
 
+import { ButtonLoading } from '@/components/button-loading'
 import { Icons } from '@/components/icons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -18,8 +19,15 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   const [previewImage, setPreviewImage] = useState<string>()
   const [photoSelected, setPhotoSelected] = useState<File>()
 
-  const { isPending, signIn, signUp, githubSignIn, googleSignIn } =
-    useAuthContext()
+  const {
+    isPendingEmail,
+    isPendingGithub,
+    isPendingGoogle,
+    signIn,
+    signUp,
+    githubSignIn,
+    googleSignIn,
+  } = useAuthContext()
 
   const handlerFormLogin = (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -125,23 +133,45 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
             />
           </Label>
         </div>
-        <Button type="submit">
-          {pageType === 'login' ? 'Entrar' : 'Registrar'}
-          <LogIn className="ml-2 h-4 w-4" />
-        </Button>
+
+        {isPendingEmail ? (
+          <ButtonLoading type="submit">
+            {pageType === 'login' ? 'Entrar' : 'Registrar'}
+            <LogIn className="ml-2 h-4 w-4" />
+          </ButtonLoading>
+        ) : (
+          <Button type="submit">
+            {pageType === 'login' ? 'Entrar' : 'Registrar'}
+            <LogIn className="ml-2 h-4 w-4" />
+          </Button>
+        )}
       </form>
       <div className="flex justify-center text-xs uppercase">
         <span>Ou continue com</span>
       </div>
       <div className="flex justify-between gap-2">
-        <Button onClick={githubSignIn} className="w-full">
-          <Icons.gitHub className="mr-2 h-4 w-4" />
-          Github
-        </Button>
-        <Button onClick={googleSignIn} className="w-full">
-          <Icons.googleBlack className="mr-2 h-4 w-4" />
-          Google
-        </Button>
+        {isPendingGithub ? (
+          <ButtonLoading className="w-full">
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+            Github
+          </ButtonLoading>
+        ) : (
+          <Button onClick={githubSignIn} className="w-full">
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+            Github
+          </Button>
+        )}
+        {isPendingGoogle ? (
+          <ButtonLoading className="w-full">
+            <Icons.googleBlack className="mr-2 h-4 w-4" />
+            Google
+          </ButtonLoading>
+        ) : (
+          <Button onClick={googleSignIn} className="w-full">
+            <Icons.googleBlack className="mr-2 h-4 w-4" />
+            Google
+          </Button>
+        )}
       </div>
 
       {pageType === 'login' ? (
@@ -154,17 +184,6 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
           Já tem conta? Entre agora mesmo!
           <Icons.blankLink />
         </Link>
-      )}
-
-      {isPending && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black/60">
-          <div className="fixed flex h-52 w-52 flex-col items-center justify-center gap-5 rounded-md bg-slate-800 dark:bg-slate-200">
-            <Icons.spinnerLoading />
-            <h2 className="text-center text-xl font-semibold text-slate-50 dark:text-slate-800">
-              {pageType === 'login' ? 'Fazendo Login...' : 'Registrando...'}
-            </h2>
-          </div>
-        </div>
       )}
     </div>
   )

@@ -35,7 +35,9 @@ interface PropsReactNode {
 
 type AuthContextData = {
   userAuth: UserTypes
-  isPending: boolean
+  isPendingEmail: boolean
+  isPendingGoogle: boolean
+  isPendingGithub: boolean
   signIn: ({ email, password }: AuthLoginProps) => void
   signUp: ({ email, password, displayName }: AuthSignUpProps) => void
   signOut: () => void
@@ -53,15 +55,18 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [userAuth, setUserAuth] = useState<UserTypes>(null)
-  const [isPending, setIsPending] = useState(false)
   const { addUser, setUser, getUser } = useUserContext()
+
+  const [isPendingEmail, setIsPendingEmail] = useState(false)
+  const [isPendingGoogle, setIsPendingGoogle] = useState(false)
+  const [isPendingGithub, setIsPendingGithub] = useState(false)
 
   const router = useRouter()
   const { toast } = useToast()
   let urlProfileImage = ''
 
   const signIn = async ({ email, password }: AuthLoginProps) => {
-    setIsPending(true)
+    setIsPendingEmail(true)
     setPersistence(auth, browserSessionPersistence).then(async () => {
       await signInWithEmailAndPassword(auth, email, password)
         .then(async (res) => {
@@ -79,7 +84,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
         .finally(() => {
-          setIsPending(false)
+          setIsPendingEmail(false)
         })
     })
   }
@@ -90,7 +95,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     displayName,
     photoURL,
   }: AuthSignUpProps) => {
-    setIsPending(true)
+    setIsPendingEmail(true)
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (res) => {
         await uploadProfileImage(res?.user?.uid, photoURL).then(async () => {
@@ -112,25 +117,20 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         })
       })
       .finally(() => {
-        setIsPending(false)
+        setIsPendingEmail(false)
       })
   }
 
   const signOut = async () => {
-    setIsPending(true)
-    await signOutFire(auth)
-      .then(() => {
-        setUserAuth(null)
-        setUser(null)
-        router.push('/')
-      })
-      .finally(() => {
-        setIsPending(false)
-      })
+    await signOutFire(auth).then(() => {
+      setUserAuth(null)
+      setUser(null)
+      router.push('/')
+    })
   }
 
   const googleSignIn = async () => {
-    setIsPending(true)
+    setIsPendingGoogle(true)
     setPersistence(auth, browserSessionPersistence).then(async () => {
       return await signInWithPopup(auth, googleProvider)
         .then(async (res) => {
@@ -155,13 +155,13 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
         .finally(() => {
-          setIsPending(false)
+          setIsPendingGoogle(false)
         })
     })
   }
 
   const githubSignIn = async () => {
-    setIsPending(true)
+    setIsPendingGithub(true)
     setPersistence(auth, browserSessionPersistence).then(async () => {
       return await signInWithPopup(auth, githubProvider)
         .then(async (res) => {
@@ -186,7 +186,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
         .finally(() => {
-          setIsPending(false)
+          setIsPendingGithub(false)
         })
     })
   }
@@ -219,7 +219,9 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     <AuthContext.Provider
       value={{
         userAuth,
-        isPending,
+        isPendingEmail,
+        isPendingGoogle,
+        isPendingGithub,
         signIn,
         signUp,
         signOut,
