@@ -51,590 +51,590 @@ export const SaleSvg = (props: LucideProps) => (
       <path
         d="M494.055 488.524L482.163 573.023L481.436 578.191L481.259 579.426"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M608.586 889.571L608.223 868.025L606.305 756.006L604.486 650.203L603.142 571.38L573.583 573.034L481.436 578.191L414.846 581.917L241.385 591.615L226.606 900.46L608.586 889.582L705.815 886.805L854.423 882.572L849.993 743.023L846.852 643.998L843.689 544.379L840.504 443.8L838.079 367.556L816.808 368.162L777.055 369.286L714.631 371.072L619.751 373.761L580.78 374.874L561.207 375.425L509.782 376.891L494.066 488.513"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M373.903 464.542L376.019 470.603L414.846 581.906"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M341.743 259.418C338.635 259.418 250.72 270.318 250.72 270.318L267.053 289.759L235.941 294.432V316.21L209.49 304.538L200.926 323.219L186.147 303.767L165.923 316.21L159.7 299.094L137.923 302.213L143.367 283.543L120.024 272.643L139.477 259.418L125.465 241.531L142.581 238.412L135.581 215.851L151.143 220.524L153.48 199.518L172.921 210.407L192.373 192.52L202.491 207.301L226.606 195.63V214.301L249.166 207.301L237.494 232.201L254.61 232.972L247.61 248.534L341.743 259.418Z"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M323.073 617.283C323.073 617.283 314.51 755.764 422.649 746.429C530.788 737.094 512.89 609.5 512.89 609.5"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M705.815 886.805L849.993 743.023"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M608.212 868.036L608.223 868.025L846.852 643.998"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M606.294 756.017L606.305 756.006L843.689 544.379"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M604.486 650.203L840.504 443.8"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M573.583 573.034L816.808 368.162"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M482.152 573.034L482.163 573.023L714.631 371.072"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M494.056 488.524L494.067 488.513L619.752 373.761"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M560.611 387.262C560.611 387.262 560.622 382.809 561.211 375.425C563.437 346.759 574.094 273.799 625.023 244.836C638.314 237.275 654.339 232.713 673.681 232.713C769.036 232.713 776.894 337.336 777.059 369.286C777.103 375.05 776.883 378.445 776.883 378.445"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M376.008 470.6C296.667 472.066 217.282 479.979 137.93 481.445C137.709 477.753 137.5 474.061 137.28 470.369C136.244 452.691 135.204 435.02 134.161 417.357C133.863 412.441 133.573 407.533 133.29 402.633C239.831 408.014 356.137 390.9 378.7 379.613C392.278 372.824 388.465 362.784 391.54 355.113C392.521 352.605 393.935 350.288 395.717 348.269C405.393 337.358 423.964 338.394 439.647 332.31C441.113 331.737 442.6 331.164 444.11 330.679C447.312 329.481 450.753 329.058 454.15 329.445C459.077 330.216 463.816 334.645 463.011 339.573C495.083 338.284 524.983 317.487 539.774 289.008C554.565 260.529 554.817 225.516 542.992 195.682C538.616 184.65 532.577 173.011 535.652 161.56C537.239 155.631 540.942 150.947 545.67 147.079C551.423 142.373 558.686 138.89 565.519 135.879C569.679 133.986 573.988 132.441 578.403 131.261C586.073 129.333 593.803 129.277 599.717 134.094C605.349 138.656 607.311 146.25 608.953 153.315C615.985 183.49 623.06 213.986 625.022 244.834C625.441 251.434 625.628 258.059 625.529 264.694C624.978 302.32 606.319 347.22 580.783 374.872"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M395.726 348.335C395.717 348.314 395.713 348.291 395.715 348.269C390.336 326.921 385.123 306.212 379.855 285.269C377.442 275.681 375.017 266.037 372.555 256.262C371.607 252.481 370.682 248.371 372.255 244.811C374.227 240.358 379.355 238.363 384.047 237.085C393.966 234.407 404.183 233.007 414.179 230.649C420.859 229.175 427.352 226.949 433.532 224.014C436.624 222.506 439.562 220.701 442.305 218.625C450.471 212.398 456.698 203.019 457.205 192.758C457.273 192.321 457.254 191.875 457.148 191.446C457.042 191.016 456.851 190.613 456.588 190.258C455.343 188.969 453.227 190.236 451.948 191.471C445.414 197.775 438.879 204.075 432.342 210.371"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M431.356 210.847C431.444 210.604 431.543 210.362 431.62 210.108C435.292 200.02 437.038 189.332 436.767 178.599C436.712 176.13 436.106 173.099 433.736 172.427C431.675 171.843 429.703 173.518 428.248 175.105C420.496 183.607 414.389 193.474 410.239 204.205"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M409.5 204.972C409.577 204.672 409.654 204.377 409.72 204.072C411.63 196.472 411.911 188.555 410.547 180.839C410.194 178.822 409.547 176.585 407.726 175.626C404.838 174.105 401.554 176.938 399.901 179.759C396.69 185.256 395.272 191.618 395.845 197.959C396.33 203.194 397.906 209.311 394.258 213.102C392.583 214.843 390.158 215.602 387.843 216.287C375.39 220.012 362.944 223.73 350.504 227.441C354.879 237.073 359.343 247.179 358.748 257.741C358.12 268.872 351.97 278.835 345.996 288.247C353.669 286.937 360.801 283.443 366.54 278.185C361.969 284.073 359.243 291.183 358.704 298.618C365.746 294.176 372.796 289.73 379.853 285.282C379.886 285.26 379.908 285.249 379.941 285.227"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M426.65 234.388C420.963 236.878 415.273 239.369 409.578 241.86C413.369 252.507 417.157 263.15 420.941 273.788C421.712 275.948 422.495 278.288 421.9 280.5C421.305 282.712 418.671 284.523 416.665 283.4"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M416.94 296.4C414.015 298.466 410.441 299.405 406.878 299.042C403.315 298.68 400.003 297.04 397.554 294.427C396.227 296.848 395.611 299.595 395.78 302.351C395.88 303.724 396.339 305.046 397.111 306.185C397.884 307.325 398.942 308.241 400.18 308.842C402.704 309.9 406.087 308.876 407.145 306.342"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M401.577 256.827C399.922 255.972 398.01 255.756 396.207 256.222C394.403 256.687 392.834 257.802 391.801 259.351"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M428.854 249.355C427.571 248.858 426.182 248.696 424.819 248.885C423.455 249.074 422.163 249.608 421.062 250.435"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M433.549 224.028C439.82 244.198 445.187 264.612 449.649 285.272C450.431 288.872 451.038 293.119 448.558 295.864C446.541 298.112 443.124 298.509 440.799 300.437C436.776 303.766 437.426 310.137 439.399 314.963C441.372 319.789 444.337 324.596 443.808 329.787"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M545.028 110.3C540.13 101.33 536.281 91.8259 533.555 81.9758C532.794 79.2098 532.739 75.2858 535.505 74.5478C537.754 73.9408 539.671 76.1678 540.905 78.1408C548.796 90.7234 555.237 104.159 560.105 118.191C556.259 107.124 552.409 96.0628 548.555 85.0068C547.608 82.3068 546.66 79.5068 546.836 76.6528C547.012 73.7988 548.621 70.8228 551.344 69.9298C553.879 69.1028 556.722 70.2928 558.574 72.2108C560.312 74.2389 561.63 76.5912 562.453 79.1318C569.066 96.0168 573.728 113.584 578.367 131.119"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M545.028 110.3C547.309 113.728 549.442 117.243 551.428 120.847C549.126 117.431 546.993 113.916 545.028 110.3Z"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M545.579 146.968C535.158 145.339 525.064 142.054 515.68 137.237C514.237 136.487 512.604 135.396 512.604 133.776C512.604 131.186 516.253 130.657 518.805 130.988C527.082 132.079 535.362 133.163 543.646 134.239C533.96 120.745 525.525 106.394 518.446 91.3671C517.222 88.7771 516.407 84.9751 518.953 83.6521C521.036 82.5721 523.417 84.3021 525.081 85.9521C532.539 93.3697 539.223 101.528 545.029 110.3"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M69.4344 441.574L66.7344 440.813C64.591 440.072 62.3349 439.711 60.0674 439.744C58.9332 439.77 57.8245 440.086 56.8464 440.661C55.8684 441.236 55.0536 442.051 54.4794 443.029C53.3224 445.354 54.1794 448.197 55.5374 450.413C59.5164 456.913 67.0654 460.221 74.3504 462.459C94.3204 468.609 115.47 469.545 136.355 470.427"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M69.4346 441.574C81.5695 446.891 94.3844 450.496 107.512 452.286C94.8156 448.715 82.1232 445.144 69.4346 441.574Z"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M133.565 417.393C125.62 406.933 116.228 397.656 105.671 389.841C103.489 388.221 100.16 386.741 98.3419 388.772C96.7419 390.546 97.9009 393.323 99.1019 395.372C104.293 404.222 109.481 413.065 114.664 421.9C99.9447 416.313 84.8763 411.693 69.5549 408.07C67.5159 407.585 65.1239 407.199 63.5369 408.577C62.0929 409.822 61.9939 412.114 62.8099 413.834C63.7481 415.5 65.0799 416.911 66.6889 417.944C78.4269 426.563 92.7209 430.773 106.707 434.844C94.9469 432.011 83.1873 429.175 71.4279 426.336C68.7389 425.696 65.9509 425.036 63.2279 425.542C60.5049 426.048 57.8599 428.022 57.4859 430.766C56.9569 434.734 61.0449 437.632 64.6489 439.373C66.2249 440.134 67.8196 440.867 69.4329 441.573"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M321.365 603.286C322.001 603.96 322.828 604.422 323.735 604.609C324.642 604.797 325.585 604.701 326.435 604.334C327.21 603.915 327.876 603.319 328.38 602.596C328.884 601.872 329.211 601.041 329.335 600.168C329.964 596.927 327.649 593.301 324.089 594.613C320.715 595.858 318.72 600.41 321.365 603.286Z"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M508.25 590.381C508.376 591.275 508.723 592.124 509.26 592.849C509.797 593.575 510.507 594.155 511.325 594.536C511.916 594.731 512.544 594.787 513.159 594.699C513.775 594.611 514.362 594.382 514.874 594.029C515.9 593.307 516.616 592.226 516.88 591C517.464 588.465 515.392 584.134 512.67 583.462C508.967 582.534 507.71 587.791 508.25 590.381Z"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M329.067 558.5L336.138 524.673"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M290.247 565.423L278.101 504.837"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M258.111 565.548L238.273 545.71"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M742.729 223.756L772.514 140.7"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M726.094 207.293L721.411 167.619"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M775.177 240.1L805.49 213.229"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M852.085 309.988L847.417 292.488"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M838.157 303.221L863.806 294.98"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M680.555 322.818L670.055 305.318"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M664.3 320.6L681.788 306.576"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M887.558 431.507C907.974 443.591 916.206 472.559 905.198 493.574C898.826 505.736 887.298 514.791 881.964 527.442C879.462 533.546 878.505 540.173 879.176 546.736C879.847 553.298 882.126 559.594 885.812 565.066C890.402 571.734 898.099 577.201 906.092 575.925C914.085 574.649 919.832 563.896 914.42 557.877C908.539 551.338 896.42 557.385 894.786 566.027C893.152 574.669 898.361 583.078 904.112 589.727C909.863 596.376 916.622 602.712 919.131 611.141C923.373 625.397 911.302 642.014 896.431 642.386"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M165.4 616.68C155.441 628.767 147.97 642.705 143.419 657.691C138.868 672.677 137.326 688.415 138.881 704C140.533 719.719 148.681 737.967 164.424 739.414C172.442 740.151 181.233 734.746 182.207 726.753C183.181 718.76 173.494 711.023 166.598 715.181C158.787 719.892 161.728 731.94 166.677 739.602C172.888 749.216 180.782 757.742 186.126 767.863C191.47 777.984 193.966 790.606 188.7 800.763C183.434 810.92 168.336 815.886 159.944 808.103"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M648.752 99.8003L658.4 80.1123"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M665.633 96.0534L646.811 83.4424"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M586.735 83.6114C586.045 79.2055 584.46 74.9876 582.078 71.2177C579.695 67.4478 576.566 64.2057 572.883 61.6914"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M84.2112 490.108C75.5023 490.614 66.8155 488.792 59.0438 484.83C51.2722 480.867 44.696 474.906 39.9912 467.56"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M344.854 192.516L351.078 182.403"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M353.456 191.656L341.814 185.381"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M542.816 193.634C560.29 175.229 583.428 163.211 608.534 159.5"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M175.906 480.366L173.4 404.91"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M399.98 364.438L400.641 355.094"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M413.315 360.556L411.759 351.22"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M425.9 355.865L424.313 346.534"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M438.987 350.442L438.209 343.442"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M451.436 346.552L449.101 338"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M607.867 207.976L597.785 201.7"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M565.018 208.075L568.908 197.184"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M582.91 259.421L578.242 251.641"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M549.458 311.544L558.015 305.32"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M603.137 316.212L599.247 307.654"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M521.417 355.8L531.507 351.85"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M475.551 390.9L470.884 383.121"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M468.55 442.242L477.107 439.13"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M432.046 421.948L424.252 414.961"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M431.208 485.807L440.543 483.474"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M394.645 456.245L387.645 450.021"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M468.072 506.9L471.924 493.663"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M445.989 551.934L438.209 547.266"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M341.742 444.575C342.792 440.672 344.955 437.158 347.966 434.462"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M370.439 412.779L363.4 406.6"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M299.732 438.352L291.175 434.462"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M261.669 421.288L269.435 412.718"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M259.279 469.47L253.056 463.247"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M211.975 441.6L219.725 433.015"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M197.041 466.358L190.818 461.691"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M190.04 427.46L197.819 422.015"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M161.255 467.914H145.7"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M162.027 452.479L147.243 451.755"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M161.255 436.018L147.255 437.574"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M162.044 419.857L149.593 420.583"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M549.459 176.957L544.013 167.621"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M564.989 168.412L559.548 155.962"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M580.555 158.3L573.555 146.628"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M593.69 152.118L587.49 139.658"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         fillRule="evenodd"
@@ -645,23 +645,23 @@ export const SaleSvg = (props: LucideProps) => (
       <path
         d="M394.444 58.915C399.06 61.4577 403.059 64.9847 406.158 69.2459C409.258 73.507 411.382 78.398 412.38 83.5718C413.377 88.7457 413.225 94.0757 411.932 99.1839C410.64 104.292 408.239 109.053 404.9 113.13C399.386 119.862 390.414 124.605 382 122.38C373.586 120.155 368.078 108.914 373.436 102.057C378.345 95.775 389.455 97.302 393.836 103.966C398.217 110.63 396.391 120.086 391.087 126.038C385.783 131.99 377.761 134.885 369.848 135.856C361.935 136.827 353.926 136.101 345.953 136.017C337.98 135.933 329.777 136.55 322.581 139.983C309.839 146.062 302.232 161.344 305.063 175.175"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M339.8 112.775L345.635 101.106"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M346.968 111.374L334.09 102.1"
         stroke="currentColor"
-        stroke-width="3.306"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.306"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M274.313 137.689L281.413 143.698C281.627 143.88 281.781 144.123 281.852 144.394C281.924 144.665 281.911 144.952 281.815 145.215C281.719 145.479 281.545 145.707 281.316 145.868C281.086 146.03 280.813 146.117 280.532 146.118L271.232 146.166C270.961 146.168 270.696 146.249 270.471 146.401C270.246 146.553 270.071 146.768 269.968 147.019L266.446 155.619C266.34 155.879 266.157 156.1 265.921 156.252C265.685 156.404 265.409 156.481 265.128 156.471C264.848 156.461 264.577 156.366 264.353 156.198C264.128 156.03 263.961 155.797 263.872 155.53L260.954 146.703C260.869 146.446 260.71 146.219 260.496 146.052C260.283 145.885 260.025 145.785 259.754 145.764L250.483 145.074C250.203 145.054 249.937 144.948 249.719 144.771C249.501 144.593 249.343 144.354 249.265 144.084C249.188 143.814 249.195 143.527 249.286 143.262C249.376 142.996 249.546 142.765 249.772 142.598L257.266 137.098C257.485 136.938 257.651 136.716 257.744 136.461C257.836 136.206 257.852 135.929 257.787 135.665L255.578 126.633C255.512 126.361 255.531 126.075 255.632 125.813C255.733 125.551 255.912 125.327 256.145 125.17C256.377 125.013 256.652 124.932 256.933 124.936C257.213 124.94 257.486 125.03 257.713 125.193L265.263 130.619C265.484 130.778 265.746 130.867 266.017 130.877C266.289 130.886 266.557 130.815 266.787 130.672L274.694 125.781C274.933 125.634 275.211 125.563 275.491 125.578C275.771 125.594 276.04 125.694 276.261 125.867C276.482 126.04 276.645 126.276 276.728 126.544C276.811 126.812 276.81 127.099 276.724 127.366L273.896 136.223C273.813 136.482 273.808 136.759 273.883 137.02C273.957 137.281 274.107 137.514 274.313 137.689V137.689Z"
@@ -705,8 +705,8 @@ export const SaleSvg = (props: LucideProps) => (
         y2="579.455"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#B7B7B7" />
-        <stop offset="1" stop-color="#6F6F6F" />
+        <stop stopColor="#B7B7B7" />
+        <stop offset="1" stopColor="#6F6F6F" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_317_753"
@@ -716,8 +716,8 @@ export const SaleSvg = (props: LucideProps) => (
         y2="888.243"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#B7B7B7" />
-        <stop offset="1" stop-color="#6F6F6F" />
+        <stop stopColor="#B7B7B7" />
+        <stop offset="1" stopColor="#6F6F6F" />
       </linearGradient>
       <linearGradient
         id="paint2_linear_317_753"
@@ -727,8 +727,8 @@ export const SaleSvg = (props: LucideProps) => (
         y2="577.047"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#B7B7B7" />
-        <stop offset="1" stop-color="#6F6F6F" />
+        <stop stopColor="#B7B7B7" />
+        <stop offset="1" stopColor="#6F6F6F" />
       </linearGradient>
       <linearGradient
         id="paint3_linear_317_753"
@@ -738,8 +738,8 @@ export const SaleSvg = (props: LucideProps) => (
         y2="374.71"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#B7B7B7" />
-        <stop offset="1" stop-color="#6F6F6F" />
+        <stop stopColor="#B7B7B7" />
+        <stop offset="1" stopColor="#6F6F6F" />
       </linearGradient>
       <clipPath id="clip0_317_753">
         <rect
