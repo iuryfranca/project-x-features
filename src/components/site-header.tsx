@@ -18,7 +18,7 @@ export function SiteHeader() {
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-1 rounded-lg bg-muted p-1">
+          <nav className="flex items-center space-x-1 rounded-lg bg-ring/30 p-1 dark:bg-muted">
             <Link
               href={siteConfig.links.github}
               target="_blank"

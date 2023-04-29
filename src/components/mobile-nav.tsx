@@ -56,7 +56,7 @@ export function MobileNav() {
                   : 'text-foreground/60'
               )}
             >
-              Compras
+              Produtos
             </Link>
             <Link
               href="/favorites"

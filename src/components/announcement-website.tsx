@@ -22,7 +22,7 @@ export const AnnouncementWebsite = () => {
         <Tilt
           tiltMaxAngleX={6}
           tiltMaxAngleY={6}
-          className="relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-muted-foreground dark:border-border dark:bg-muted dark:text-muted-foreground sm:gap-0 sm:p-14 sm:py-24 sm:pt-20"
+          className="relative flex h-full w-full cursor-pointer flex-col items-center justify-between gap-10 rounded-lg border border-border bg-muted p-6 py-16 text-center text-secondary-foreground sm:gap-0 sm:p-14 sm:py-24 sm:pt-20"
         >
           <SaleSvg
             height={300}
@@ -33,13 +33,13 @@ export const AnnouncementWebsite = () => {
             <h1 className="text-5xl font-black">Project X</h1>
             <span className="text-sm">by Iury França</span>
           </div>
-          <span>
+          <span className="font-medium">
             Faça compras, salve favorite seus produtos preferidos na sua própria
             conta!
           </span>
           <div
             className={buttonVariants({
-              variant: 'ghost',
+              variant: 'default',
               className: 'hover: flex gap-2 rounded-md',
             })}
           >
@@ -60,14 +60,16 @@ export const AnnouncementWebsite = () => {
                 width={180}
                 className="text-secondary-foreground"
               />
-              <h1 className="text-xl font-semibold text-emerald-400">
+              <h1 className="text-xl font-semibold text-emerald-600 dark:text-emerald-400">
                 Faça Login
               </h1>
             </div>
-            <span className="text-slate-600 dark:text-slate-400">
+            <span className="font-medium">
               Com o{' '}
-              <span className="font-semibold text-emerald-400">login</span> você
-              mantém seu carrinho salvo
+              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                login
+              </span>{' '}
+              você mantém seu carrinho salvo
             </span>
           </Link>
         </CardAnnouncementWebsite>
@@ -78,14 +80,16 @@ export const AnnouncementWebsite = () => {
               width={180}
               className="text-secondary-foreground"
             />
-            <h1 className="text-xl font-semibold text-amber-400">
+            <h1 className="text-xl font-semibold text-amber-600 dark:text-amber-400">
               Lista de Pedidos
             </h1>
           </div>
-          <span className="text-slate-600 dark:text-slate-400">
+          <span className="font-medium">
             Tenha acesso a um{' '}
-            <span className="font-semibold text-amber-400">histórico</span> de
-            pedidos
+            <span className="font-semibold text-amber-600 dark:text-amber-400">
+              histórico
+            </span>{' '}
+            de pedidos
           </span>
         </CardAnnouncementWebsite>
       </div>
@@ -97,14 +101,16 @@ export const AnnouncementWebsite = () => {
               width={150}
               className="text-secondary-foreground"
             />
-            <h1 className="text-xl font-semibold text-red-500">
+            <h1 className="text-xl font-semibold text-red-600 dark:text-red-400">
               Favorite produtos
             </h1>
           </div>
-          <span className="text-slate-600 dark:text-slate-400">
+          <span className="font-medium">
             Gostou de algum produto?{' '}
-            <span className="font-semibold text-red-500">Favorite</span> para
-            visita-lo novamente mais tarde
+            <span className="font-semibold text-red-600 dark:text-red-400">
+              Favorite
+            </span>{' '}
+            para visita-lo novamente mais tarde
           </span>
         </CardAnnouncementWebsite>
         <CardAnnouncementWebsite className="h-full gap-5">
@@ -114,14 +120,19 @@ export const AnnouncementWebsite = () => {
               width={180}
               className="text-secondary-foreground"
             />
-            <h1 className="text-xl font-semibold text-violet-500">
+            <h1 className="text-xl font-semibold text-violet-600 dark:text-violet-500">
               Permissões de ADM
             </h1>
           </div>
-          <span className="text-slate-600 dark:text-slate-400">
+          <span className="font-medium">
             ADMs tem acesso a diversas{' '}
-            <span className="font-semibold text-violet-500">configurações</span>{' '}
-            e <span className="font-semibold text-violet-500">permissões</span>{' '}
+            <span className="font-semibold text-violet-600 dark:text-violet-500">
+              configurações
+            </span>{' '}
+            e{' '}
+            <span className="font-semibold text-violet-600 dark:text-violet-500">
+              permissões
+            </span>{' '}
             de usurários
           </span>
         </CardAnnouncementWebsite>

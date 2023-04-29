@@ -23,25 +23,19 @@ export function AuthToggle() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           {!user ? (
-            <div
-              className={buttonVariants({
-                size: 'sm',
-                variant: 'ghost',
-                className: 'relative cursor-pointer',
-              })}
-              aria-label="Button User"
+            <Button
+              size="sm"
+              variant="ghost"
+              className="relative cursor-pointer"
             >
               <UserCog />
               <span className="sr-only">Perfil</span>
-            </div>
+            </Button>
           ) : (
-            <div
-              className={buttonVariants({
-                size: 'sm',
-                variant: 'ghost',
-                className: 'relative flex cursor-pointer gap-2 bg-muted',
-              })}
-              aria-label="Button User"
+            <Button
+              size="sm"
+              variant="ghost"
+              className="relative flex cursor-pointer gap-2 bg-muted"
             >
               <Label className="font-semibold">{user?.displayName}</Label>
               <Avatar className="h-7 w-7">
@@ -50,7 +44,7 @@ export function AuthToggle() {
                   {user?.displayName?.charAt(0)}
                 </AvatarFallback>
               </Avatar>
-            </div>
+            </Button>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
