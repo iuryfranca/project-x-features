@@ -81,10 +81,6 @@
 }
 
 @layer base {
-  * {
-    scrollbar-width: 5px;
-    scrollbar-color: blue;
-  }
 
   *::-webkit-scrollbar {
     width: 3px;

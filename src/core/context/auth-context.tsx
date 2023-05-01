@@ -33,11 +33,15 @@ interface PropsReactNode {
   children: ReactNode
 }
 
-type AuthContextData = {
+interface IIsPending {
+  email?: boolean
+  google?: boolean
+  github?: boolean
+}
+
+interface AuthContextData {
   userAuth: UserTypes
-  isPendingEmail: boolean
-  isPendingGoogle: boolean
-  isPendingGithub: boolean
+  isPending: IIsPending
   signIn: ({ email, password }: AuthLoginProps) => void
   signUp: ({ email, password, displayName }: AuthSignUpProps) => void
   signOut: () => void
@@ -56,24 +60,32 @@ export const AuthContext = createContext({} as AuthContextData)
 export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [userAuth, setUserAuth] = useState<UserTypes>(null)
   const { addUser, setUser, getUser } = useUserContext()
-
-  const [isPendingEmail, setIsPendingEmail] = useState(false)
-  const [isPendingGoogle, setIsPendingGoogle] = useState(false)
-  const [isPendingGithub, setIsPendingGithub] = useState(false)
+  const [isPending, setIsPending] = useState<IIsPending>({
+    email: false,
+    google: false,
+    github: false,
+  })
 
   const router = useRouter()
   const { toast } = useToast()
   let urlProfileImage = ''
 
   const signIn = async ({ email, password }: AuthLoginProps) => {
-    setIsPendingEmail(true)
+    setIsPending({ email: true })
     setPersistence(auth, browserSessionPersistence).then(async () => {
       await signInWithEmailAndPassword(auth, email, password)
         .then(async (res) => {
           setUserAuth(res.user)
           setUser(await getUser(res.user?.uid))
 
-          router.push('/')
+          toast({
+            title: `Olá ${res.user.displayName}, seu login foi um sucesso!`,
+            description:
+              'Para mais informações sobre sua conta acesse seu perfil.',
+            variant: 'default',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
+          await router.push('/')
         })
         .catch((error) => {
           toast({
@@ -84,7 +96,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
         .finally(() => {
-          setIsPendingEmail(false)
+          setIsPending({ email: false })
         })
     })
   }
@@ -95,7 +107,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     displayName,
     photoURL,
   }: AuthSignUpProps) => {
-    setIsPendingEmail(true)
+    setIsPending({ email: true })
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (res) => {
         await uploadProfileImage(res?.user?.uid, photoURL).then(async () => {
@@ -106,7 +118,14 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         })
 
         addUser(res.user)
-        router.push('/login')
+        toast({
+          title: `Olá ${res.user.displayName}, seu cadastro foi um sucesso!`,
+          description:
+            'Para mais informações sobre sua conta acesse seu perfil.',
+          variant: 'default',
+          action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+        })
+        await router.push('/login')
       })
       .catch((error) => {
         toast({
@@ -117,7 +136,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
         })
       })
       .finally(() => {
-        setIsPendingEmail(false)
+        setIsPending({ email: false })
       })
   }
 
@@ -130,21 +149,18 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   }
 
   const googleSignIn = async () => {
-    setIsPendingGoogle(true)
+    setIsPending({ google: true })
     setPersistence(auth, browserSessionPersistence).then(async () => {
       return await signInWithPopup(auth, googleProvider)
         .then(async (res) => {
-          setUserAuth(res.user)
-
-          const getUserFirebase = await getUser(res.user?.uid)
-          if (getUserFirebase) {
-            setUser(getUserFirebase)
-          } else {
-            addUser(res.user)
-            setUser(await getUser(res.user?.uid))
-          }
-
-          router.push('/')
+          await setUserData(res)
+          toast({
+            title: `Olá ${res.user.displayName}, seu login com o google foi um sucesso!`,
+            description:
+              'Para mais informações sobre sua conta acesse seu perfil.',
+            variant: 'default',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
         })
         .catch((error) => {
           toast({
@@ -155,27 +171,24 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
         .finally(() => {
-          setIsPendingGoogle(false)
+          setIsPending({ google: false })
         })
     })
   }
 
   const githubSignIn = async () => {
-    setIsPendingGithub(true)
+    setIsPending({ github: true })
     setPersistence(auth, browserSessionPersistence).then(async () => {
       return await signInWithPopup(auth, githubProvider)
         .then(async (res) => {
-          setUserAuth(res.user)
-          const getUserFirebase = await getUser(res.user?.uid)
-
-          if (getUserFirebase) {
-            setUser(getUserFirebase)
-          } else {
-            addUser(res.user)
-            setUser(await getUser(res.user?.uid))
-          }
-
-          router.push('/')
+          await setUserData(res)
+          toast({
+            title: `Olá ${res.user.displayName}, seu login com o github foi um sucesso!`,
+            description:
+              'Para mais informações sobre sua conta acesse seu perfil.',
+            variant: 'default',
+            action: <ToastAction altText="Notificação">Certo!</ToastAction>,
+          })
         })
         .catch((error) => {
           toast({
@@ -186,9 +199,23 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
           })
         })
         .finally(() => {
-          setIsPendingGithub(false)
+          setIsPending({ github: false })
         })
     })
+  }
+
+  const setUserData = async (res: any) => {
+    setUserAuth(res.user)
+    const getUserFirebase = await getUser(res.user?.uid)
+
+    if (getUserFirebase) {
+      setUser(getUserFirebase)
+    } else {
+      addUser(res.user)
+      setUser(await getUser(res.user?.uid))
+    }
+
+    await router.push('/')
   }
 
   const uploadProfileImage = async (uid: string, file: File | null) => {
@@ -219,9 +246,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     <AuthContext.Provider
       value={{
         userAuth,
-        isPendingEmail,
-        isPendingGoogle,
-        isPendingGithub,
+        isPending,
         signIn,
         signUp,
         signOut,

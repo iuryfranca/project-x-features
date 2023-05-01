@@ -18,15 +18,8 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   const [previewImage, setPreviewImage] = useState<string>()
   const [photoSelected, setPhotoSelected] = useState<File>()
 
-  const {
-    isPendingEmail,
-    isPendingGithub,
-    isPendingGoogle,
-    signIn,
-    signUp,
-    githubSignIn,
-    googleSignIn,
-  } = useAuthContext()
+  const { isPending, signIn, signUp, githubSignIn, googleSignIn } =
+    useAuthContext()
 
   const handlerFormLogin = (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -133,7 +126,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
           </Label>
         </div>
 
-        {isPendingEmail ? (
+        {isPending?.email ? (
           <ButtonLoading type="submit">
             {pageType === 'login' ? 'Entrar' : 'Registrar'}
             <LogIn className="ml-2 h-4 w-4" />
@@ -149,7 +142,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
         <span>Ou continue com</span>
       </div>
       <div className="flex justify-between gap-2">
-        {isPendingGithub ? (
+        {isPending?.github ? (
           <ButtonLoading className="w-full">
             <Icons.gitHub className="mr-2 h-4 w-4" />
             Github
@@ -160,7 +153,7 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
             Github
           </Button>
         )}
-        {isPendingGoogle ? (
+        {isPending?.google ? (
           <ButtonLoading className="w-full">
             <Icons.googleBlack className="mr-2 h-4 w-4" />
             Google
