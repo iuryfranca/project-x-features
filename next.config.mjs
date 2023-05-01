@@ -29,6 +29,14 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    VERCEL_ANALYTICS_ID: process.env.VERCEL_ANALYTICS_ID,
+    VERCEL_WEB_ANALYTICS_ID: process.env.VERCEL_WEB_ANALYTICS_ID,
+    KV_URL: process.env.KV_URL,
+    KV_REST_API_URL: process.env.KV_REST_API_URL,
+    KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
+    KV_REST_API_READ_ONLY_TOKEN: process.env.KV_REST_API_READ_ONLY_TOKEN,
+  }
 }
 
 export default nextConfig
