@@ -8,13 +8,15 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { projectFirestore, timestampNow } from '@/firebase/config'
+import { projectFirestore } from '@/firebase/config'
 import { useToast } from '@/hooks/use-toast'
 import { User } from 'firebase/auth'
 import {
   DocumentData,
+  collection,
   doc,
   getDoc,
+  getDocs,
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
@@ -34,7 +36,7 @@ type UserContextData = {
   isPendingProducts: boolean
   addUser: (data: User) => void
   setUser: Dispatch<SetStateAction<UserProps>>
-  getUser: (id: string) => Promise<UserProps>
+  getUserById: (id: string) => Promise<UserProps>
   getProductsUsers: () => void
   removeItemToFavorite: (id: number) => void
   addItemToFavorite: (product: ProductProps) => void
@@ -75,7 +77,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 2,
@@ -88,7 +90,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 3,
@@ -100,7 +102,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 4,
@@ -112,7 +114,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 5,
@@ -126,7 +128,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 6,
@@ -139,7 +141,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 7,
@@ -152,7 +154,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 8,
@@ -165,7 +167,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 9,
@@ -177,7 +179,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 10,
@@ -189,7 +191,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 11,
@@ -202,7 +204,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 12,
@@ -215,7 +217,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 13,
@@ -228,7 +230,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 14,
@@ -241,7 +243,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 15,
@@ -253,7 +255,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 16,
@@ -266,7 +268,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 17,
@@ -278,7 +280,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 18,
@@ -290,7 +292,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 19,
@@ -302,7 +304,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
           {
             id: 20,
@@ -314,7 +316,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
-            created_at: timestampNow,
+            created_at: new Date().toJSON(),
           },
         ],
       }
@@ -335,7 +337,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
     await setDoc(doc(projectFirestore, 'users', userData.uid), userData)
   }
 
-  const getUser = async (id: string): Promise<UserProps> => {
+  const getUserById = async (id: string): Promise<UserProps> => {
     const documentRef = doc(projectFirestore, 'users', id)
 
     return await getDoc(documentRef).then((doc: DocumentData) => {
@@ -343,10 +345,24 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
     })
   }
 
+  const getAllUsers = async () => {
+    const documentRefUsers = collection(projectFirestore, 'users')
+
+    return await getDocs(documentRefUsers).then((res) => {
+      return res.docs.map((doc) => doc.data())
+    })
+  }
+
   const getProductsUsers = async () => {
     setIsPendingProducts(true)
-    await getUser('cH0TGKZNzkXAhbAkqN4GMDqQDvu2')
-      .then((user) => setProductsList(user.products))
+
+    await getAllUsers()
+      .then((res) => {
+        res.some((user) => {
+          if (user.email === 'iurygfranca@gmail.com')
+            setProductsList(user.products)
+        })
+      })
       .catch((error) => {
         toast({
           title: `Erro carregar os produtos`,
@@ -365,7 +381,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         favorites: [...favoritesList, { ...newProduct }],
       })
         .then(async () => {
-          await getUser(user?.uid).then((user) => {
+          await getUserById(user?.uid).then((user) => {
             setFavoritesList(user.favorites)
           })
         })
@@ -392,7 +408,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
       await updateDoc(documentRef, {
         favorites: [...tempFav],
       }).then(async () => {
-        await getUser(user?.uid).then((user) => {
+        await getUserById(user?.uid).then((user) => {
           setFavoritesList(user.favorites)
         })
       })
@@ -416,7 +432,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
         isPendingProducts,
         setUser,
         addUser,
-        getUser,
+        getUserById,
         getProductsUsers,
         addItemToFavorite,
         removeItemToFavorite,

@@ -38,7 +38,7 @@ type CartContextData = {
 export const CartContext = createContext({} as CartContextData)
 
 export const CartProvider: FC<PropsReactNode> = ({ children }) => {
-  const { user, getUser } = useUserContext()
+  const { user, getUserById } = useUserContext()
   const { toast } = useToast()
   const [cart, setCart] = useState<CartProps[]>([])
   const [isPendingToCart, setPendingToCart] = useState<LoadingButtonProps>()
@@ -100,7 +100,7 @@ export const CartProvider: FC<PropsReactNode> = ({ children }) => {
         cart: [...temporaryCart],
       })
         .then(async () => {
-          await getUser(user?.uid).then((user) => {
+          await getUserById(user?.uid).then((user) => {
             setCart(user.cart)
           })
         })

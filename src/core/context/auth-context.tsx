@@ -59,7 +59,7 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
   const [userAuth, setUserAuth] = useState<UserTypes>(null)
-  const { addUser, setUser, getUser } = useUserContext()
+  const { addUser, setUser, getUserById } = useUserContext()
   const [isPending, setIsPending] = useState<IIsPending>({
     email: false,
     google: false,
@@ -76,7 +76,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
       await signInWithEmailAndPassword(auth, email, password)
         .then(async (res) => {
           setUserAuth(res.user)
-          setUser(await getUser(res.user?.uid))
+          setUser(await getUserById(res.user?.uid))
 
           toast({
             title: `Olá ${res.user.displayName}, seu login foi um sucesso!`,
@@ -206,13 +206,13 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
 
   const setUserData = async (res: any) => {
     setUserAuth(res.user)
-    const getUserFirebase = await getUser(res.user?.uid)
+    const getUserFirebase = await getUserById(res.user?.uid)
 
     if (getUserFirebase) {
       setUser(getUserFirebase)
     } else {
       addUser(res.user)
-      setUser(await getUser(res.user?.uid))
+      setUser(await getUserById(res.user?.uid))
     }
 
     await router.push('/')
@@ -237,7 +237,7 @@ export const AuthProvider: FC<PropsReactNode> = ({ children }) => {
     onAuthStateChanged(auth, async (userAuthStateChanged) => {
       if (userAuthStateChanged) {
         setUserAuth({ ...userAuthStateChanged })
-        setUser(await getUser(userAuthStateChanged?.uid))
+        setUser(await getUserById(userAuthStateChanged?.uid))
       }
     })
   }, [])
