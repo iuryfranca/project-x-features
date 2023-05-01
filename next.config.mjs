@@ -17,7 +17,8 @@ const nextConfig = {
     domains: [
       'avatars.githubusercontent.com',
       'fakestoreapi.com',
-      'https://rive.app',
+      'rive.app',
+      'lh3.googleusercontent.com',
     ],
   },
   experimental: {

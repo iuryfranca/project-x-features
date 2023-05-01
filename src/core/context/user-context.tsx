@@ -8,7 +8,7 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { projectFirestore } from '@/firebase/config'
+import { projectFirestore, timestampNow } from '@/firebase/config'
 import { useToast } from '@/hooks/use-toast'
 import { User } from 'firebase/auth'
 import {
@@ -75,6 +75,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 2,
@@ -87,6 +88,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 3,
@@ -98,6 +100,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 4,
@@ -109,6 +112,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 5,
@@ -122,6 +126,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 6,
@@ -134,6 +139,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 7,
@@ -146,6 +152,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 8,
@@ -158,6 +165,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
               'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 9,
@@ -169,6 +177,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 10,
@@ -180,6 +189,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 11,
@@ -192,6 +202,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 12,
@@ -204,6 +215,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 13,
@@ -216,6 +228,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 14,
@@ -228,6 +241,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 15,
@@ -239,6 +253,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 16,
@@ -251,6 +266,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 17,
@@ -262,6 +278,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 18,
@@ -273,6 +290,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 19,
@@ -284,6 +302,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
           {
             id: 20,
@@ -295,6 +314,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
             image: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
             amount_in_cart: 0,
             amount_in_stock: 20,
+            created_at: timestampNow,
           },
         ],
       }
@@ -325,7 +345,7 @@ export const UserProvider: FC<PropsReactNode> = ({ children }) => {
 
   const getProductsUsers = async () => {
     setIsPendingProducts(true)
-    await getUser('niLQBEuyvOVHJit1xNiOiBk97Rg2')
+    await getUser('cH0TGKZNzkXAhbAkqN4GMDqQDvu2')
       .then((user) => setProductsList(user.products))
       .catch((error) => {
         toast({

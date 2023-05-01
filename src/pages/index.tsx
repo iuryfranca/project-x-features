@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { siteConfig } from '@/config/site'
 import { AnnouncementWebsite } from '@/components/announcement-website'
 import { Layout } from '@/components/layout'
+import { TechsList } from '@/components/techs-list'
 import { buttonVariants } from '@/components/ui/button'
-import { TechsList } from '../components/techs-list'
 
 export default function IndexPage() {
   return (
