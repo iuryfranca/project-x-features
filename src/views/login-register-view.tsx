@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
+import Script from 'next/script'
 import { useAuthContext } from '@/core/context/auth-context'
+import { SuapClient } from '@/hooks/use-suap'
 import { FolderUp, LogIn } from 'lucide-react'
 
 import { ButtonLoading } from '@/components/button-loading'
@@ -17,9 +20,28 @@ interface PageLoginProps {
 const LoginRegisterView = ({ pageType }: PageLoginProps) => {
   const [previewImage, setPreviewImage] = useState<string>()
   const [photoSelected, setPhotoSelected] = useState<File>()
+  const [isPendingSuap, setIsPendingSuap] = useState(false)
 
   const { isPending, signIn, signUp, githubSignIn, googleSignIn } =
     useAuthContext()
+
+  const {
+    getDataJSON,
+    getLoginURL,
+    getRedirectURI,
+    getRegistrationURL,
+    getResource,
+    getToken,
+    init,
+    isAuthenticated,
+    login,
+    logout,
+  } = SuapClient(
+    process.env.SUAP_URL,
+    process.env.CLIENT_ID,
+    process.env.REDIRECT_URI,
+    process.env.SCOPE
+  )
 
   const handlerFormLogin = (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -56,128 +78,163 @@ const LoginRegisterView = ({ pageType }: PageLoginProps) => {
     }
   }
 
+  function suapLogin() {
+    init()
+
+    console.log(getLoginURL())
+    setIsPendingSuap(!isPendingSuap)
+  }
+
   return (
-    <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-border p-10 shadow-lg dark:bg-muted dark:shadow-md dark:shadow-ring">
-      {pageType === 'login' ? (
-        <Label className="text-xl font-semibold">Acesse sua conta</Label>
-      ) : (
-        <Label className="text-xl font-semibold">Crie uma conta</Label>
-      )}
-
-      <form onSubmit={handlerFormLogin} className="flex flex-col gap-3">
-        {pageType === 'register' && (
-          <>
-            <div className="mt-4 flex flex-col items-center gap-2">
-              <label className="flex cursor-pointer flex-col items-center gap-2">
-                <div className="rounded-full border-[3px] border-dashed border-slate-900 p-1 dark:border-slate-300">
-                  <Avatar className="h-28 w-28">
-                    <AvatarImage src={previewImage} alt="Foto de Perfil" />
-                    <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
-                      <FolderUp size={38} />
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
-                Foto de Perfil
-                <input
-                  id="image"
-                  name="photoURL"
-                  type="file"
-                  accept=".png,.jpg,.jpeg"
-                  style={{ display: 'none' }}
-                  onChange={handleGetFilePreview}
-                />
-              </label>
-            </div>
-            <div>
-              <Label>
-                Nome usuário
-                <Input
-                  type="text"
-                  name="displayName"
-                  placeholder="Matheus Litt"
-                  className="font-semibold"
-                />
-              </Label>
-            </div>
-          </>
+    <>
+      <div className="relative flex w-full max-w-[360px] flex-col gap-6 rounded-md border border-border p-10 shadow-lg dark:bg-muted dark:shadow-md dark:shadow-ring">
+        {pageType === 'login' ? (
+          <Label className="text-xl font-semibold">Acesse sua conta</Label>
+        ) : (
+          <Label className="text-xl font-semibold">Crie uma conta</Label>
         )}
 
-        <div>
-          <Label>
-            Email
-            <Input
-              type="email"
-              name="email"
-              placeholder="m@exemple.com"
-              className="font-semibold"
-            />
-          </Label>
+        <form onSubmit={handlerFormLogin} className="flex flex-col gap-3">
+          {pageType === 'register' && (
+            <>
+              <div className="mt-4 flex flex-col items-center gap-2">
+                <label className="flex cursor-pointer flex-col items-center gap-2">
+                  <div className="rounded-full border-[3px] border-dashed border-slate-900 p-1 dark:border-slate-300">
+                    <Avatar className="h-28 w-28">
+                      <AvatarImage src={previewImage} alt="Foto de Perfil" />
+                      <AvatarFallback className="bg-slate-300 dark:bg-slate-500">
+                        <FolderUp size={38} />
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  Foto de Perfil
+                  <input
+                    id="image"
+                    name="photoURL"
+                    type="file"
+                    accept=".png,.jpg,.jpeg"
+                    style={{ display: 'none' }}
+                    onChange={handleGetFilePreview}
+                  />
+                </label>
+              </div>
+              <div>
+                <Label>
+                  Nome usuário
+                  <Input
+                    type="text"
+                    name="displayName"
+                    placeholder="Matheus Litt"
+                    className="font-semibold"
+                  />
+                </Label>
+              </div>
+            </>
+          )}
+
+          <div>
+            <Label>
+              Email
+              <Input
+                type="email"
+                name="email"
+                placeholder="m@exemple.com"
+                className="font-semibold"
+              />
+            </Label>
+          </div>
+
+          <div>
+            <Label>
+              Senha
+              <Input
+                type="password"
+                placeholder="*******"
+                className="font-semibold"
+                name="password"
+              />
+            </Label>
+          </div>
+
+          {isPending?.email ? (
+            <ButtonLoading type="submit">
+              {pageType === 'login' ? 'Entrar' : 'Registrar'}
+              <LogIn className="ml-2 h-4 w-4" />
+            </ButtonLoading>
+          ) : (
+            <Button type="submit">
+              {pageType === 'login' ? 'Entrar' : 'Registrar'}
+              <LogIn className="ml-2 h-4 w-4" />
+            </Button>
+          )}
+        </form>
+        <div className="flex justify-center text-xs uppercase">
+          <span>Ou continue com</span>
+        </div>
+        <div className="flex justify-between gap-2">
+          {isPending?.github ? (
+            <ButtonLoading className="w-full">
+              <Icons.gitHub className="mr-2 h-4 w-4" />
+              Github
+            </ButtonLoading>
+          ) : (
+            <Button onClick={githubSignIn} className="w-full">
+              <Icons.gitHub className="mr-2 h-4 w-4" />
+              Github
+            </Button>
+          )}
+
+          {isPending?.google ? (
+            <ButtonLoading className="w-full">
+              <Icons.googleBlack className="mr-2 h-4 w-4" />
+              Google
+            </ButtonLoading>
+          ) : (
+            <Button onClick={googleSignIn} className="w-full">
+              <Icons.googleBlack className="mr-2 h-4 w-4" />
+              Google
+            </Button>
+          )}
         </div>
 
-        <div>
-          <Label>
-            Senha
-            <Input
-              type="password"
-              placeholder="*******"
-              className="font-semibold"
-              name="password"
-            />
-          </Label>
-        </div>
+        {isPendingSuap ? (
+          <ButtonLoading className="flex h-12 w-full items-center justify-center p-1">
+            <div className="relative flex h-full w-full max-w-[140px] items-center justify-center">
+              <Image
+                src="https://suap.ifro.edu.br/media/configuracao/logo-IFRO-(horizontal).png"
+                alt="Logo do SUAP"
+                fill
+              />
+            </div>
+          </ButtonLoading>
+        ) : (
+          <Button
+            onClick={() => suapLogin()}
+            className="flex h-12 w-full items-center justify-center p-1"
+          >
+            <div className="relative flex h-full w-full max-w-[140px] items-center justify-center">
+              <Image
+                src="https://suap.ifro.edu.br/media/configuracao/logo-IFRO-(horizontal).png"
+                alt="Logo do SUAP"
+                fill
+              />
+            </div>
+          </Button>
+        )}
 
-        {isPending?.email ? (
-          <ButtonLoading type="submit">
-            {pageType === 'login' ? 'Entrar' : 'Registrar'}
-            <LogIn className="ml-2 h-4 w-4" />
-          </ButtonLoading>
+        {pageType === 'login' ? (
+          <Link href="/register" className="flex w-full flex-row gap-1 text-sm">
+            Não te conta? Crie uma agora mesmo!
+            <Icons.blankLink />
+          </Link>
         ) : (
-          <Button type="submit">
-            {pageType === 'login' ? 'Entrar' : 'Registrar'}
-            <LogIn className="ml-2 h-4 w-4" />
-          </Button>
-        )}
-      </form>
-      <div className="flex justify-center text-xs uppercase">
-        <span>Ou continue com</span>
-      </div>
-      <div className="flex justify-between gap-2">
-        {isPending?.github ? (
-          <ButtonLoading className="w-full">
-            <Icons.gitHub className="mr-2 h-4 w-4" />
-            Github
-          </ButtonLoading>
-        ) : (
-          <Button onClick={githubSignIn} className="w-full">
-            <Icons.gitHub className="mr-2 h-4 w-4" />
-            Github
-          </Button>
-        )}
-        {isPending?.google ? (
-          <ButtonLoading className="w-full">
-            <Icons.googleBlack className="mr-2 h-4 w-4" />
-            Google
-          </ButtonLoading>
-        ) : (
-          <Button onClick={googleSignIn} className="w-full">
-            <Icons.googleBlack className="mr-2 h-4 w-4" />
-            Google
-          </Button>
+          <Link href="/login" className="flex w-full flex-row gap-1 text-sm">
+            Já tem conta? Entre agora mesmo!
+            <Icons.blankLink />
+          </Link>
         )}
       </div>
-
-      {pageType === 'login' ? (
-        <Link href="/register" className="flex w-full flex-row gap-1 text-sm">
-          Não te conta? Crie uma agora mesmo!
-          <Icons.blankLink />
-        </Link>
-      ) : (
-        <Link href="/login" className="flex w-full flex-row gap-1 text-sm">
-          Já tem conta? Entre agora mesmo!
-          <Icons.blankLink />
-        </Link>
-      )}
-    </div>
+    </>
   )
 }
 

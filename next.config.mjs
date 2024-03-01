@@ -19,6 +19,7 @@ const nextConfig = {
       'fakestoreapi.com',
       'rive.app',
       'lh3.googleusercontent.com',
+      'suap.ifro.edu.br',
     ],
   },
   experimental: {
@@ -36,7 +37,11 @@ const nextConfig = {
     KV_REST_API_URL: process.env.KV_REST_API_URL,
     KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
     KV_REST_API_READ_ONLY_TOKEN: process.env.KV_REST_API_READ_ONLY_TOKEN,
-  }
+    CLIENT_ID: 'zFfs1i1YUwvRFtbYUqYhcXTZG0lD0RJacBWXjyw1',
+    REDIRECT_URI: 'http://localhost:3000/',
+    SUAP_URL: 'https://suap.ifro.edu.br/',
+    SCOPE: 'identificacao email documentos_pessoais',
+  },
 }
 
 export default nextConfig
